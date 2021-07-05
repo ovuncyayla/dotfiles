@@ -33,6 +33,7 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = guess_terminal()
+SCRIPTS_PATH = "/usr/local/bin/scripts"
 
 keys = [
     # Switch between windows
@@ -80,6 +81,12 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
+
+    ## Scripts
+    Key([], "XF86MonBrightnessUp", lazy.spawn(SCRIPTS_PATH + "/brightness 10%+"),
+        desc="Brightness up"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn(SCRIPTS_PATH + "/brightness 10%-"),
+        desc="Brightness down"),
 ]
 
 groups = [Group(i) for i in "123456789"]
