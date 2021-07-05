@@ -26,13 +26,13 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "st" #guess_terminal()
 SCRIPTS_PATH = "/usr/local/bin/scripts"
 
 keys = [
@@ -87,6 +87,9 @@ keys = [
         desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn(SCRIPTS_PATH + "/brightness 5%-"),
         desc="Brightness down"),
+    Key([mod, "shift"], "space", lazy.spawn(SCRIPTS_PATH + "/keyboard"),
+        desc="Change keyboard layout"),
+
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -125,7 +128,7 @@ layouts = [
 widget_defaults = dict(
     font='sans',
     fontsize=12,
-    padding=3,
+    padding=15,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -138,21 +141,23 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Battery(),
-                widget.KeyboardLayout(background="#c7c7c7"),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                #widget.Battery(),
+                widget.KeyboardLayout(),
+                #widget.Chord# (
+                #     chords_colors={
+                #         'launch': ("#ff0000", "#ffffff"),
+                #     },
+                #     name_transform=lambda name: name.upper(),
+                # ),
                 #widget.TextBox("default config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(background="#c3a2b5"),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
+                widget.Systray(),
+                widget.Clock(format='%Y-%m-%d %a %I:%M %p', margin=3),
+                #widget.QuickExit(),
+                #extension.Dmenu()
             ],
             30,
+            opacity=0.8
         ),
     ),
 ]
