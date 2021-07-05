@@ -83,9 +83,9 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 
     ## Scripts
-    Key([], "XF86MonBrightnessUp", lazy.spawn(SCRIPTS_PATH + "/brightness 10%+"),
+    Key([], "XF86MonBrightnessUp", lazy.spawn(SCRIPTS_PATH + "/brightness 5%+"),
         desc="Brightness up"),
-    Key([], "XF86MonBrightnessDown", lazy.spawn(SCRIPTS_PATH + "/brightness 10%-"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn(SCRIPTS_PATH + "/brightness 5%-"),
         desc="Brightness down"),
 ]
 
@@ -131,25 +131,28 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        wallpaper="/usr/share/wallpapers/Next/contents/images/1920x1080.png",
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
+                widget.Battery(),
+                widget.KeyboardLayout(background="#c7c7c7"),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
+                #widget.TextBox("default config", name="default"),
+                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                widget.Systray(background="#c3a2b5"),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
                 widget.QuickExit(),
             ],
-            24,
+            30,
         ),
     ),
 ]
