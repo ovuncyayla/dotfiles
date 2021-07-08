@@ -125,3 +125,11 @@ for _, lsp in ipairs(servers) do
   }
 end
 EOF
+
+" Common
+set relativenumber
+
+let mapleader = ","
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
