@@ -1,3 +1,4 @@
+" Plugins {{{
 call plug#begin(stdpath("config"))
 
 Plug 'morhetz/gruvbox'
@@ -5,6 +6,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
+" }}}
 
 "Theme
 autocmd vimenter * ++nested colorscheme gruvbox
@@ -15,6 +17,7 @@ require'lspconfig'.pyright.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 EOF
 
+" Compe setup {{{
 lua << EOF
 -- Compe setup
 require'compe'.setup {
@@ -75,8 +78,9 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
+" }}}
 
-" Omnifunc
+" Omnifunc {{{
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
@@ -125,13 +129,33 @@ for _, lsp in ipairs(servers) do
   }
 end
 EOF
+" }}}
 
 " Common
 set relativenumber
-
 set clipboard+=unnamedplus
+set incsearch
+setlocal foldmethod=marker
+setlocal foldlevelstart=0
 
 let mapleader = ","
+let maplocalleader = "\\"
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" For muscle memory
+map <up> <nop>
+map! <up> <nop>
+map <down> <nop>
+map! <down> <nop>
+map <left> <nop>
+map! <left> <nop>
+map <right> <nop>
+map! <right> <nop>
+
+augroup filetype_html
+    autocmd!
+    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+augroup END
+
 
