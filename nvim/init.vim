@@ -15,6 +15,7 @@ autocmd vimenter * ++nested colorscheme gruvbox
 lua << EOF
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.vimls.setup{}
 EOF
 
 " Compe setup {{{
@@ -119,7 +120,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver" }
+local servers = { "pyright", "rust_analyzer", "tsserver", "vimls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -137,6 +138,8 @@ set clipboard+=unnamedplus
 set incsearch
 setlocal foldmethod=marker
 setlocal foldlevelstart=0
+set grepprg=rg
+
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -144,18 +147,23 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " For muscle memory
-map <up> <nop>
-map! <up> <nop>
-map <down> <nop>
-map! <down> <nop>
-map <left> <nop>
-map! <left> <nop>
-map <right> <nop>
-map! <right> <nop>
+" map <up> <nop>
+" map! <up> <nop>
+" map <down> <nop>
+" map! <down> <nop>
+" map <left> <nop>
+" map! <left> <nop>
+" map <right> <nop>
+" map! <right> <nop>
 
 augroup filetype_html
     autocmd!
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+augroup END
+
+augroup filetype_vim
+    " autocmd!
+    autocmd Filetype vim nnoremap <buffer> <leader>ss :source "%:p"<cr>
 augroup END
 
 
