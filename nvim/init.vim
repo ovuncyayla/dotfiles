@@ -139,22 +139,14 @@ set incsearch
 setlocal foldmethod=marker
 setlocal foldlevelstart=0
 set grepprg=rg
-
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
 
 let mapleader = ","
 let maplocalleader = "\\"
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" For muscle memory
-" map <up> <nop>
-" map! <up> <nop>
-" map <down> <nop>
-" map! <down> <nop>
-" map <left> <nop>
-" map! <left> <nop>
-" map <right> <nop>
-" map! <right> <nop>
 
 augroup filetype_html
     autocmd!
