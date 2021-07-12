@@ -1,0 +1,9 @@
+[submodule "y"]
+	path = nvim/plugged/vimspector
+	url = https://github.com/puremourning/vimspector.git
+[submodule "popup.nvim"]
+	path = nvim/plugged/popup.nvim
+	url = https://github.com/nvim-lua/popup.nvim.git
+[submodule "nvim/plugged/telescope.nvim"]
+	path = nvim/plugged/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim.git
