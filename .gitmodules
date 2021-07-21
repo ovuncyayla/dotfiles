@@ -1,6 +1,6 @@
 [submodule "y"]
-	path = nvim/plugged/vimspector
-	url = https://github.com/puremourning/vimspector.git
+	path = nvim/plugged/telescope-project.nvim
+	url = https://github.com/nvim-telescope/telescope-project.nvim.git
 [submodule "popup.nvim"]
 	path = nvim/plugged/popup.nvim
 	url = https://github.com/nvim-lua/popup.nvim.git

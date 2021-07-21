@@ -141,7 +141,7 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                #widget.Battery(),
+                widget.Battery(),
                 widget.KeyboardLayout(),
                 #widget.Chord# (
                 #     chords_colors={

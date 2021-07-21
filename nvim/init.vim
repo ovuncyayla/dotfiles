@@ -8,6 +8,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'puremourning/vimspector'
 call plug#end()
 " }}}
@@ -38,6 +39,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>pf <cmd>Telescope git_files<cr>
+nnoremap <leader>fd <cmd>Telescope project<cr>
 
 augroup filetype_html
     autocmd!
