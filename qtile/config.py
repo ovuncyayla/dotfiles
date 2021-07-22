@@ -154,7 +154,7 @@ screens = [
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p', margin=3),
                 #widget.QuickExit(),
-                #extension.Dmenu()
+                extension.Dmenu()
             ],
             30,
             opacity=0.8
