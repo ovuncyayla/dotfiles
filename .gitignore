@@ -10,6 +10,9 @@
 !qtile/**/*
 qtile/__pycache__/
 
+!xmonad/
+!xmonad/xmonad.hs
+
 !lf/
 !lf/**/*
 
