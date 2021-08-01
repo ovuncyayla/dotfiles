@@ -32,8 +32,12 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 Plug 'sbdchd/neoformat'
 
+Plug 'simrat39/rust-tools.nvim'
+Plug 'mfussenegger/nvim-dap'
 call plug#end()
 " }}}
+
+lua require("confs")
 
 "Theme
 autocmd vimenter * ++nested colorscheme gruvbox
@@ -42,15 +46,7 @@ let mapleader = " "
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>pf <cmd>Telescope git_files<cr>
-nnoremap <leader>fd <cmd>Telescope project<cr>
-
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeShow<CR>
 
 augroup filetype_html
     autocmd!

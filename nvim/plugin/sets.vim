@@ -12,7 +12,7 @@ set wildignore+=**/android/*
 set wildignore+=**/ios/*
 set wildignore+=**/.git/*
 
-set guicursor=
+" set guicursor=
 set relativenumber
 set nohlsearch
 set hidden
