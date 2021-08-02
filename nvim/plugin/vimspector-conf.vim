@@ -25,3 +25,8 @@ nnoremap <leader>q<space> :call vimspector#Continue()<CR>
 nmap <leader>qrc <Plug>VimspectorRunToCursor
 nmap <leader>qbb <Plug>VimspectorToggleBreakpoint
 nmap <leader>qcbb <Plug>VimspectorToggleConditionalBreakpoint
+
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval

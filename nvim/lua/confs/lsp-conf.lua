@@ -2,9 +2,10 @@ require'lspconfig'.pyright.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.hls.setup{}
-require('rust-tools').setup({})
+
 
 local nvim_lsp = require('lspconfig')
+require('rust-tools').setup(nvim_lsp)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -50,3 +51,4 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
