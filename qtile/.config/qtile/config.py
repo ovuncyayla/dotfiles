@@ -6,7 +6,7 @@ from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
-#import arcobattery
+import arcobattery
 
 #mod4 or mod = super key
 mod = "mod4"
@@ -116,6 +116,13 @@ keys = [
 
 # Others
 
+    ## Scripts
+    Key([], "XF86MonBrightnessUp", lazy.spawn(scripts + "/brightness 5%+"),
+        desc="Brightness up"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn(scripts + "/brightness 5%-"),
+        desc="Brightness down"),
+    Key([mod, "shift"], "space", lazy.spawn(scripts + "/keyboard"),
+        desc="Change keyboard layout"),
 
     ]
 
