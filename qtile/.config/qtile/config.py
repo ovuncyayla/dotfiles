@@ -10,7 +10,7 @@ import arcobattery
 
 #mod4 or mod = super key
 mod = "mod4"
-mod1 = "alt"
+mod1 = "mod1"
 mod2 = "control"
 home = os.path.expanduser('~')
 
@@ -124,7 +124,9 @@ keys = [
     Key([mod, "shift"], "space", lazy.spawn(scripts + "/keyboard"),
         desc="Change keyboard layout"),
 
-    ]
+    Key([mod], "x", lazy.spawn("qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1")),
+
+]
 
 groups = []
 
