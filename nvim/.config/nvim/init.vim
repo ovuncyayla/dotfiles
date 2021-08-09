@@ -51,6 +51,9 @@ nnoremap <leader>u :UndotreeShow<CR>
 
 inoremap lkj <esc>
 
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 augroup filetype_html
     autocmd!
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf

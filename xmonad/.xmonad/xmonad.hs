@@ -73,6 +73,7 @@ myManageHook = composeAll . concat $
     , [title =? t --> doFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
+    -- , [anyPropertyType =? t --> doFloat | t <- myRFloats ]
     -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61612" | x <- my1Shifts]
     -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61899" | x <- my2Shifts]
     -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61947" | x <- my3Shifts]
@@ -88,7 +89,7 @@ myManageHook = composeAll . concat $
     -- doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
     myCFloats = ["Arandr", "feh", "mpv"]
     myTFloats = ["Downloads", "Save As..."]
-    myRFloats = []
+    myRFloats = ["_NET_WM_WINDOW_TYPE_NOTIFICATION"]
     myIgnores = ["desktop_window"]
     -- my1Shifts = ["Chromium", "Vivaldi-stable", "Firefox"]
     -- my2Shifts = []

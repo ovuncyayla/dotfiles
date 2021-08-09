@@ -18,6 +18,9 @@ require("telescope").setup {
           ["<c-d>"] = require("telescope.actions").delete_buffer,
         }
       }
+    },
+    project = {
+        hidden_files = true
     }
   }
 }
