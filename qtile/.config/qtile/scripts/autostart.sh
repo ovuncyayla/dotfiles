@@ -28,12 +28,13 @@ feh --no-fehbg --bg-scale '//usr/share/wallpapers/summer_1am/contents/images/192
 #(conky -c $HOME/.config/qtile/scripts/system-overview) &
 
 #start sxhkd to replace Qtile native key-bindings
-run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
+#run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
 
 #starting utility applications at boot time
 #run variety &
-run nm-applet &
+kmix &
+nm-applet --indicator &
 #run pamac-tray &
 #run xfce4-power-manager &
 #numlockx on &

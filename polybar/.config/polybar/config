@@ -67,6 +67,43 @@ volume-max = #bf616a
 ;secondary = #e60053
 ;alert = #bd2c40
 
+[module/menu-apps]
+type = custom/menu
+; Available tags:
+;   <label-toggle> (default) - gets replaced with <label-(open|close)>
+;   <menu> (default)
+; If expand-right is true, the default will be "<label-toggle><menu>" and the
+; other way around otherwise.
+; Note that if you use <label-toggle> you must also include
+; the definition for <label-open>
+; format = <label-toggle><menu>
+
+label-open = Apps
+label-close = x
+
+; Optional item separator
+; Default: none
+label-separator = |
+; If true, <label-toggle> will be to the left of the menu items (default).
+; If false, it will be on the right of all the items.
+expand-right = false
+
+; "menu-LEVEL-N" has the same properties as "label-NAME" with
+; the additional "exec" property
+;
+; Commands will be executed using "/bin/sh -c $COMMAND"
+
+menu-0-0 = Browsers
+menu-0-0-exec = #menu-apps.open.1
+menu-0-1 = Multimedia
+menu-0-1-exec = #menu-apps.open.2
+
+menu-1-0 = Brave
+menu-1-0-exec = brave
+
+menu-2-0 = Network
+menu-2-0-exec = nm-applet
+
 ################################################################################
 ################################################################################
 ############                  MAINBAR-XMONAD                        ############
@@ -117,9 +154,9 @@ font-2 = "Noto Sans:size=10;0"
 font-3 = "Noto Sans Mono:size=10;0"
 font-4 = "FontAwesome5Brands:size=13;0"
 
-modules-left = ewmh
+modules-left = ewmh 
 modules-center = kernel
-modules-right = xkeyboard pavolume memory2 cpu2 date battery
+modules-right = xkeyboard pavolume memory2 cpu2 date wireless-network
 
 tray-detached = false
 tray-offset-x = 0
@@ -127,7 +164,7 @@ tray-offset-y = 0
 tray-padding = 2
 tray-maxsize = 20
 tray-scale = 1.0
-tray-position = right
+tray-position = center
 tray-background = ${colors.background}
 
 
@@ -792,7 +829,7 @@ tail = true
 label = %output%
 exec = ~/.config/polybar/scripts/pavolume.sh --listen
 click-right = exec pavucontrol
-click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
+click-left = kmix #~/.config/polybar/scripts/pavolume.sh --togmute
 scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-underline = #3EC13F
@@ -1031,7 +1068,7 @@ tail = true
 [module/wired-network]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-interface = enp4s0
+interface = enp3s0
 ;interface = enp14s0
 interval = 3.0
 
@@ -1063,7 +1100,7 @@ label-disconnected-foreground = ${colors.foreground}
 [module/wireless-network]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-interface = wlp3s0
+interface = wlo1
 interval = 3.0
 label-connected = %essid%
 
@@ -1097,6 +1134,8 @@ ramp-signal-5 = ▆
 ramp-signal-6 = ▇
 ramp-signal-7 = █
 ramp-signal-foreground = #7e52c6
+
+click-left = networkmanager_dmenu &
 
 ################################################################################
 
