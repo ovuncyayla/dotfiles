@@ -7,6 +7,7 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
 import arcobattery
+from powerline.bindings.qtile.widget import PowerlineTextBox
 
 #mod4 or mod = super key
 mod = "mod4"
@@ -56,7 +57,7 @@ keys = [
     Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "Up", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    #Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
@@ -121,7 +122,7 @@ keys = [
         desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn(scripts + "/brightness 5%-"),
         desc="Brightness down"),
-    Key([mod, "shift"], "space", lazy.spawn(scripts + "/keyboard"),
+    Key([mod1, "control"], "k", lazy.spawn(scripts + "/keyboard"),
         desc="Change keyboard layout"),
 
     Key([mod], "x", lazy.spawn("qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1")),
@@ -220,6 +221,25 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
+               #PowerlineTextBox(update_interval=2, side='left'),
+               #Spacer(),
+               #PowerlineTextBox(
+#                        font="FontAwesome",
+#                        fontsize = 16,
+#                        margin_y = -1,
+#                        margin_x = 0,
+#                        padding_y = 6,
+#                        padding_x = 5,
+#                        borderwidth = 0,
+#                        disable_drag = True,
+#                        active = colors[9],
+#                        inactive = colors[5],
+#                        rounded = False,
+#                        highlight_method = "text",
+#                        this_current_screen_border = colors[8],
+#                        foreground = colors[2],
+#                        background = colors[1],
+#update_interval=2, side='right'),
                widget.GroupBox(font="FontAwesome",
                         fontsize = 16,
                         margin_y = -1,
@@ -397,6 +417,7 @@ def init_widgets_list():
                #          background = colors[1]
                #          ),
                widget.Systray(
+                       foreground=colors[3],
                         background=colors[1],
                         icon_size=20,
                         padding = 4

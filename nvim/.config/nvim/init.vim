@@ -34,6 +34,8 @@ Plug 'sbdchd/neoformat'
 
 Plug 'simrat39/rust-tools.nvim'
 Plug 'mfussenegger/nvim-dap'
+Plug 'vimwiki/vimwiki'
+Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
 " }}}
 

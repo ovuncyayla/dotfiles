@@ -33,6 +33,8 @@ feh --no-fehbg --bg-scale '//usr/share/wallpapers/summer_1am/contents/images/192
 
 #starting utility applications at boot time
 #run variety &
+ksmserver &
+#plasmashell &
 kmix &
 nm-applet --indicator &
 #run pamac-tray &
@@ -42,8 +44,6 @@ nm-applet --indicator &
 picom --config $HOME/.config/qtile/scripts/picom.conf &
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 #/usr/lib/xfce4/notifyd/xfce4-notifyd &
-ksmserver &
-plasmashell &
 #starting user applications at boot time
 #run volumeicon &
 #run discord &
