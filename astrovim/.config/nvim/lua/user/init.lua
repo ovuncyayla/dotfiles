@@ -206,6 +206,7 @@ local config = {
   -- good place to configure mappings and vim options
   polish = function()
     -- Set key bindings
+    vim.keymap.set("n", "<C-s>", ":w!<CR>")
     vim.keymap.set("n", "<leader>ev", ":vsplit $MYVIMRC<cr>")
     vim.keymap.set("n", "<leader>sv", ":source $MYVIMRC<cr>")
 
