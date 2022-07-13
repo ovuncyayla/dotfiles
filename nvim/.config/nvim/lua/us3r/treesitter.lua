@@ -5,9 +5,11 @@ if not status_ok then
   return
 end
 
+local lsp_servers = require "us3r.lsp.servers"
+
 treesitter.setup({
-  -- ensure_installed = { "cpp", "vim", "lua", "python", "rust", "javascript", "html", "css", "json", "toml" },
-  ensure_installed = "all",
+  ensure_installed = { "cpp", "vim", "lua", "python", "rust", "javascript", "html", "css", "json", "toml" },
+  -- ensure_installed = "all",
   matchup = {
     enable = true,
   },
