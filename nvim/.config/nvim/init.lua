@@ -5,6 +5,11 @@ end
 
 require 'us3r.mappings'
 require 'us3r.options'
-require 'us3r.ui'
+-- require 'us3r.ui'
+require 'us3r.catppuccin'
+require 'us3r.colorscheme'
+require 'us3r.icons'
+require 'us3r.notify'
 require 'us3r.telescope'
 require 'us3r.neotree'
+require 'us3r.feline'

@@ -106,5 +106,5 @@ if status_ok then
     },
   })
 else
-  echom "Error while loading telescope"
+  vim.notify("Error while loading telescope")
 end

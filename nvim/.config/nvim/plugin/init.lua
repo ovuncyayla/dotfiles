@@ -51,12 +51,7 @@ return require('packer').startup(function(use)
 
   -- Notification Enhancer
   use {
-    "rcarriga/nvim-notify",
-    event = "VimEnter",
-    stages = 'slide',
-    config = function()
-      vim.notify=notify
-    end,
+    "rcarriga/nvim-notify", event = "VimEnter",
   }
 
   -- Neovim UI Enhancer
@@ -85,18 +80,12 @@ return require('packer').startup(function(use)
   use {
     "kyazdani42/nvim-web-devicons",
     event = "VimEnter",
-    config = function()
---      require "configs.icons"
-    end,
   }
 
   -- Bufferline
   use {
     "akinsho/bufferline.nvim",
     after = "nvim-web-devicons",
-    config = function()
---      require "configs.bufferline"
-    end,
   }
 
   -- Better buffer closing
@@ -470,66 +459,7 @@ return require('packer').startup(function(use)
     requires = "nvim-neorg/neorg-telescope",
   }
   use {"LunarVim/darkplus.nvim",}
-  use {"catppuccin/nvim",
-    as = "catppuccin",
-    config = function()
-      vim.g.catppuccin_flavour = "frappe"
-      require("catppuccin").setup {
-        integrations = {
-          treesitter = true,
-          native_lsp = {
-            enabled = true,
-            virtual_text = {
-              errors = "italic",
-              hints = "italic",
-              warnings = "italic",
-              information = "italic",
-            },
-            underlines = {
-              errors = "underline",
-              hints = "underline",
-              warnings = "underline",
-              information = "underline",
-            },
-          },
-          lsp_trouble = false,
-          cmp = true,
-          lsp_saga = false,
-          gitgutter = false,
-          gitsigns = true,
-          telescope = true,
-          nvimtree = {
-            enabled = false,
-            show_root = false,
-            transparent_panel = false,
-          },
-          neotree = {
-            enabled = true,
-            show_root = true,
-            transparent_panel = false,
-          },
-          which_key = false,
-          indent_blankline = {
-            enabled = true,
-            colored_indent_levels = true,
-          },
-          dashboard = false,
-          neogit = false,
-          vim_sneak = false,
-          fern = false,
-          barbar = false,
-          bufferline = true,
-          markdown = true,
-          lightspeed = false,
-          ts_rainbow = true,
-          hop = true,
-          notify = true,
-          telekasten = false,
-          symbols_outline = false,
-        },
-      }
-    end,
-  }
+  use {"catppuccin/nvim", as = "catppuccin"}
   use {'frenzyexists/aquarium-vim',}
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

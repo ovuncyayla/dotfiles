@@ -1,6 +1,6 @@
 local is_available = function (param) 
   --nvim_echo(_G.packer_plugins[param],false)
-  return packer_plugins ~= nil and packer_plugins[param] ~= nil
+  return true --packer_plugins ~= nil and packer_plugins[param] ~= nil
 end --astronvim.is_available
 local map = vim.keymap.set
 
@@ -13,13 +13,7 @@ vim.g.mapleader = " "
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "No Highlight" })
---map("n", "<leader>u", function()
---  astronvim.toggle_url_match()
---end, { desc = "Toggle URL Highlights" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
---map("n", "gx", function()
---  astronvim.url_opener()
---end, { desc = "Open the file under cursor with system app" })
 map("n", "<C-s>", "<cmd>w!<cr>", { desc = "Force write" })
 map("n", "<C-q>", "<cmd>q!<cr>", { desc = "Force quit" })
 map("n", "Q", "<Nop>")
@@ -32,27 +26,19 @@ map("n", "<leader>pS", "<cmd>PackerStatus<cr>", { desc = "Packer Status" })
 map("n", "<leader>pu", "<cmd>PackerUpdate<cr>", { desc = "Packer Update" })
 
 -- Alpha
-if is_available "alpha-nvim" then
-  map("n", "<leader>d", "<cmd>Alpha<cr>", { desc = "Alpha Dashboard" })
-end
+-- map("n", "<leader>d", "<cmd>Alpha<cr>", { desc = "Alpha Dashboard" })
 
 -- Bufdelete
-if is_available "bufdelete.nvim" then
-  map("n", "<leader>c", "<cmd>Bdelete<cr>", { desc = "Close buffer" })
-else
-  map("n", "<leader>c", "<cmd>bdelete<cr>", { desc = "Close buffer" })
-end
+map("n", "<leader>c", "<cmd>Bdelete<cr>", { desc = "Close buffer" })
+-- map("n", "<leader>c", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 
 -- Navigate buffers
-if is_available "bufferline.nvim" then
-  map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
-  map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
-  map("n", ">b", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
-  map("n", "<b", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
-else
-  map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-  map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
-end
+map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
+map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
+map("n", ">b", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
+map("n", "<b", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
+-- map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 
 -- Comment
 if is_available "Comment.nvim" then
