@@ -134,63 +134,29 @@ return require('packer').startup(function(use)
       "TSUpdateSync",
       "TSDisableAll",
       "TSEnableAll",
-    },
-    config = function()
---      require "configs.treesitter"
-    end,
+    }
   }
 
   -- Snippet collection
-  use {"rafamadriz/friendly-snippets", opt = true }
+  use {"rafamadriz/friendly-snippets"}
 
   -- Snippet engine
-  use {"L3MON4D3/LuaSnip",
-    module = "luasnip",
-    wants = "friendly-snippets",
-    config = function()
---      require "configs.luasnip"
-    end,
-  }
+  use {"L3MON4D3/LuaSnip", as="luasnip", after="friendly-snippets"}
 
   -- Completion engine
-  use {"hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    config = function()
---      require "configs.cmp"
-    end,
-  }
+  use {"hrsh7th/nvim-cmp", event = "InsertEnter" }
 
   -- Snippet completion source
-  use {"saadparwaiz1/cmp_luasnip",
-    after = "nvim-cmp",
-    -- config = function()
-    --   astronvim.add_user_cmp_source "luasnip"
-    -- end,
-  }
+  use {"saadparwaiz1/cmp_luasnip",after = "nvim-cmp"}
 
   -- Buffer completion source
-  use {"hrsh7th/cmp-buffer",
-    after = "nvim-cmp",
-    -- config = function()
-    --   astronvim.add_user_cmp_source "buffer"
-    -- end,
-  }
+  use {"hrsh7th/cmp-buffer", after = "nvim-cmp",}
 
   -- Path completion source
-  use {"hrsh7th/cmp-path",
-    after = "nvim-cmp",
-    -- config = function()
-    --   astronvim.add_user_cmp_source "path"
-    -- end,
-  }
+  use {"hrsh7th/cmp-path", after = "nvim-cmp"}
 
   -- LSP completion source
-  use {"hrsh7th/cmp-nvim-lsp",
-    after = "nvim-cmp",
-    -- config = function()
-    --   astronvim.add_user_cmp_source "nvim_lsp"
-    -- end,
-  }
+  use {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}
 
   -- Built-in LSP
   use {"neovim/nvim-lspconfig", event = "VimEnter" }
