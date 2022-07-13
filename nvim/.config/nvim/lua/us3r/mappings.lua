@@ -3,7 +3,7 @@ local is_available = function (param)
 end --astronvim.is_available
 local map = vim.keymap.set
 
-map("", "<Space>", "<Nop>") -- disable space because leader
+--map("", "<Space>", "<Nop>") -- disable space because leader
 
 vim.g.mapleader = " "
 

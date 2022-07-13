@@ -30,8 +30,9 @@ return require('packer').startup(function(use)
   use {
     "rcarriga/nvim-notify",
     event = "VimEnter",
+    stages = 'slide',
     config = function()
---      require "configs.notify"
+      vim.notify=notify
     end,
   }
 
@@ -88,7 +89,7 @@ return require('packer').startup(function(use)
       vim.g.neo_tree_remove_legacy_commands = true
     end,
     config = function()
---      require "configs.neo-tree"
+     require "us3r/plugin_config.neotree"
     end,
   }
 

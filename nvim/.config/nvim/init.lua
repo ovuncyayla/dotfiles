@@ -8,6 +8,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-require('us3r/options')
-require('us3r/mappings')
+require 'us3r/mappings'
+require 'us3r/options'
 
