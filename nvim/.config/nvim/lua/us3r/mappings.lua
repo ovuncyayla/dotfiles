@@ -252,6 +252,10 @@ end
 map("v", "<", "<gv", { desc = "unindent line" })
 map("v", ">", ">gv", { desc = "indent line" })
 
+-- Move lines up / down
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
+
 -- Improved Terminal Mappings
 map("t", "<esc>", "<C-\\><C-n>", { desc = "Terminal normal mode" })
 map("t", "jk", "<C-\\><C-n>", { desc = "Terminal normal mode" })
@@ -259,3 +263,4 @@ map("t", "<C-h>", "<c-\\><c-n><c-w>h", { desc = "Terminal left window navigation
 map("t", "<C-j>", "<c-\\><c-n><c-w>j", { desc = "Terminal down window navigation" })
 map("t", "<C-k>", "<c-\\><c-n><c-w>k", { desc = "Terminal up window navigation" })
 map("t", "<C-l>", "<c-\\><c-n><c-w>l", { desc = "Terminal right window naviation" })
+
