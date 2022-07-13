@@ -1,9 +1,10 @@
 local is_available = function (param) 
+  --nvim_echo(_G.packer_plugins[param],false)
   return packer_plugins ~= nil and packer_plugins[param] ~= nil
 end --astronvim.is_available
 local map = vim.keymap.set
 
---map("", "<Space>", "<Nop>") -- disable space because leader
+map("", "<Space>", "<Nop>") -- disable space because leader
 
 vim.g.mapleader = " "
 

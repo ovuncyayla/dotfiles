@@ -1,6 +1,29 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
 return require('packer').startup(function(use)
   use {
     "wbthomason/packer.nvim",
+    display = {
+      open_fn = function()
+        return require("packer.util").float { border = "rounded" }
+      end,
+    },
+    profile = {
+      enable = true,
+      threshold = 0.0001,
+    },
+    git = {
+      clone_timeout = 300,
+      subcommands = {
+        update = "pull --rebase",
+      },
+    },
+    auto_clean = true,
+    compile_on_sync = true,
   }
 
   -- Optimiser
@@ -82,15 +105,14 @@ return require('packer').startup(function(use)
   -- File explorer
   use {"nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
-    module = "neo-tree",
-    cmd = "Neotree",
+    -- cmd = "Neotree",
     requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     setup = function()
       vim.g.neo_tree_remove_legacy_commands = true
     end,
-    config = function()
-     require "us3r/plugin_config.neotree"
-    end,
+    -- config = function()
+    --  require "us3r/neotree"
+    -- end,
   }
 
   -- Statusline
@@ -213,10 +235,6 @@ return require('packer').startup(function(use)
   -- Fuzzy finder
   use {"nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    module = "telescope",
-    config = function()
---      require "configs.telescope"
-    end,
   }
 
   -- Fuzzy finder syntax support
