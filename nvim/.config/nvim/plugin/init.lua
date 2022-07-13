@@ -162,35 +162,16 @@ return require('packer').startup(function(use)
   use {"neovim/nvim-lspconfig", event = "VimEnter" }
 
   -- LSP manager
-  use {"williamboman/nvim-lsp-installer",
-    after = "nvim-lspconfig",
-    config = function()
---      require "configs.nvim-lsp-installer"
---      require "configs.lsp"
-    end,
-  }
+  use {"williamboman/nvim-lsp-installer", after = "nvim-lspconfig" }
 
   -- LSP symbols
-  use {"stevearc/aerial.nvim",
-    module = "aerial",
-    cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
-    config = function()
---      require "configs.aerial"
-    end,
-  }
+  use {"stevearc/aerial.nvim", cmd = { "AerialToggle", "AerialOpen", "AerialInfo" } }
 
   -- Formatting and linting
-  use {"jose-elias-alvarez/null-ls.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
---      require "configs.null-ls"
-    end,
-  }
+  use {"jose-elias-alvarez/null-ls.nvim", event = { "BufRead", "BufNewFile" }}
 
   -- Fuzzy finder
-  use {"nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-  }
+  use {"nvim-telescope/telescope.nvim", cmd = "Telescope" }
 
   -- Fuzzy finder syntax support
   use {("nvim-telescope/telescope-%s-native.nvim"):format(vim.fn.has "win32" == 1 and "fzy" or "fzf"),
