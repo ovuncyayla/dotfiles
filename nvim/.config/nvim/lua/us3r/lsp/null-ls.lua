@@ -1,5 +1,6 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
+	vim.notify("null-ls not found")
 	return
 end
 
@@ -15,23 +16,23 @@ null_ls.setup({
 		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
-    -- diagnostics.flake8
+		-- diagnostics.flake8
 	},
-  -- code_actions.refactoring,
-  code_actions.eslint_d.with {
-    prefer_local = "node_modules/.bin",
-  },
+	-- code_actions.refactoring,
+	code_actions.eslint_d.with {
+		prefer_local = "node_modules/.bin",
+	},
 	hover.dictionary,
 	on_attach = function(client)
-    	-- NOTE: You can remove this on attach function to disable format on save
-    	if client.server_capabilities.documentFormattingProvider then
-      	vim.api.nvim_create_autocmd("BufWritePre", {
-        	desc = "Auto format before save",
-        	pattern = "<buffer>",
-        	callback = function()
-          	vim.lsp.buf.formatting_sync { async = true }
-        	end,
-      	})
-    	end
-  	end
+		-- NOTE: You can remove this on attach function to disable format on save
+		if client.server_capabilities.documentFormattingProvider then
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				desc = "Auto format before save",
+				pattern = "<buffer>",
+				callback = function()
+					vim.lsp.buf.formatting_sync { async = true }
+				end,
+			})
+		end
+	end
 })

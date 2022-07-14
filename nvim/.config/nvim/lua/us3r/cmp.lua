@@ -1,5 +1,9 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
 local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not (cmp_status_ok and snip_status_ok) then
+  vim.notify("Error while configuring cmp!")
+end
+
 -- if cmp_status_ok and snip_status_ok then
 --   local kind_icons = {
 --     Text = "",

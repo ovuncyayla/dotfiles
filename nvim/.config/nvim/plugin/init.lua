@@ -300,12 +300,7 @@ return require('packer').startup(function(use)
       }
     end,
   }
-  use {"ray-x/lsp_signature.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("lsp_signature").setup {}
-    end,
-  }
+  use {"ray-x/lsp_signature.nvim",event = "InsertEnter", }
   use {"KabbAmine/vCoolor.vim",
     cmd = "VCoolor",
   }
@@ -321,34 +316,18 @@ return require('packer').startup(function(use)
     cmd = "WinShift",
 --    config = require "user.plugins.WinShift",
   }
-  use {"nvim-telescope/telescope-dap.nvim",
-    module = "telescope._extensions.dap",
-  }
-  use {"nvim-telescope/telescope-packer.nvim",
-    module = "telescope._extensions.packer",
-  }
-  use {"nvim-telescope/telescope-project.nvim",
-    module = "telescope._extensions.project",
-  }
-  use {"cljoly/telescope-repo.nvim",
-    module = "telescope._extensions.repo",
-  }
-  use {"datamonsterr/nvim-dracula",}
-  use {"aserowy/tmux.nvim",
-    module = "tmux",
-  }
+  use {"nvim-telescope/telescope-file-browser.nvim"}
+  use {"nvim-telescope/telescope-dap.nvim"}
+  use {"nvim-telescope/telescope-packer.nvim"}
+  use {"nvim-telescope/telescope-project.nvim"}
+  use {"cljoly/telescope-repo.nvim"}
+  use {"aserowy/tmux.nvim"}
   use {"nvim-treesitter/playground",
     cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
   }
   use {
     "theHamsta/nvim-dap-virtual-text",
     after = "nvim-dap",
-    config = function()
-      require("nvim-dap-virtual-text").setup()
-    end,
-  }
-  use {"nvim-telescope/telescope-file-browser.nvim",
-    module = "telescope._extensions.file_browser",
   }
   use {"ziontee113/syntax-tree-surfer", module = "syntax-tree-surfer" }
   use {"nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" }

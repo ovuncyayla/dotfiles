@@ -1,15 +1,18 @@
 local status_ok, telescope = pcall(require, "telescope")
-if status_ok then
+if not status_ok then
+  vim.notify("Error while loading telescope")
+end
+
   local actions = require "telescope.actions"
   local fb_actions = telescope.extensions.file_browser.actions
 
   telescope.load_extension("notify")
   telescope.load_extension("aerial")
+  telescope.load_extension("file_browser")
 
   telescope.setup({
     defaults = {
       prompt_prefix = " ",
-      layout_strategy = "horizontal",
       selection_caret = "❯ ",
       path_display = { "truncate" },
       selection_strategy = "reset",
@@ -105,6 +108,3 @@ if status_ok then
       },
     },
   })
-else
-  vim.notify("Error while loading telescope")
-end
