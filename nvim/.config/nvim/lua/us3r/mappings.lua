@@ -207,31 +207,6 @@ map("n", "<leader>fb", function()
 end, { desc = "File browser" })
 
 -- Terminal
---if is_available "nvim-toggleterm.lua" then
---  local toggle_term_cmd = astronvim.toggle_term_cmd
---  map("n", "<C-\\>", "<cmd>ToggleTerm<cr>", { desc = "Toggle terminal" })
---  map("n", "<leader>gg", function()
---    toggle_term_cmd "lazygit"
---  end, { desc = "ToggleTerm lazygit" })
---  map("n", "<leader>tn", function()
---    toggle_term_cmd "node"
---  end, { desc = "ToggleTerm node" })
---  map("n", "<leader>tu", function()
---    toggle_term_cmd "ncdu"
---  end, { desc = "ToggleTerm NCDU" })
---  map("n", "<leader>tt", function()
---    toggle_term_cmd "htop"
---  end, { desc = "ToggleTerm htop" })
---  map("n", "<leader>tp", function()
---    toggle_term_cmd "python"
---  end, { desc = "ToggleTerm python" })
---  map("n", "<leader>tl", function()
---    toggle_term_cmd "lazygit"
---  end, { desc = "ToggleTerm lazygit" })
---  map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "ToggleTerm float" })
---  map("n", "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", { desc = "ToggleTerm horizontal split" })
---  map("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "ToggleTerm vertical split" })
---end
 
 -- Stay in indent mode
 map("v", "<", "<gv", { desc = "unindent line" })
@@ -240,11 +215,3 @@ map("v", ">", ">gv", { desc = "indent line" })
 -- Move lines up / down
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
-
--- Improved Terminal Mappings
-map("t", "<esc>", "<C-\\><C-n>", { desc = "Terminal normal mode" })
-map("t", "jk", "<C-\\><C-n>", { desc = "Terminal normal mode" })
-map("t", "<C-h>", "<c-\\><c-n><c-w>h", { desc = "Terminal left window navigation" })
-map("t", "<C-j>", "<c-\\><c-n><c-w>j", { desc = "Terminal down window navigation" })
-map("t", "<C-k>", "<c-\\><c-n><c-w>k", { desc = "Terminal up window navigation" })
-map("t", "<C-l>", "<c-\\><c-n><c-w>l", { desc = "Terminal right window naviation" })

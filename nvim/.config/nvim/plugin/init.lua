@@ -213,13 +213,7 @@ return require('packer').startup(function(use)
   }
 
   -- Terminal
-  use { "akinsho/nvim-toggleterm.lua",
-    cmd = "ToggleTerm",
-    module = { "toggleterm", "toggleterm.terminal" },
-    config = function()
-      --      require "configs.toggleterm"
-    end,
-  }
+  use { "akinsho/nvim-toggleterm.lua" }
 
   -- Commenting
   use { "numToStr/Comment.nvim",
