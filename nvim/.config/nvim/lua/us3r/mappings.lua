@@ -210,6 +210,9 @@ end, { desc = "Search diagnostics" })
 map("n", "<leader>fb", function()
   require("telescope").extensions.file_browser.file_browser()
 end, { desc = "File browser" })
+map("n", "<leader>fp", function()
+  require("telescope").extensions.project.project()
+end, { desc = "File browser" })
 
 -- Stay in indent mode
 map("v", "<", "<gv", { desc = "unindent line" })
