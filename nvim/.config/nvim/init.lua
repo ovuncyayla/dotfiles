@@ -5,6 +5,7 @@ end
 
 require 'us3r.mappings'
 require 'us3r.options'
+require 'us3r.plugins'
 -- require 'us3r.ui'
 require 'us3r.catppuccin'
 require 'us3r.colorscheme'
