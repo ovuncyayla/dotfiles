@@ -1,3 +1,8 @@
+local opts = { noremap = true, silent = true }
+-- local map = function(key, lhs, rhs, op)
+--   local options = { table.unpack(op or {}), table.unpack(opts) }
+--   return vim.keymap.set(key, lhs, rhs, options)
+-- end
 local map = vim.keymap.set
 
 map("", "<Space>", "<Nop>") -- disable space because leader
@@ -206,12 +211,18 @@ map("n", "<leader>fb", function()
   require("telescope").extensions.file_browser.file_browser()
 end, { desc = "File browser" })
 
--- Terminal
-
 -- Stay in indent mode
 map("v", "<", "<gv", { desc = "unindent line" })
 map("v", ">", ">gv", { desc = "indent line" })
 
--- Move lines up / down
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
+-- Move text up and down
+map("v", "<A-j>", ":m .+1<CR>==", opts)
+map("v", "<A-k>", ":m .-2<CR>==", opts)
+map("v", "p", '"_dP', opts)
+
+-- Visual Block --
+-- Move text up and down
+map("x", "J", ":move '>+1<CR>gv-gv", opts)
+map("x", "K", ":move '<-2<CR>gv-gv", opts)
+map("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+map("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)

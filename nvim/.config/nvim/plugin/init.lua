@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
   }
 
   -- Lua functions
-  use { "nvim-lua/plenary.nvim", module = "plenary" }
+  use { "nvim-lua/plenary.nvim" }
 
   -- Popup API
   use {
@@ -42,8 +42,7 @@ return require('packer').startup(function(use)
 
   -- Indent detection
   use {
-    "Darazaki/indent-o-matic",
-    event = "BufReadPost",
+    "Darazaki/indent-o-matic", event = "BufReadPost",
   }
 
   -- Notification Enhancer
@@ -52,26 +51,19 @@ return require('packer').startup(function(use)
   }
 
   -- Neovim UI Enhancer
-  use {
-    "MunifTanjim/nui.nvim", module = "nui" }
+  use { "MunifTanjim/nui.nvim" }
 
   -- Cursorhold fix
-  use {
-    "antoinemadec/FixCursorHold.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      vim.g.cursorhold_updatetime = 100
-    end,
-  }
+  -- use {
+  --   "antoinemadec/FixCursorHold.nvim",
+  --   event = { "BufRead", "BufNewFile" },
+  --   config = function()
+  --     vim.g.cursorhold_updatetime = 100
+  --   end,
+  -- }
 
   -- Smarter Splits
-  use {
-    "mrjones2014/smart-splits.nvim",
-    module = "smart-splits",
-    config = function()
-      --      require "configs.smart-splits"
-    end,
-  }
+  use { "mrjones2014/smart-splits.nvim" }
 
   -- Icons
   use {
@@ -96,18 +88,10 @@ return require('packer').startup(function(use)
     setup = function()
       vim.g.neo_tree_remove_legacy_commands = true
     end,
-    -- config = function()
-    --  require "us3r/neotree"
-    -- end,
   }
 
   -- Statusline
-  use { "feline-nvim/feline.nvim",
-    after = "nvim-web-devicons",
-    config = function()
-      --      require "configs.feline"
-    end,
-  }
+  use { "feline-nvim/feline.nvim", after = "nvim-web-devicons" }
 
   -- Parenthesis highlighting
   use { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" }
