@@ -164,81 +164,39 @@ return require('packer').startup(function(use)
   }
 
   -- Git integration
-  use { "lewis6991/gitsigns.nvim",
-    event = "BufEnter",
-    config = function()
-      --      require "configs.gitsigns"
-    end,
-  }
+  use { "lewis6991/gitsigns.nvim", event = "BufEnter" }
 
   -- Start screen
-  use { "goolord/alpha-nvim",
-    cmd = "Alpha",
-    module = "alpha",
-    config = function()
-      --      require "configs.alpha"
-    end,
-  }
+  use { "goolord/alpha-nvim", cmd = "Alpha" }
 
   -- Color highlighting
-  use { "norcalli/nvim-colorizer.lua",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      --      require "configs.colorizer"
-    end,
-  }
+  use { "norcalli/nvim-colorizer.lua", event = { "BufRead", "BufNewFile" } }
 
   -- Autopairs
-  use { "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function()
-      --      require "configs.autopairs"
-    end,
-  }
+  use { "windwp/nvim-autopairs", event = "InsertEnter" }
 
   -- Terminal
   use { "akinsho/nvim-toggleterm.lua" }
 
   -- Commenting
-  use { "numToStr/Comment.nvim",
-    module = { "Comment", "Comment.api" },
-    keys = { "gc", "gb", "g<", "g>" },
-    config = function()
-      --      require "configs.Comment"
-    end,
-  }
+  use { "numToStr/Comment.nvim" }
 
   -- Indentation
-  use { "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    config = function()
-      --      require "configs.indent-line"
-    end,
-  }
+  use { "lukas-reineke/indent-blankline.nvim", event = "BufRead" }
 
   -- Keymaps popup
-  use { "folke/which-key.nvim",
-    module = "which-key",
-    config = function()
-      --      require "configs.which-key"
-    end,
-  }
+  use { "folke/which-key.nvim" }
 
   -- Smooth scrolling
-  use { "declancm/cinnamon.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      --      require "configs.cinnamon"
-    end,
-  }
+  -- use { "declancm/cinnamon.nvim",
+  --   event = { "BufRead", "BufNewFile" },
+  --   config = function()
+  --     --      require "configs.cinnamon"
+  --   end,
+  -- }
 
   -- Smooth escaping
-  use { "max397574/better-escape.nvim",
-    event = "InsertCharPre",
-    config = function()
-      --      require "configs.better_escape"
-    end,
-  }
+  use { "max397574/better-escape.nvim", event = "InsertCharPre" }
 
   -- Get extra JSON schemas
   use { "b0o/SchemaStore.nvim", module = "schemastore" }
