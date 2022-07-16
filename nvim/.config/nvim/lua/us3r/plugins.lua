@@ -271,11 +271,7 @@ return require('packer').startup(function(use)
     end,
   }
   use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
-  use { "SmiteshP/nvim-gps",
-    event = "BufRead",
-    --    config = require "user.plugins.gps",
-    disable = true,
-  }
+  use { "SmiteshP/nvim-gps", event = "BufRead", }
   use { "jvgrootveld/telescope-zoxide",
     module = "telescope._extensions.zoxide",
   }

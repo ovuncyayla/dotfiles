@@ -15,7 +15,7 @@ map("i", "jk", "<ESC>")
 -- Standard Operations
 map("n", "<leader>.", "<cmd>cd %:p:h<cr>", { desc = "Set CWD" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
-map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
+-- map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "No Highlight" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 map("n", "<C-s>", "<cmd>w!<cr>", { desc = "Force write" })
@@ -33,7 +33,7 @@ map("n", "<leader>pu", "<cmd>PackerUpdate<cr>", { desc = "Packer Update" })
 -- map("n", "<leader>d", "<cmd>Alpha<cr>", { desc = "Alpha Dashboard" })
 
 -- Bufdelete
-map("n", "<leader>c", "<cmd>Bdelete<cr>", { desc = "Close buffer" })
+map("n", "<leader>q", "<cmd>Bdelete<cr>", { desc = "Close buffer" })
 -- map("n", "<leader>c", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 
 -- Navigate buffers

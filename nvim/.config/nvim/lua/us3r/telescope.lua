@@ -10,6 +10,7 @@ telescope.load_extension("notify")
 telescope.load_extension("aerial")
 telescope.load_extension("file_browser")
 telescope.load_extension("project")
+telescope.load_extension("dap")
 
 telescope.setup({
   defaults = {
