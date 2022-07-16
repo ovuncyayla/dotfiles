@@ -9,4 +9,6 @@ if status_ok then
       },
     },
   })
+else
+  vim.notify("unable to load nvim-lsp-installer")
 end

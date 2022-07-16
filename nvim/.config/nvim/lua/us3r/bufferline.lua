@@ -16,4 +16,6 @@ if status_ok then
       separator_style = "thin",
     },
   })
+else  
+  vim.notify("unable to load bufferline")
 end
