@@ -146,7 +146,7 @@ return require('packer').startup(function(use)
   use { "williamboman/nvim-lsp-installer", after = "nvim-lspconfig" }
 
   -- LSP symbols
-  use { "stevearc/aerial.nvim", cmd = { "AerialToggle", "AerialOpen", "AerialInfo" } }
+  use { "stevearc/aerial.nvim" }
 
   -- Formatting and linting
   use { "jose-elias-alvarez/null-ls.nvim", event = { "BufRead", "BufNewFile" } }

@@ -1,5 +1,7 @@
 return {
-  on_attach = astronvim.lsp.disable_formatting,
+  on_attach = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = true
+  end,
   settings = {
     Lua = {
       diagnostics = {

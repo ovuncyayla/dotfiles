@@ -63,6 +63,7 @@ M.on_attach = function(client, bufnr)
   end, { desc = "Format file with LSP" })
 
   lsp_highlight_document(client)
+  require("aerial").on_attach(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -82,7 +83,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
-	return
+  return
 end
 
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
