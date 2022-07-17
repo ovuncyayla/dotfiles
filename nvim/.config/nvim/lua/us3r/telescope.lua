@@ -1,6 +1,7 @@
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
   vim.notify("Error while loading telescope")
+  return
 end
 
 local actions = require "telescope.actions"
@@ -10,10 +11,11 @@ telescope.load_extension("notify")
 telescope.load_extension("aerial")
 telescope.load_extension("file_browser")
 telescope.load_extension("project")
-telescope.load_extension("dap")
+-- telescope.load_extension("dap")
 
 telescope.setup({
   defaults = {
+    hidden = true,
     prompt_prefix = " ",
     selection_caret = "❯ ",
     path_display = { "truncate" },
@@ -108,5 +110,6 @@ telescope.setup({
         },
       },
     },
+    dap = {}
   },
 })

@@ -39,44 +39,19 @@ packer.init {
 }
 
 return require('packer').startup(function(use)
-  use {
-    "wbthomason/packer.nvim",
-    -- display = {
-    --   open_fn = function()
-    --     return require("packer.util").float { border = "rounded" }
-    --   end,
-    -- },
-    -- profile = {
-    --   enable = true,
-    --   threshold = 0.0001,
-    -- },
-    -- git = {
-    --   clone_timeout = 300,
-    --   subcommands = {
-    --     update = "pull --rebase",
-    --   },
-    -- },
-    -- auto_clean = true,
-    -- compile_on_sync = true,
-  }
+  use { "wbthomason/packer.nvim", }
 
   -- Optimiser
-  use {
-    "lewis6991/impatient.nvim",
-  }
+  use { "lewis6991/impatient.nvim" }
 
   -- Lua functions
   use { "nvim-lua/plenary.nvim" }
 
   -- Popup API
-  use {
-    "nvim-lua/popup.nvim",
-  }
+  use { "nvim-lua/popup.nvim" }
 
   -- Indent detection
-  use {
-    "Darazaki/indent-o-matic", event = "BufReadPost",
-  }
+  use { "Darazaki/indent-o-matic", event = "BufReadPost" }
 
   -- Notification Enhancer
   use { "rcarriga/nvim-notify" }
@@ -100,78 +75,75 @@ return require('packer').startup(function(use)
   use { "kyazdani42/nvim-web-devicons", }
 
   -- Bufferline
-  use {
-    "akinsho/bufferline.nvim",
-    after = "nvim-web-devicons",
-  }
+  use { "akinsho/bufferline.nvim" }
 
   -- Better buffer closing
   use { "famiu/bufdelete.nvim" }
 
   -- File explorer
   use { "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    -- cmd = "Neotree",
-    requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    setup = function()
-      vim.g.neo_tree_remove_legacy_commands = true
-    end,
+    -- branch = "v2.x",
+    -- -- cmd = "Neotree",
+    -- requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    -- setup = function()
+    --   vim.g.neo_tree_remove_legacy_commands = true
+    -- end,
   }
 
   -- Statusline
-  use { "feline-nvim/feline.nvim", after = "nvim-web-devicons" }
+  use { "feline-nvim/feline.nvim", requires = "nvim-web-devicons" }
 
   -- Parenthesis highlighting
-  use { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" }
+  use { "p00f/nvim-ts-rainbow", requires = "nvim-treesitter" }
 
   -- Autoclose tags
-  use { "windwp/nvim-ts-autotag", after = "nvim-treesitter" }
+  use { "windwp/nvim-ts-autotag", requires = "nvim-treesitter" }
 
   -- Context based commenting
-  use { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" }
+  use { "JoosepAlviste/nvim-ts-context-commentstring", requires = "nvim-treesitter" }
 
   -- Syntax highlighting
   use { "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    event = { "BufRead", "BufNewFile" },
-    cmd = {
-      "TSInstall",
-      "TSInstallInfo",
-      "TSInstallSync",
-      "TSUninstall",
-      "TSUpdate",
-      "TSUpdateSync",
-      "TSDisableAll",
-      "TSEnableAll",
-    }
+    -- run = ":TSUpdate",
+    -- event = { "BufRead", "BufNewFile" },
+    -- cmd = {
+    --   "TSInstall",
+    --   "TSInstallInfo",
+    --   "TSInstallSync",
+    --   "TSUninstall",
+    --   "TSUpdate",
+    --   "TSUpdateSync",
+    --   "TSDisableAll",
+    --   "TSEnableAll",
+    -- }
   }
 
   -- Snippet collection
   use { "rafamadriz/friendly-snippets" }
 
   -- Snippet engine
-  use { "L3MON4D3/LuaSnip", as = "luasnip", after = "friendly-snippets" }
+  use { "L3MON4D3/LuaSnip"}
 
   -- Completion engine
-  use { "hrsh7th/nvim-cmp", event = "InsertEnter" }
+  use { "hrsh7th/nvim-cmp"}
 
   -- Snippet completion source
-  use { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" }
+  use { "saadparwaiz1/cmp_luasnip"}
 
   -- Buffer completion source
-  use { "hrsh7th/cmp-buffer", after = "nvim-cmp", }
+  use { "hrsh7th/cmp-buffer"}
 
   -- Path completion source
-  use { "hrsh7th/cmp-path", after = "nvim-cmp" }
+  use { "hrsh7th/cmp-path"}
 
   -- LSP completion source
-  use { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }
+  use { "hrsh7th/cmp-nvim-lsp"}
 
   -- Built-in LSP
   use { "neovim/nvim-lspconfig"}
 
   -- LSP manager
-  use { "williamboman/nvim-lsp-installer", after = "nvim-lspconfig" }
+  use { "williamboman/nvim-lsp-installer"}
 
   -- LSP symbols
   use { "stevearc/aerial.nvim" }
@@ -180,28 +152,29 @@ return require('packer').startup(function(use)
   use { "jose-elias-alvarez/null-ls.nvim" }
 
   -- Fuzzy finder
-  use { "nvim-telescope/telescope.nvim", requires ="nvim-lua/plenary.nvim" } 
+  use { "nvim-telescope/telescope.nvim"}
 
   -- Fuzzy finder syntax support
-  use { ("nvim-telescope/telescope-%s-native.nvim"):format(vim.fn.has "win32" == 1 and "fzy" or "fzf"),
-    after = "telescope.nvim",
-    run = vim.fn.has "win32" ~= 1 and "make" or nil,
-    -- config = function()
-    --   require("telescope").load_extension(vim.fn.has "win32" == 1 and "fzy_native" or "fzf")
-    -- end,
-  }
+  use { ("nvim-telescope/telescope-fzf-native.nvim") }
+  -- use { ("nvim-telescope/telescope-%s-native.nvim"):format(vim.fn.has "win32" == 1 and "fzy" or "fzf"),
+  --   requires = "telescope.nvim",
+  --   run = vim.fn.has "win32" ~= 1 and "make" or nil,
+  --   -- config = function()
+  --   --   require("telescope").load_extension(vim.fn.has "win32" == 1 and "fzy_native" or "fzf")
+  --   -- end,
+  -- }
 
   -- Git integration
-  use { "lewis6991/gitsigns.nvim", event = "BufEnter" }
+  use { "lewis6991/gitsigns.nvim"}
 
   -- Start screen
-  use { "goolord/alpha-nvim", cmd = "Alpha" }
+  -- use { "goolord/alpha-nvim", cmd = "Alpha" }
 
   -- Color highlighting
-  use { "norcalli/nvim-colorizer.lua", event = { "BufRead", "BufNewFile" } }
+  use { "norcalli/nvim-colorizer.lua" }
 
   -- Autopairs
-  use { "windwp/nvim-autopairs", event = "InsertEnter" }
+  use { "windwp/nvim-autopairs"}
 
   -- Terminal
   use { "akinsho/nvim-toggleterm.lua" }
@@ -210,7 +183,7 @@ return require('packer').startup(function(use)
   use { "numToStr/Comment.nvim" }
 
   -- Indentation
-  use { "lukas-reineke/indent-blankline.nvim", event = "BufRead" }
+  use { "lukas-reineke/indent-blankline.nvim"}
 
   -- Keymaps popup
   use { "folke/which-key.nvim" }
@@ -224,65 +197,54 @@ return require('packer').startup(function(use)
   -- }
 
   -- Smooth escaping
-  use { "max397574/better-escape.nvim", event = "InsertCharPre" }
+  use { "max397574/better-escape.nvim"}
 
   -- Get extra JSON schemas
   use { "b0o/SchemaStore.nvim" }
 
   -- Session manager
-  use { "Shatur/neovim-session-manager",
-    cmd = "SessionManager",
-    event = "BufWritePost",
-  }
+  use { "Shatur/neovim-session-manager"}
 
-  use { "ur4ltz/surround.nvim",
-    event = "BufRead",
-  }
-  
-  use { "phaazon/hop.nvim",
-    branch = "v1", -- optional but strongly recommended
-    event = "BufRead", -- I want to use it all the time
-    config = function()
-      require("hop").setup()
-    end,
-  }
-  use { "beauwilliams/focus.nvim",
-    event = "BufRead",
-    config = function()
-      require("focus").setup {
-        excluded_filetypes = { "toggleterm", "TelescopePrompt" },
-        cursorline = false,
-        signcolumn = false,
-      }
-    end,
-  }
-  use { "ray-x/lsp_signature.nvim", event = "InsertEnter", }
-  use { "KabbAmine/vCoolor.vim",
-    cmd = "VCoolor",
-  }
-  use { "mfussenegger/nvim-dap" }
-  use { "rcarriga/nvim-dap-ui", after = "nvim-dap" }
-  use { "theHamsta/nvim-dap-virtual-text", after = "nvim-dap", }
+  use { "ur4ltz/surround.nvim"}
 
-  use { "sindrets/winshift.nvim", cmd = "WinShift" }
+  -- use { "phaazon/hop.nvim",
+  --   branch = "v1", -- optional but strongly recommended
+  --   event = "BufRead", -- I want to use it all the time
+  --   config = function()
+  --     require("hop").setup()
+  --   end,
+  -- }
+  -- use { "beauwilliams/focus.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("focus").setup {
+  --       excluded_filetypes = { "toggleterm", "TelescopePrompt" },
+  --       cursorline = false,
+  --       signcolumn = false,
+  --     }
+  --   end,
+  -- }
+  use { "ray-x/lsp_signature.nvim"}
+
+  use { "sindrets/winshift.nvim"}
   use { "nvim-telescope/telescope-file-browser.nvim" }
-  use { "nvim-telescope/telescope-dap.nvim" }
+  -- use { "nvim-telescope/telescope-dap.nvim" }
   use { "nvim-telescope/telescope-packer.nvim" }
   use { "nvim-telescope/telescope-project.nvim" }
   use { "cljoly/telescope-repo.nvim" }
   use { "aserowy/tmux.nvim" }
-  use { "nvim-treesitter/playground", cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" } }
+  use { "nvim-treesitter/playground" }
   use { "ziontee113/syntax-tree-surfer"}
-  use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" }
-  use { "andymass/vim-matchup",
-    event = "BufRead",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = {}
-    end,
-  }
-  use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
-  use { "SmiteshP/nvim-gps", event = "BufRead", }
-  use { "jvgrootveld/telescope-zoxide", }
+  use { "nvim-treesitter/nvim-treesitter-textobjects"}
+  -- use { "andymass/vim-matchup",
+  --   event = "BufRead",
+  --   config = function()
+  --     vim.g.matchup_matchparen_offscreen = {}
+  --   end,
+  -- }
+  use { "hrsh7th/cmp-nvim-lua"}
+  use { "SmiteshP/nvim-gps"}
+  use { "jvgrootveld/telescope-zoxide" }
   use { "nvim-neorg/neorg",
     ft = "norg",
     after = "nvim-treesitter",
