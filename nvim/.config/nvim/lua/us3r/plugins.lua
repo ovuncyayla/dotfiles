@@ -205,8 +205,12 @@ return require('packer').startup(function(use)
   -- Session manager
   use { "Shatur/neovim-session-manager"}
 
-  use { "ur4ltz/surround.nvim"}
-
+use {
+  "ur4ltz/surround.nvim",
+  config = function()
+    require"surround".setup {mappings_style = "surround"}
+  end
+}
   -- use { "phaazon/hop.nvim",
   --   branch = "v1", -- optional but strongly recommended
   --   event = "BufRead", -- I want to use it all the time
