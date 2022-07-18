@@ -214,6 +214,9 @@ map("n", "<leader>fp", function()
   require("telescope").extensions.project.project()
 end, { desc = "File browser" })
 
+map("n", "<leader>fz", function()
+  require("telescope").extensions.zoxide.list {}
+end, { desc = "File browser" })
 -- Stay in indent mode
 map("v", "<", "<gv", { desc = "unindent line" })
 map("v", ">", ">gv", { desc = "indent line" })
