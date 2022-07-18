@@ -63,4 +63,8 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
+# Enable touchpad tap
+xinput set-prop 'CUST0001:00 04F3:30AA Touchpad' "libinput Tapping Enabled" 1
+
 exec $(get_session "$1")
+
