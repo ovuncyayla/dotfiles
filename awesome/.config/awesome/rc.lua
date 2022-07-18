@@ -92,18 +92,18 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Table of layouts to cover with awful.layout.inc, order matters.
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-        awful.layout.suit.floating,
         awful.layout.suit.tile,
+        awful.layout.suit.max,
+        awful.layout.suit.max.fullscreen,
+        awful.layout.suit.floating,
+        awful.layout.suit.spiral.dwindle,
+        awful.layout.suit.magnifier,
         awful.layout.suit.tile.left,
         awful.layout.suit.tile.bottom,
         awful.layout.suit.tile.top,
         -- awful.layout.suit.fair,
         -- awful.layout.suit.fair.horizontal,
         -- awful.layout.suit.spiral,
-        awful.layout.suit.spiral.dwindle,
-        awful.layout.suit.max,
-        awful.layout.suit.max.fullscreen,
-        awful.layout.suit.magnifier,
         awful.layout.suit.corner.nw,
     })
 end)
@@ -236,7 +236,7 @@ awful.keyboard.append_global_keybindings({
               {description = "show main menu", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Shift"   }, "c", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
     awful.key({ modkey }, "x",
               function ()
@@ -421,7 +421,7 @@ client.connect_signal("request::default_keybindings", function()
                 c:raise()
             end,
             {description = "toggle fullscreen", group = "client"}),
-        awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+        awful.key({ modkey, }, "q",      function (c) c:kill()                         end,
                 {description = "close", group = "client"}),
         awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
                 {description = "toggle floating", group = "client"}),
