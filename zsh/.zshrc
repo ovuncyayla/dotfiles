@@ -1,4 +1,5 @@
-# Source manjaro-zsh-configuration
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
 
 source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -18,6 +19,8 @@ export EDITOR=nvim
 # eval "$(luarocks path)" 
 
 eval "$(starship init zsh)" 
+
+pgrep -x ssh-agent > /dev/null || ssh-agent -a $SSH_AUTH_SOCK
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
