@@ -1,20 +1,11 @@
-export LC_ALL=en_IN.UTF-8
-export LANG=en_IN.UTF-8
-
 source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $HOME/dotfiles/zsh/zsh/config/config.zsh
 
-export PATH=$HOME/bin:$PATH
-export ANDROID_SDK_ROOT=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-
 source $HOME/.cargo/env
 
 eval "$(zoxide init zsh)"
-export EDITOR=nvim
 
 # eval "$(luarocks path)" 
 
