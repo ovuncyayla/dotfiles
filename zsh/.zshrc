@@ -1,8 +1,9 @@
 # Source manjaro-zsh-configuration
 
-source $HOME/dotfiles/zsh/config/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/dotfiles/zsh/config/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/dotfiles/zsh/config/config.zsh
+source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/dotfiles/zsh/zsh/config/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOME/dotfiles/zsh/zsh/config/config.zsh
 
 export PATH=$HOME/bin:$PATH
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
@@ -14,7 +15,7 @@ source $HOME/.cargo/env
 eval "$(zoxide init zsh)"
 export EDITOR=nvim
 
-eval "$(luarocks path)" 
+# eval "$(luarocks path)" 
 
 eval "$(starship init zsh)" 
 

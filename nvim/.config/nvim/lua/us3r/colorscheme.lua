@@ -1,4 +1,4 @@
-local colorscheme = 'catppuccin'
+local colorscheme = 'darkplus'
 
 local ok, catppuccin = pcall(require, colorscheme)
 if not ok then
