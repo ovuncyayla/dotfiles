@@ -1,5 +1,7 @@
 env:
   TERM: xterm-256color
+window:
+  opacity: 0.7
 color_schemes:
   latte: &latte
     primary:
@@ -249,4 +251,4 @@ color_schemes:
     indexed_colors:
       - { index: 16, color: '#FAB387' }
       - { index: 17, color: '#F5E0DC' }
-colors: *frappe
+colors: *mocha
