@@ -36,7 +36,7 @@ key = "p"
 [[keybind]]
 command = "Execute"
 value = "alacritty"
-modifier = ["modkey", "Shift"]
+modifier = ["modkey"]
 key = "Return"
 
 [[keybind]]
@@ -50,6 +50,12 @@ command = "SoftReload"
 value = ""
 modifier = ["modkey", "Shift"]
 key = "r"
+
+[[keybind]]
+command = "HardReload"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "b"
 
 [[keybind]]
 command = "Execute"
@@ -90,7 +96,7 @@ key = "j"
 [[keybind]]
 command = "MoveWindowTop"
 value = ""
-modifier = ["modkey"]
+modifier = ["modkey", "Shift"]
 key = "Return"
 
 [[keybind]]

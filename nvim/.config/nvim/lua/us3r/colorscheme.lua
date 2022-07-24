@@ -1,6 +1,6 @@
-local colorscheme = 'darkplus'
+local colorscheme = 'catppuccin'
 
-local ok, catppuccin = pcall(require, colorscheme)
+local ok, _ = pcall(require, colorscheme)
 if not ok then
   vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
