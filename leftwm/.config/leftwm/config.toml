@@ -1,6 +1,17 @@
 modkey = "Mod4"
 mousekey = "Mod4"
-workspaces = []
+[[workspaces]]
+y = 0
+x = 0
+height = 1080
+width = 1920
+
+# [[workspaces]]
+# y = 0
+# x = 1080
+# height = 1080
+# width = 1920
+
 tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 layouts = [
   "MainAndVertStack",
@@ -42,7 +53,7 @@ key = "Return"
 [[keybind]]
 command = "CloseWindow"
 value = ""
-modifier = ["modkey", "Shift"]
+modifier = ["modkey"]
 key = "q"
 
 [[keybind]]

@@ -24,15 +24,15 @@
          ; :space-evenly true
          ; :halign "start"
          ; :spacing 10
-            ; (button :class "ws-button-mine" :onclick "leftwm-command \"SendWorkspaceToTag 0 0\"" `1`)
-            ; (button :class "ws-button-busy" :onclick "leftwm-command \"SendWorkspaceToTag 0 1\"" `2`)
-            ; (button :class "ws-button-busy" :onclick "leftwm-command \"SendWorkspaceToTag 0 2\"" `3`)
-            ; (button :class "ws-button" :onclick "leftwm-command \"SendWorkspaceToTag 0 3\"" `·`)
-            ; (button :class "ws-button" :onclick "leftwm-command \"SendWorkspaceToTag 0 4\"" `·`)
-            ; (button :class "ws-button" :onclick "leftwm-command \"SendWorkspaceToTag 0 5\"" `·`)
-            ; (button :class "ws-button" :onclick "leftwm-command \"SendWorkspaceToTag 0 6\"" `·`)
-            ; (button :class "ws-button" :onclick "leftwm-command \"SendWorkspaceToTag 0 7\"" `·`)
-            ; (button :class "ws-button" :onclick "leftwm-command \"SendWorkspaceToTag 0 8\"" `·`)))
+            ; (button :class "ws-button-mine" :onclick "leftwm-command \"GotoTag 0 0\"" `1`)
+            ; (button :class "ws-button-busy" :onclick "leftwm-command \"GotoTag 0 1\"" `2`)
+            ; (button :class "ws-button-busy" :onclick "leftwm-command \"GotoTag 0 2\"" `3`)
+            ; (button :class "ws-button" :onclick "leftwm-command \"GotoTag 0 3\"" `·`)
+            ; (button :class "ws-button" :onclick "leftwm-command \"GotoTag 0 4\"" `·`)
+            ; (button :class "ws-button" :onclick "leftwm-command \"GotoTag 0 5\"" `·`)
+            ; (button :class "ws-button" :onclick "leftwm-command \"GotoTag 0 6\"" `·`)
+            ; (button :class "ws-button" :onclick "leftwm-command \"GotoTag 0 7\"" `·`)
+            ; (button :class "ws-button" :onclick "leftwm-command \"GotoTag 0 8\"" `·`)))
 
 (defwidget workspaces []
   (box :class "workspaces"
@@ -83,5 +83,5 @@
                       :width "90%"
                       :height "10px"
                       :anchor "top center")
-  :reserve (struts :side "top" :distance "4%")
+  :reserve (struts :side "top" :distance "2%")
   (bar))
