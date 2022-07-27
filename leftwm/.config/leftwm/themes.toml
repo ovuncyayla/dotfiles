@@ -210,8 +210,8 @@ name = "LOCAL"
 definitions_version = 1
 
 [[repos.themes]]
-name = "basic_eww"
-directory = "/home/us3r/.config/leftwm/themes/basic_eww"
+name = "bas3"
+directory = "/home/us3r/.config/leftwm/themes/bas3"
 version = "0.0.0"
 leftwm_versions = "*"
 current = true
