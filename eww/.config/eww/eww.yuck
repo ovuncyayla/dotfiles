@@ -80,8 +80,8 @@
   :windowtype "dock"
   :geometry (geometry :x "0%"
                       :y "0%"
-                      :width "90%"
-                      :height "10px"
+                      :width "95%"
+                      :height "16px"
                       :anchor "top center")
   :reserve (struts :side "top" :distance "2%")
   (bar))
