@@ -52,6 +52,12 @@ key = "d"
 
 [[keybind]]
 command = "Execute"
+value = "polybar-msg cmd toggle"
+modifier = ["modkey"]
+key = "space"
+
+[[keybind]]
+command = "Execute"
 value = "alacritty"
 modifier = ["modkey"]
 key = "Return"
