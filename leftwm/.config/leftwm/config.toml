@@ -171,6 +171,11 @@ modifier = ["modkey"]
 key = "Down"
 
 [[keybind]]
+command = "ToggleFloating"
+modifier = ["modkey", "Control"]
+key = "f"
+
+[[keybind]]
 command = "NextLayout"
 value = ""
 modifier = ["modkey", "Control"]
