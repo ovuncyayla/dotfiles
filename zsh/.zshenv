@@ -6,6 +6,7 @@ export EDITOR=nvim
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.config/rofi/bin:$PATH
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools

@@ -46,6 +46,12 @@ key = "p"
 
 [[keybind]]
 command = "Execute"
+value = "launcher_misc"
+modifier = ["modkey"]
+key = "d"
+
+[[keybind]]
+command = "Execute"
 value = "alacritty"
 modifier = ["modkey"]
 key = "Return"
