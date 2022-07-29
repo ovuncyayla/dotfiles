@@ -157,12 +157,12 @@ key = "q"
 command = "SoftReload"
 value = ""
 modifier = ["modkey", "Shift"]
-key = "r"
+key = "b"
 
 [[keybind]]
 command = "HardReload"
 value = ""
-modifier = ["modkey", "Shift"]
+modifier = ["modkey", "Control"]
 key = "b"
 
 [[keybind]]
