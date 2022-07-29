@@ -77,9 +77,21 @@ key = "r"
 
 [[keybind]]
 command = "Execute"
-value = "alacritty -e ranger"
+value = "WINIT_X11_SCALE_FACTOR=1 alacritty -e ranger"
 modifier = ["modkey", "Shift"]
 key = "r"
+
+[[keybind]]
+command = "Execute"
+value = "WINIT_X11_SCALE_FACTOR=1 alacritty -e nvim"
+modifier = ["modkey"]
+key = "e"
+
+[[keybind]]
+command = "Execute"
+value = "brave"
+modifier = ["modkey"]
+key = "b"
 
 [[keybind]]
 command = "Execute"
