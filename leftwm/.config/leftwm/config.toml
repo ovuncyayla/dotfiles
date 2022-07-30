@@ -225,7 +225,8 @@ key = "b"
 
 [[keybind]]
 command = "Execute"
-value = "loginctl kill-session $XDG_SESSION_ID"
+# value = "loginctl kill-session $XDG_SESSION_ID"
+value = "powermenu2"
 modifier = ["modkey", "Shift"]
 key = "x"
 
