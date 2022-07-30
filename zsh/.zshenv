@@ -1,5 +1,6 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export TERM=alacritty
 export TERMINAL=alacritty
 export EDITOR=nvim
 

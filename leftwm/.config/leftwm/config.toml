@@ -41,6 +41,14 @@ height = 0.8
 width =  0.8
 
 [[scratchpad]]
+name = "Nvim"
+value = "alacritty -e nvim"
+x = 0
+y = 0
+height = 1.0
+width =  1.0
+
+[[scratchpad]]
 name = "LazyGit"
 value = "alacritty -e lazygit"
 x = 0.1
@@ -68,7 +76,12 @@ value = "LazyGit"
 modifier = ["modkey"]
 key = "g"
 
-# File Browsers
+[[keybind]]
+command = "ToggleScratchPad"
+value = "Nvim" 
+modifier = ["modkey"]
+key = "e"
+
 [[keybind]]
 command = "ToggleScratchPad"
 value = "Ranger" 
@@ -77,14 +90,15 @@ key = "r"
 
 [[keybind]]
 command = "Execute"
-value = "WINIT_X11_SCALE_FACTOR=1 alacritty -e ranger"
+value = "alacritty -e ranger"
 modifier = ["modkey", "Shift"]
 key = "r"
 
 [[keybind]]
 command = "Execute"
-value = "WINIT_X11_SCALE_FACTOR=1 alacritty -e nvim"
-modifier = ["modkey"]
+# value = "WINIT_X11_SCALE_FACTOR=1 alacritty -e nvim"
+value = "alacritty -e nvim"
+modifier = ["modkey", "Shift"]
 key = "e"
 
 [[keybind]]
@@ -96,8 +110,8 @@ key = "b"
 [[keybind]]
 command = "Execute"
 value = "pcmanfm-qt"
-modifier = ["modkey", "Shift"]
-key = "e"
+modifier = ["modkey"]
+key = "f"
 
 [[keybind]]
 command = "Execute"
