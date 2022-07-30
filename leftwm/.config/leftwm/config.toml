@@ -41,6 +41,14 @@ height = 0.8
 width =  0.8
 
 [[scratchpad]]
+name = "Tmux"
+value = "alacritty -e tmux new-session -A -s sesso"
+x = 0.1
+y = 0.1
+height = 0.8
+width =  0.8
+
+[[scratchpad]]
 name = "Nvim"
 value = "alacritty -e nvim"
 x = 0
@@ -72,6 +80,12 @@ key = "backslash"
 
 [[keybind]]
 command = "ToggleScratchPad"
+value = "Tmux" 
+modifier = ["modkey"]
+key = "t"
+
+[[keybind]]
+command = "ToggleScratchPad"
 value = "LazyGit" 
 modifier = ["modkey"]
 key = "g"
@@ -93,6 +107,12 @@ command = "Execute"
 value = "alacritty -e lazygit"
 modifier = ["modkey", "Shift"]
 key = "g"
+
+[[keybind]]
+command = "Execute"
+value = "alacritty -e tmux new-session -A -s sesso"
+modifier = ["modkey", "Shift"]
+key = "t"
 
 [[keybind]]
 command = "Execute"
