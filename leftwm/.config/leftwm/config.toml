@@ -90,6 +90,12 @@ key = "r"
 
 [[keybind]]
 command = "Execute"
+value = "alacritty -e lazygit"
+modifier = ["modkey", "Shift"]
+key = "g"
+
+[[keybind]]
+command = "Execute"
 value = "alacritty -e ranger"
 modifier = ["modkey", "Shift"]
 key = "r"
