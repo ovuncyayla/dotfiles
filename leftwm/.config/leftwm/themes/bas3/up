@@ -56,6 +56,12 @@ fi
 #   monitor=$monitor offset=$x width=$width polybar -c $SCRIPTPATH/polybar.config $barname &> /dev/null &
 #   let index=indextemp
 # done
-sleep 1
-polybar -c $SCRIPTPATH/polybar/config.ini main
 
+if [ -x "$(command -v flameshot)" ]; then
+  flameshot &
+fi
+
+if [ -x "$(command -v polybar)" ]; then
+  sleep 1
+  polybar -c $SCRIPTPATH/polybar/config.ini main
+fi

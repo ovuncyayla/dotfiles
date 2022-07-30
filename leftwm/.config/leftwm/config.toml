@@ -165,6 +165,12 @@ key = "Return"
 
 [[keybind]]
 command = "Execute"
+value = "flameshot gui"
+modifier = []
+key = "Print"
+
+[[keybind]]
+command = "Execute"
 value = "xbacklight -inc 10"
 modifier = []
 key = "XF86XK_MonBrightnessUp"
