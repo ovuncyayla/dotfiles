@@ -232,7 +232,7 @@ key = "x"
 
 [[keybind]]
 command = "Execute"
-value = "slock"
+value = "betterlockscreen -l dim"
 modifier = ["modkey", "Control"]
 key = "l"
 
