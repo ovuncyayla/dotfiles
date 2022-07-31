@@ -81,14 +81,16 @@ return require('packer').startup(function(use)
   use { "famiu/bufdelete.nvim" }
 
   -- File explorer
-  use { "nvim-neo-tree/neo-tree.nvim",
-    -- branch = "v2.x",
-    -- -- cmd = "Neotree",
-    -- requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    -- setup = function()
-    --   vim.g.neo_tree_remove_legacy_commands = true
-    -- end,
-  }
+  -- use { "nvim-neo-tree/neo-tree.nvim",
+  --   -- branch = "v2.x",
+  --   -- -- cmd = "Neotree",
+  --   -- requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --   -- setup = function()
+  --   --   vim.g.neo_tree_remove_legacy_commands = true
+  --   -- end,
+  -- }
+
+use { 'kyazdani42/nvim-tree.lua',requires = { 'kyazdani42/nvim-web-devicons', } }
 
   -- Statusline
   use { "feline-nvim/feline.nvim", requires = "nvim-web-devicons" }
@@ -290,6 +292,7 @@ use {
   use { "LunarVim/darkplus.nvim", }
   use { "catppuccin/nvim", as = "catppuccin" }
   use { 'frenzyexists/aquarium-vim', }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

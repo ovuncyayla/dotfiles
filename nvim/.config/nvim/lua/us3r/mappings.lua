@@ -15,6 +15,7 @@ map("i", "jk", "<ESC>")
 -- Standard Operations
 map("n", "<leader>.", "<cmd>cd %:p:h<cr>", { desc = "Set CWD" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+map("n", "<leader><leader>s", "<cmd>source %<cr>", { desc = "Source Current File" })
 -- map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "No Highlight" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -85,8 +86,8 @@ map("n", "<leader>gd", function()
 end, { desc = "View git diff" })
 
 -- NeoTree
-map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle Explorer" })
-map("n", "<leader>o", "<cmd>Neotree focus<cr>", { desc = "Focus Explorer" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle Explorer" })
+map("n", "<leader>o", "<cmd>NvimTreeFocus<cr>", { desc = "Focus Explorer" })
 
 -- Session Manager
 -- map("n", "<leader>Sl", "<cmd>SessionManager! load_last_session<cr>", { desc = "Load last session" })
