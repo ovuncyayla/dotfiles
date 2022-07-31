@@ -232,6 +232,7 @@ use {
   -- }
   use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
   use 'simrat39/rust-tools.nvim'
   use { "ray-x/lsp_signature.nvim"}
 

@@ -11,6 +11,7 @@ end
 --     -- CHANGE THIS to your path!
 --     -- command = os.getenv('HOME') .. '/stuff/codelldb-x86_64-linux/extension/adapter/codelldb',
 --     command = '/home/us3r/stuff/codelldb-x86_64-linux/extension/adapter/codelldb',
+--     port = 12341,
 --     args = {"--port", "${port}"},
 --
 --   }
@@ -80,11 +81,17 @@ dap.configurations = {
         --
         -- local pname = get_project(require("user.custom.utils").split(vim.fn.expand "%", "/"))
         -- return vim.fn.expand "%:h" .. "/../target/debug/" .. pname
-        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        return vim.fn.getcwd() .. "/target/debug/cj"
+        -- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
       end,
       cwd = "${workspaceFolder}",
+      args = function ()
+        return {"-p", "test.json"}
+      end ,
       stopOnEntry = true,
       runInTerminal = true,
+    MIMode= "gdb",
+    miDebuggerPath= "/home/us3r/.cargo/bin/rust-gdb"
     },
   },
 }
@@ -107,3 +114,4 @@ vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticInfo" })
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticError" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticInfo" })
 vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "DiagnosticInfo" })
+
