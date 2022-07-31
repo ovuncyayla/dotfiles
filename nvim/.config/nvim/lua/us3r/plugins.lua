@@ -195,7 +195,7 @@ use { 'kyazdani42/nvim-tree.lua',requires = { 'kyazdani42/nvim-web-devicons', } 
   --   event = { "BufRead", "BufNewFile" },
   --   config = function()
   --     --      require "configs.cinnamon"
-  --   end,
+  --   ends
   -- }
 
   -- Smooth escaping
@@ -230,13 +230,17 @@ use {
   --     }
   --   end,
   -- }
+  use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use 'simrat39/rust-tools.nvim'
   use { "ray-x/lsp_signature.nvim"}
 
   use { "sindrets/winshift.nvim"}
   use { "nvim-telescope/telescope-file-browser.nvim" }
-  -- use { "nvim-telescope/telescope-dap.nvim" }
+  use { "nvim-telescope/telescope-dap.nvim" }
   use { "nvim-telescope/telescope-packer.nvim" }
   use { "nvim-telescope/telescope-project.nvim" }
+  use {'nvim-telescope/telescope-ui-select.nvim' }
   use { "cljoly/telescope-repo.nvim" }
   use { "aserowy/tmux.nvim" }
   use { "nvim-treesitter/playground" }

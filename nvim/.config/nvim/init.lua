@@ -21,6 +21,6 @@ require 'us3r.bufferline'
 require 'us3r.aerial'
 require 'us3r.nvim-dap'
 require 'us3r.nvim-dapui'
+require 'us3r.rust-tools'
 require 'us3r.toggleterm'
 require 'us3r.which-key'
-

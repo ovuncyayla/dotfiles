@@ -233,3 +233,15 @@ map("x", "J", ":move '>+1<CR>gv-gv", opts)
 map("x", "K", ":move '<-2<CR>gv-gv", opts)
 map("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 map("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+
+map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+map("n", "<F9>", "<cmd>lua require'dap'.continue()<cr>", opts)
+map("n", "<F7>", "<cmd>lua require'dap'.step_into()<cr>", opts)
+map("n", "<F8>", "<cmd>lua require'dap'.step_over()<cr>", opts)
+map("n", "S-<F8>", "<cmd>lua require'dap'.step_out()<cr>", opts)
+map("n", "M-<F8>", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
+map("n", "<F5>", "<cmd>lua require'dap'.run_last()<cr>", opts)
+map("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+map("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+

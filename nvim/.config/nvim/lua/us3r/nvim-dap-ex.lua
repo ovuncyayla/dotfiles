@@ -4,18 +4,6 @@ if not status_ok then
   return
 end
 
--- dap.adapters.codelldb = {
---   type = 'server',
---   port = "${port}",
---   executable = {
---     -- CHANGE THIS to your path!
---     -- command = os.getenv('HOME') .. '/stuff/codelldb-x86_64-linux/extension/adapter/codelldb',
---     command = '/home/us3r/stuff/codelldb-x86_64-linux/extension/adapter/codelldb',
---     args = {"--port", "${port}"},
---
---   }
--- }
-
 dap.adapters = {
   python = {
     type = "executable",
@@ -25,10 +13,9 @@ dap.adapters = {
   cppdbg = {
     id = "cppdbg",
     type = "executable",
-    command = os.getenv("HOME") .. "/stuff/cpptools-linux/extension/debugAdapters/bin/OpenDebugAD7"
+    command = os.getenv("HOME") .. "/stuff/dbdadapters/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
   },
 }
-
 dap.configurations = {
   python = {
     {
