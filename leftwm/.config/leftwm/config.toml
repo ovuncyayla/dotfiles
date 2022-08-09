@@ -50,7 +50,7 @@ width =  0.8
 
 [[scratchpad]]
 name = "Nvim"
-value = "alacritty -e nvim"
+value = "SHLVL=1 alacritty -e nvim"
 x = 0
 y = 0
 height = 1.0

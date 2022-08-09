@@ -3,6 +3,9 @@
 # Enable touchpad tapping
 xinput set-prop 'CUST0001:00 04F3:30AA Touchpad' 'libinput Tapping Enabled' 1
 
+# Set keyboard input rate
+xset r rate 240 60
+
 export SCRIPTPATH="$HOME/.config/leftwm/themes/current" #"$( cd "$(dirname "$0")" ; pwd -P )"
 
 #if path to liblinkt is not not exported do so:
@@ -31,7 +34,8 @@ leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
 # Set background
 if [ -x "$(command -v feh)" ]; then
   #feh --bg-scale $SCRIPTPATH/background.jpg
-  $HOME/.config/leftwm/themes/current/feh.sh
+  betterlockscreen -w wallpapers/drawings/tranquility-minimal.jpg
+  # source $HOME/.config/leftwm/themes/current/feh.sh
 fi
 
 #open eww 'bar' windows
