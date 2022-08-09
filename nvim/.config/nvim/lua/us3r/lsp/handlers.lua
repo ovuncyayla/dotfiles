@@ -1,7 +1,5 @@
 local M = {}
 
-local map = vim.keymap.set
-
 local function lsp_highlight_document(client)
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
@@ -19,48 +17,23 @@ local function lsp_highlight_document(client)
 end
 
 M.on_attach = function(client, bufnr)
-  map("n", "K", function()
-    vim.lsp.buf.hover()
-  end, { desc = "Hover symbol details", buffer = bufnr })
-  map("n", "<leader>la", function()
-    vim.lsp.buf.code_action()
-  end, { desc = "LSP code action", buffer = bufnr })
-  map("n", "<leader>lf", function()
-    vim.lsp.buf.formatting_sync()
-  end, { desc = "Format code", buffer = bufnr })
-  map("n", "<leader>lh", function()
-    vim.lsp.buf.signature_help()
-  end, { desc = "Signature help", buffer = bufnr })
-  map("n", "<leader>lr", function()
-    vim.lsp.buf.rename()
-  end, { desc = "Rename current symbol", buffer = bufnr })
-  map("n", "gD", function()
-    vim.lsp.buf.declaration()
-  end, { desc = "Declaration of current symbol", buffer = bufnr })
-  map("n", "gI", function()
-    vim.lsp.buf.implementation()
-  end, { desc = "Implementation of current symbol", buffer = bufnr })
-  map("n", "gd", function()
-    vim.lsp.buf.definition()
-  end, { desc = "Show the definition of current symbol", buffer = bufnr })
-  map("n", "gr", function()
-    vim.lsp.buf.references()
-  end, { desc = "References of current symbol", buffer = bufnr })
-  map("n", "<leader>ld", function()
-    vim.diagnostic.open_float()
-  end, { desc = "Hover diagnostics", buffer = bufnr })
-  map("n", "[d", function()
-    vim.diagnostic.goto_prev()
-  end, { desc = "Previous diagnostic", buffer = bufnr })
-  map("n", "]d", function()
-    vim.diagnostic.goto_next()
-  end, { desc = "Next diagnostic", buffer = bufnr })
-  map("n", "gl", function()
-    vim.diagnostic.open_float()
-  end, { desc = "Hover diagnostics", buffer = bufnr })
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-    vim.lsp.buf.formatting()
-  end, { desc = "Format file with LSP" })
+  local opts = { noremap = true, silent = true }
+  local keymap = vim.api.nvim_buf_set_keymap
+  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+  keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
+  keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
+  keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
+  keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
   lsp_highlight_document(client)
   require("aerial").on_attach(client, bufnr)
@@ -83,7 +56,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
-  return
+  vim.notify_once('cmp_nvim_lsp not found')
+  M.capabilities = capabilities
+  return M
 end
 
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)

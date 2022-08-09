@@ -9,12 +9,12 @@ local extension_path = '/home/us3r/stuff/codelldb-x86_64-linux/extension/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
 
--- local opts = {
---     -- ... other configs
---     dap = {
---         adapter = require('rust-tools.dap').get_codelldb_adapter(
---             codelldb_path, liblldb_path)
---     }
--- }
+local opts = {
+    -- ... other configs
+    dap = {
+        adapter = require('rust-tools.dap').get_codelldb_adapter(
+            codelldb_path, liblldb_path)
+    }
+}
 
 require('rust-tools').setup(opts)

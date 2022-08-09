@@ -17,18 +17,33 @@ end
 --   }
 -- }
 
-dap.adapters = {
-  python = {
-    type = "executable",
-    command = "/usr/bin/python",
-    args = { "-m", "debugpy.adapter" },
-  },
-  cppdbg = {
-    id = "cppdbg",
-    type = "executable",
-    command = os.getenv("HOME") .. "/stuff/cpptools-linux/extension/debugAdapters/bin/OpenDebugAD7"
-  },
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+  name = 'lldb'
 }
+
+
+-- dap.adapters = {
+--   python = {
+--     type = "executable",
+--     command = "/usr/bin/python",
+--     args = { "-m", "debugpy.adapter" },
+--   },
+--   cppdbg = {
+--     id = "cppdbg",
+--     type = "executable",
+--     command = os.getenv("HOME") .. "/stuff/cpptools-linux/extension/debugAdapters/bin/OpenDebugAD7"
+--   },
+--   lldb = {
+--           type = 'executable',
+--           attach = {pidProperty = "pid", pidSelect = "ask"},
+--           command = 'lldb-vscode',
+--           name = "lldb",
+--           env = {LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES"}
+--       }
+--
+-- }
 
 dap.configurations = {
   python = {

@@ -39,7 +39,7 @@ packer.init {
 }
 
 return require('packer').startup(function(use)
-  use { "wbthomason/packer.nvim", }
+ use { "wbthomason/packer.nvim", }
 
   -- Optimiser
   use { "lewis6991/impatient.nvim" }
@@ -205,7 +205,7 @@ use { 'kyazdani42/nvim-tree.lua',requires = { 'kyazdani42/nvim-web-devicons', } 
   use { "b0o/SchemaStore.nvim" }
 
   -- Session manager
-  use { "Shatur/neovim-session-manager"}
+  -- use { "Shatur/neovim-session-manager"}
 
 use {
   "ur4ltz/surround.nvim",
@@ -232,8 +232,8 @@ use {
   -- }
   use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
-  use 'simrat39/rust-tools.nvim'
+  use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+  use { 'simrat39/rust-tools.nvim' , branch='modularize_and_inlay_rewrite' } -- commit = '6a837a95009b01d15be972231ea69591ea22dc87'
   use { "ray-x/lsp_signature.nvim"}
 
   use { "sindrets/winshift.nvim"}
@@ -297,7 +297,7 @@ use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb3
   use { "LunarVim/darkplus.nvim", }
   use { "catppuccin/nvim", as = "catppuccin" }
   use { 'frenzyexists/aquarium-vim', }
-
+  use 'folke/tokyonight.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
