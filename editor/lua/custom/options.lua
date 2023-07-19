@@ -61,9 +61,12 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
+vim.cmd [[colorscheme tokyonight-night]]
 vim.o.termguicolors = true
-vim.cmd [[colorscheme darkplus]]
+vim.g.transparent_background = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+-- vim.cmd [[highlight Normal ctermbg=none guibg=none]]
+-- vim.cmd [[highlight NonText ctermbg=none guibg=none]]

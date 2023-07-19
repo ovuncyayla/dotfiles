@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'darkplus',
+    theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
   },
@@ -67,3 +67,4 @@ local notify = require('notify')
 notify.setup({ stages = "slide" })
 vim.notify = notify
 
+require('neogit').setup {}
