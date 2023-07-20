@@ -72,7 +72,7 @@ require('packer').startup(function(use)
   use { "kyazdani42/nvim-web-devicons", }
 
   -- Bufferline
-  use { "akinsho/bufferline.nvim" }
+  -- use { "akinsho/bufferline.nvim" }
 
   -- Better buffer closing
   use { "famiu/bufdelete.nvim" }
