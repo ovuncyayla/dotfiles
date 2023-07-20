@@ -11,6 +11,14 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
+  use {
+    'mrjones2014/legendary.nvim',
+    version = 'v2.1.0',
+    -- sqlite is only needed if you want to use frecency sorting
+    -- requires = { 'kkharji/sqlite.lua' }
+  }
+
+
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
@@ -90,6 +98,7 @@ require('packer').startup(function(use)
   use { "jvgrootveld/telescope-zoxide" }
   use { "francoiscabrol/ranger.vim" , requires = { "rbgrouleff/bclose.vim" }  }
 
+  use { "numToStr/FTerm.nvim" }
   -- -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   -- local has_plugins, plugins = pcall(require, 'custom.plugins')
   -- if has_plugins then

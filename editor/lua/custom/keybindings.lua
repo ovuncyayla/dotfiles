@@ -18,7 +18,7 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 map("n", "<leader>.", "<cmd>cd %:p:h<cr>", { desc = "Set CWD" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
-map("n", "<leader><leader>s", "<cmd>source %<cr>", { desc = "Source Current File" })
+--map("n", "<leader><leader>s", "<cmd>source %<cr>", { desc = "Source Current File" })
 
 -- Navigate buffers
 map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
@@ -36,8 +36,8 @@ map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find 
 map('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 map('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy {
+    -- winblend = 10,
     previewer = true,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
@@ -56,3 +56,13 @@ map("n", "<leader>sm", function() require("telescope.builtin").marks() end, { de
 
 
 map("n", "<leader>pp", function() require("telescope").extensions.project.project() end, { desc = "[P]rojectile find [P]roject" })
+
+map("n", "<A-g>", function() require("neogit").open({}) end, { desc = "NeoGit Status" })
+
+-- Legendary
+map("n" , "<leader><F12>", "<cmd>LegendaryScratchToggle<cr>", { desc = "Toggle Lua Scratch Buffer" })
+map("n" , "<A-p>", "<cmd>Legendary<cr>", { desc = "Toggle Lua Scratch Buffer" })
+map("n", "<leader><leader>s", "<cmd>LegendaryEvalBuf<cr>", { desc = "Source Current File" })
+map("n", "<leader><leader>l", "<cmd>LegendaryEvalLine<cr>", { desc = "Source Current Line" })
+map("n", "<leader><leader>v", "<cmd>LegendaryEvalLines<cr>", { desc = "Source Visual Lines" })
+
