@@ -1,3 +1,7 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -13,15 +17,27 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
-{
+  'navarasu/onedark.nvim', -- Theme inspired by Atom
+  "LunarVim/darkplus.nvim",
+  { 'folke/tokyonight.nvim', lazy = false },
+
+  {
     'mrjones2014/legendary.nvim',
     version = 'v2.1.0',
+    lazy = false,
+    --priority = 10000
     -- sqlite is only needed if you want to use frecency sorting
     -- dependencies = { 'kkharji/sqlite.lua' }
   },
 
+  -- Git related plugins
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'lewis6991/gitsigns.nvim',
+  { 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim' },
 
-{ -- LSP Configuration & Plugins
+
+  { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -29,78 +45,83 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
-
+      { 'j-hui/fidget.nvim', tag = "legacy", event = "LspAttach" },
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
   },
 
-{ -- Autocompletion
+  { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
-{ -- Highlight, edit, and navigate code
+  { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
 
-{ -- Additional text objects via treesitter
+  { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   },
 
-  -- Git related plugins
-{ 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim' },
-'tpope/vim-fugitive',
-'tpope/vim-rhubarb',
-'lewis6991/gitsigns.nvim',
-
-'navarasu/onedark.nvim', -- Theme inspired by Atom
-"LunarVim/darkplus.nvim",
-{ 'folke/tokyonight.nvim', lazy=false },
-'nvim-lualine/lualine.nvim', -- Fancier statusline
-'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
-'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
-'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'nvim-lualine/lualine.nvim', -- Fancier statusline
+  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- Smarter Splits
-"mrjones2014/smart-splits.nvim",
+  "mrjones2014/smart-splits.nvim",
 
   -- Icons
-"kyazdani42/nvim-web-devicons",
+  "kyazdani42/nvim-web-devicons",
 
--- Bufferline
---"akinsho/bufferline.nvim"
+  -- Bufferline
+  --"akinsho/bufferline.nvim"
 
   -- Better buffer closing
-"famiu/bufdelete.nvim",
+  "famiu/bufdelete.nvim",
 
   -- Notification Enhancer
-"rcarriga/nvim-notify",
+  "rcarriga/nvim-notify",
 
   -- Keymaps popup
-"folke/which-key.nvim",
+  "folke/which-key.nvim",
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
 
-'mfussenegger/nvim-jdtls',
+  'mfussenegger/nvim-jdtls',
 
   -- Fuzzy Finder (files, lsp, etc)
-{ 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-"nvim-telescope/telescope-file-browser.nvim",
-"nvim-telescope/telescope-dap.nvim",
-"nvim-telescope/telescope-packer.nvim",
-"nvim-telescope/telescope-project.nvim",
-'nvim-telescope/telescope-ui-select.nvim',
-"cljoly/telescope-repo.nvim",
-"jvgrootveld/telescope-zoxide",
-{ "francoiscabrol/ranger.vim", requires = { "rbgrouleff/bclose.vim" } },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  "nvim-telescope/telescope-file-browser.nvim",
+  "nvim-telescope/telescope-dap.nvim",
+  "nvim-telescope/telescope-packer.nvim",
+  "nvim-telescope/telescope-project.nvim",
+  'nvim-telescope/telescope-ui-select.nvim',
+  "cljoly/telescope-repo.nvim",
+  "jvgrootveld/telescope-zoxide",
+  { "francoiscabrol/ranger.vim", lazy = false, dependencies = { "rbgrouleff/bclose.vim" },
+    keys = { "<leader>f", "<cmd>Ranger<cr>", desc = "Ranger File Manager" } },
 
-"akinsho/toggleterm.nvim",
+  "akinsho/toggleterm.nvim",
 
 }, {})
 
