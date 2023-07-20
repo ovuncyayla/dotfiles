@@ -68,3 +68,6 @@ notify.setup({ stages = "slide" })
 vim.notify = notify
 
 require('neogit').setup {}
+
+require('legendary').setup({ lazy_nvim = { auto_register = true } })
+
