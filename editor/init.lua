@@ -96,9 +96,9 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-ui-select.nvim' }
   use { "cljoly/telescope-repo.nvim" }
   use { "jvgrootveld/telescope-zoxide" }
-  use { "francoiscabrol/ranger.vim" , requires = { "rbgrouleff/bclose.vim" }  }
+  use { "francoiscabrol/ranger.vim", requires = { "rbgrouleff/bclose.vim" } }
 
-  use { "numToStr/FTerm.nvim" }
+  use { "akinsho/toggleterm.nvim" }
   -- -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   -- local has_plugins, plugins = pcall(require, 'custom.plugins')
   -- if has_plugins then
@@ -140,5 +140,4 @@ require("custom.lsp")
 require("custom.treesitter")
 require("custom.cmp")
 require("custom.java")
--- require("custom.nvim-jdtls")
-
+require("custom.terminal")
