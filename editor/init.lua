@@ -24,7 +24,6 @@ require('lazy').setup({
   {
     'mrjones2014/legendary.nvim',
     version = 'v2.1.0',
-    lazy = false,
     --priority = 10000
     -- sqlite is only needed if you want to use frecency sorting
     -- dependencies = { 'kkharji/sqlite.lua' }
@@ -51,9 +50,19 @@ require('lazy').setup({
     },
   },
 
+  {
+    "folke/lsp-trouble.nvim",
+    dependencies = "kyazdani42/nvim-web-devicons",
+    lazy=false,
+    -- event = "Lsp*"
+    keys= {
+      {"<leader>t", "<cmd>TroubleToggle<cr>", desc="Toggle Trouble"}
+    }
+  },
+
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets'  },
   },
 
   { -- Highlight, edit, and navigate code
@@ -90,22 +99,6 @@ require('lazy').setup({
 
   -- Keymaps popup
   "folke/which-key.nvim",
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    ---@type Flash.Config
-    opts = {},
-    -- stylua: ignore
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-    },
-  },
-
-  'mfussenegger/nvim-jdtls',
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -113,11 +106,9 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   "nvim-telescope/telescope-file-browser.nvim",
   "nvim-telescope/telescope-dap.nvim",
-  "nvim-telescope/telescope-packer.nvim",
   "nvim-telescope/telescope-project.nvim",
   'nvim-telescope/telescope-ui-select.nvim',
-  "cljoly/telescope-repo.nvim",
-  "jvgrootveld/telescope-zoxide",
+
   { "francoiscabrol/ranger.vim", lazy = false, dependencies = { "rbgrouleff/bclose.vim" },
     keys = { "<leader>f", "<cmd>Ranger<cr>", desc = "Ranger File Manager" } },
 
