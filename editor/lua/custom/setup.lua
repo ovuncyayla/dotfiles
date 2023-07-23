@@ -1,3 +1,5 @@
+require('legendary').setup({ lazy_nvim = { auto_register = true } })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -69,5 +71,5 @@ vim.notify = notify
 
 require('neogit').setup {}
 
-require('legendary').setup({ lazy_nvim = { auto_register = true } })
+require("nvim-surround").setup({})
 

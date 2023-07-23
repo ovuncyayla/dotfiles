@@ -53,16 +53,17 @@ require('lazy').setup({
   {
     "folke/lsp-trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
-    lazy=false,
+    lazy = false,
     -- event = "Lsp*"
-    keys= {
-      {"<leader>t", "<cmd>TroubleToggle<cr>", desc="Toggle Trouble"}
+    keys = {
+      { "<leader>t", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble" }
     }
   },
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets'  },
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets' },
   },
 
   { -- Highlight, edit, and navigate code
@@ -76,6 +77,8 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   },
+
+  { 'nvim-treesitter/playground', after = 'nvim-treesitter', },
 
   'nvim-lualine/lualine.nvim', -- Fancier statusline
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
@@ -113,6 +116,12 @@ require('lazy').setup({
     keys = { "<leader>f", "<cmd>Ranger<cr>", desc = "Ranger File Manager" } },
 
   "akinsho/toggleterm.nvim",
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+  },
 
 }, {})
 
