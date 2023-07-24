@@ -21,6 +21,9 @@ require('lazy').setup({
   "LunarVim/darkplus.nvim",
   { 'folke/tokyonight.nvim', lazy = false },
 
+  -- Icons
+  "kyazdani42/nvim-web-devicons",
+
   {
     'mrjones2014/legendary.nvim',
     version = 'v2.1.0',
@@ -84,14 +87,12 @@ require('lazy').setup({
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  'anuvyklack/hydra.nvim',
   -- Smarter Splits
-  "mrjones2014/smart-splits.nvim",
-
-  -- Icons
-  "kyazdani42/nvim-web-devicons",
+  -- "mrjones2014/smart-splits.nvim",
 
   -- Better buffer closing
-  "famiu/bufdelete.nvim",
+  -- "famiu/bufdelete.nvim",
 
   -- Notification Enhancer
   "rcarriga/nvim-notify",
@@ -133,3 +134,4 @@ require("custom.lsp")
 require("custom.treesitter")
 require("custom.cmp")
 require("custom.terminal")
+require("custom.hydra")

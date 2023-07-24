@@ -16,7 +16,8 @@ map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 
 -- Navigate buffers
 map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close buffer" })
-map("n", "<leader>n", "<cmd>new<cr>", { desc = "Close buffer" })
+map("n", "<leader>n", "<cmd>new<cr>", { desc = "New buffer" })
+map("n", "<leader>v", "<cmd>vnew<cr>", { desc = "New vertical buffer" })
 -- map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 
