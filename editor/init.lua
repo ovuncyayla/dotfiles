@@ -1,6 +1,6 @@
+-- Set <space> as the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -53,8 +53,7 @@ require('lazy').setup({
   {
     "folke/lsp-trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
-    lazy = false,
-    -- event = "Lsp*"
+    event = "LspAttach",
     keys = {
       { "<leader>t", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble" }
     }
@@ -91,9 +90,6 @@ require('lazy').setup({
   -- Icons
   "kyazdani42/nvim-web-devicons",
 
-  -- Bufferline
-  --"akinsho/bufferline.nvim"
-
   -- Better buffer closing
   "famiu/bufdelete.nvim",
 
@@ -104,13 +100,16 @@ require('lazy').setup({
   "folke/which-key.nvim",
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  "nvim-telescope/telescope-file-browser.nvim",
-  "nvim-telescope/telescope-dap.nvim",
-  "nvim-telescope/telescope-project.nvim",
-  'nvim-telescope/telescope-ui-select.nvim',
+  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = {
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      { 'nvim-telescope/telescope-live-grep-args.nvim' },
+      'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-dap.nvim',
+      'nvim-telescope/telescope-project.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+    }
+  },
 
   { "francoiscabrol/ranger.vim", lazy = false, dependencies = { "rbgrouleff/bclose.vim" },
     keys = { "<leader>f", "<cmd>Ranger<cr>", desc = "Ranger File Manager" } },
