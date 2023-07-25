@@ -62,6 +62,9 @@ require('lazy').setup({
     }
   },
 
+  -- Dap Configuration
+  { 'mfussenegger/nvim-dap', dependencies= { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' } },
+
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
@@ -135,3 +138,4 @@ require("custom.treesitter")
 require("custom.cmp")
 require("custom.terminal")
 require("custom.hydra")
+require("custom.dap")

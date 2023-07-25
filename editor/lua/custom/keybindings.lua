@@ -39,6 +39,7 @@ map('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch 
 -- map('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 map('n', '<leader>sg', require('telescope').extensions.live_grep_args.live_grep_args, { desc = '[S]earch by [G]rep' })
 map('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+map('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, { desc = 'Search [D]ocument [S]ymbols' })
 map("n", "<leader>sn", function() require("telescope").extensions.notify.notify() end,
   { desc = "[S]earch [n]otifications" })
 map("n", "<leader>sc", function() require("telescope.builtin").commands() end, { desc = "[S]earch [c]ommands" })
