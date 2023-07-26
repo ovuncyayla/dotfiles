@@ -116,6 +116,7 @@ require('lazy').setup({
   },
 
   'nvim-orgmode/orgmode',
+  { dir = "~/dotfiles/blug", lazy = false },
 
 }, {})
 
