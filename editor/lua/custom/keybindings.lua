@@ -18,19 +18,16 @@ map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 map("n", "<leader>n", "<cmd>new<cr>", { desc = "New buffer" })
 map("n", "<leader>v", "<cmd>vnew<cr>", { desc = "New vertical buffer" })
--- map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
--- map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+map("n", "<leader>t", "<cmd>tabnew<cr>", { desc = "New tab buffer" })
+map("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<S-h>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 -- Telescope
-map("n", "<leader>sb", function() require("telescope").extensions.file_browser.file_browser() end,
-  { desc = "[S]earch Files [B]rowser" })
+map("n", "<leader>bb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>jk", { desc = "Search Files [B]rowser" })
 map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 map('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-map('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(
-  --   require('telescope.themes').get_ivy { -- winblend = 10, previewer = true, }
-  )
-end, { desc = '[/] Fuzzily search in current buffer]' })
+map('n', '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find() end,
+  { desc = '[/] Fuzzily search in current buffer]' })
 map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 map('n', '<leader>FF', function() require('telescope.builtin').find_files({ hidden = true }) end,
   { desc = '[S]earch [F]iles +Hidden' })
@@ -56,4 +53,3 @@ map("n", "<A-x>", "<cmd>Legendary<cr>", { desc = "Toggle Lua Scratch Buffer" })
 map("n", "<leader><leader>s", "<cmd>LegendaryEvalBuf<cr>", { desc = "Source Current File" })
 map("n", "<leader><leader>l", "<cmd>LegendaryEvalLine<cr>", { desc = "Source Current Line" })
 map("n", "<leader><leader>v", "<cmd>LegendaryEvalLines<cr>", { desc = "Source Visual Lines" })
-

@@ -97,10 +97,14 @@ telescope.setup({
     file_browser = {
       mappings = {
         i = {
-          ["<C-z>"] = fb_actions.toggle_hidden,
+          ["<S-z>"] = fb_actions.toggle_hidden,
+          ["<C-h>"] = fb_actions.goto_parent_dir,
+          ["<C-l>"] = actions.select_default,
         },
         n = {
-          z = fb_actions.toggle_hidden,
+          Z = fb_actions.toggle_hidden,
+          h = fb_actions.goto_parent_dir,
+          l = actions.select_default,
         },
       },
     },

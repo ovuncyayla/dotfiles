@@ -58,7 +58,7 @@ require('lazy').setup({
     dependencies = "kyazdani42/nvim-web-devicons",
     event = "LspAttach",
     keys = {
-      { "<leader>t", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble" }
+      { "<leader>lt", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble" }
     }
   },
 
@@ -106,9 +106,6 @@ require('lazy').setup({
     'nvim-telescope/telescope-ui-select.nvim',
   }
   },
-
-  { "francoiscabrol/ranger.vim", lazy = false, dependencies = { "rbgrouleff/bclose.vim" },
-    keys = { "<leader>f", "<cmd>Ranger<cr>", desc = "Ranger File Manager" } },
 
   "akinsho/toggleterm.nvim",
 
