@@ -67,7 +67,8 @@ require('lazy').setup({
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets' },
   },
 
   { -- Highlight, edit, and navigate code
@@ -116,6 +117,8 @@ require('lazy').setup({
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
   },
+
+  'nvim-orgmode/orgmode',
 
 }, {})
 
