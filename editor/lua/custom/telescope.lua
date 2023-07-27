@@ -95,6 +95,8 @@ telescope.setup({
   pickers = {},
   extensions = {
     file_browser = {
+      hijack_netrw = true,
+      use_fd = true,
       mappings = {
         i = {
           ["<S-z>"] = fb_actions.toggle_hidden,
@@ -123,6 +125,6 @@ telescope.load_extension("notify")
 -- telescope.load_extension("aerial")
 telescope.load_extension("file_browser")
 telescope.load_extension("project")
--- telescope.load_extension("dap")
+telescope.load_extension("dap")
 telescope.load_extension("ui-select")
 telescope.load_extension("live_grep_args")

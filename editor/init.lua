@@ -18,8 +18,12 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 
   'navarasu/onedark.nvim', -- Theme inspired by Atom
-  "LunarVim/darkplus.nvim",
+  'LunarVim/darkplus.nvim',
+  'rebelot/kanagawa.nvim',
+  { 'rose-pine/neovim', name = 'rose-pine' },
   { 'folke/tokyonight.nvim', lazy = false },
+  { 'catppuccin/nvim', name = 'catppuccin', lazy = false },
+
 
   -- Icons
   "kyazdani42/nvim-web-devicons",

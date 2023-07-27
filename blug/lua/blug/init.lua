@@ -34,6 +34,7 @@ function M.create_scratch_pad()
   vim.api.nvim_buf_set_option(scratchpad_buf_id, 'filetype', 'lua')
   vim.api.nvim_buf_set_option(scratchpad_buf_id, 'buftype', 'acwrite')
   vim.api.nvim_buf_set_name(scratchpad_buf_id, 'BLug Scratchpad')
+  vim.api.nvim_buf_call(scratchpad_buf_id, function () vim.cmd("LspStart") end)
 
   local width = vim.o.columns * 0.85
   local height = vim.o.lines * 0.8
