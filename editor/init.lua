@@ -112,6 +112,8 @@ require('lazy').setup({
   },
 
   "akinsho/toggleterm.nvim",
+  'stevearc/stickybuf.nvim',
+  'stevearc/aerial.nvim',
 
   {
     "kylechui/nvim-surround",

@@ -80,3 +80,7 @@ require('orgmode').setup({
   org_default_notes_file = '~/org/notes.org',
 })
 
+require("stickybuf").setup()
+require("aerial").setup({
+  filter_kind = false
+})
