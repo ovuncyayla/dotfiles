@@ -17,7 +17,7 @@ end
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "*" .. conf["buff_name"] .. "*" },
-  --group = vim.api.nvim_create_augroup("AuBLug"),
+  group = vim.api.nvim_create_augroup("AuBLug", { clear = true }),
   callback = function(ev)
     vim.api.nvim_buf_set_option(0, 'filetype', 'lua')
     vim.api.nvim_buf_set_option(0, 'buftype', 'acwrite')

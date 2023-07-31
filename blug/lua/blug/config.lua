@@ -10,7 +10,7 @@ local Config = {
   }
 }
 
-function Config:set(opts)
+function Config:new(opts)
   opts = opts or {}
 
   local width = vim.o.columns * (opts.width or 0.85)
