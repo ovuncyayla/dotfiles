@@ -35,8 +35,6 @@ function Config:set(opts)
 end
 
 function Config:get()
-  vim.print("Config:get")
-  vim.print(self)
   return self.config
 end
 
