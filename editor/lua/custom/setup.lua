@@ -48,23 +48,6 @@ require("luasnip.loaders.from_vscode").lazy_load({})
 
 require("which-key").setup({})
 
--- require('bufferline').setup({
---     options = {
---       offsets = {
---         { filetype = "NvimTree", text = "", padding = 1 },
---         { filetype = "neo-tree", text = "", padding = 1 },
---         { filetype = "Outline", text = "", padding = 1 },
---       },
---       buffer_close_icon = "",
---       modified_icon = "",
---       close_icon = "",
---       max_name_length = 14,
---       max_prefix_length = 13,
---       tab_size = 20,
---       separator_style = "thin",
---     },
---   })
-
 local notify = require('notify')
 notify.setup({ stages = "slide" })
 vim.notify = notify
@@ -73,14 +56,23 @@ require('neogit').setup {}
 
 require("nvim-surround").setup({})
 
-
 require('orgmode').setup_ts_grammar()
 require('orgmode').setup({
-  org_agenda_files = {'~/org/*'},
+  org_agenda_files = { '~/org/*' },
   org_default_notes_file = '~/org/notes.org',
 })
 
 require("stickybuf").setup()
 require("aerial").setup({
-  filter_kind = false
+  backends = {
+      ['_']  = {"lsp", "treesitter", "markdown", "man"},
+      -- python = {"treesitter"},
+      -- rust   = {"lsp"},
+  },
+  filter_kind = false,
+  layout = {
+    resize_to_content = false,
+    max_width = { 40, math.floor(vim.o.columns * 0.25) },
+    min_width = math.floor(vim.o.columns * 0.25),
+  }
 })

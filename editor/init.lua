@@ -61,9 +61,6 @@ require('lazy').setup({
     "folke/lsp-trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
     event = "LspAttach",
-    keys = {
-      { "<leader>lt", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble" }
-    }
   },
 
   -- Dap Configuration
