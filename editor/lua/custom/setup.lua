@@ -44,8 +44,6 @@ require('gitsigns').setup {
   },
 }
 
-require("luasnip.loaders.from_vscode").lazy_load({})
-
 require("which-key").setup({})
 
 local notify = require('notify')

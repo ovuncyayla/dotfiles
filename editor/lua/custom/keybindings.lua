@@ -78,12 +78,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format { async = true }
     end, opts)
 
-    map('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+    map('i', '<C-q>', vim.lsp.buf.signature_help, opts)
 
   end,
 })
 -- Git
 map("n", "<A-g>", function() require("neogit").open({}) end, { desc = "NeoGit Status" })
+-- LuaSnip
+local ls = require("luasnip")
+map({"i"}, "<C-k>", function() ls.expand() end, {silent = true})
+map({"i", "s"}, "<C-l>", function() ls.jump( 1) end, {silent = true})
+map({"i", "s"}, "<C-j>", function() ls.jump(-1) end, {silent = true})
+map({"i", "s"}, "<C-e>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
+
 
 -- Legendary
 map("n", "<leader><F12>", "<cmd>LegendaryScratchToggle<cr>", { desc = "Toggle Lua Scratch Buffer" })

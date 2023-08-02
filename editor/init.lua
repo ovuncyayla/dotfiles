@@ -68,7 +68,7 @@ require('lazy').setup({
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L2MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets' },
   },
 
@@ -131,6 +131,7 @@ require("custom.telescope")
 require("custom.lsp")
 require("custom.treesitter")
 require("custom.cmp")
+require("custom.snip")
 require("custom.terminal")
 require("custom.hydra")
 require("custom.dap")
