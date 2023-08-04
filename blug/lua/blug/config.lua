@@ -1,7 +1,8 @@
 local Config = {
   state = {},
   config = {
-    buff_name = "BLug Scratchpad",
+    -- Buff name is set like this to get neodev setup work with scratchpad
+    buff_name = vim.loop.fs_realpath(vim.fn.stdpath("config")) .. "/BlugScratchpad",
     scratchpad  = {
       width = 0.8,
       height = 0.8,
