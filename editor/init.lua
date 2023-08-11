@@ -118,6 +118,9 @@ require('lazy').setup({
     event = "VeryLazy",
   },
 
+  'imsnif/kdl.vim',
+  { 'echasnovski/mini.align', version = '*' },
+
   'nvim-orgmode/orgmode',
   { dir = "~/dotfiles/blug", lazy = false },
 
