@@ -64,6 +64,19 @@ ls.add_snippets("all", {
     fmt("Dinozor{} kaldiramayinca {neyi} gitmis{} burdan", {
       c(1, { t(""), t("lar") }), neyi = i(2, "gercegi"), c(3, { t(""), t("ler") })
     })
-  )
+  ),
 })
+
+ls.add_snippets("sh", {
+
+  s("defenv",
+    fmt("{}=${{{}-{}}}", {
+      i(1),rep(1),i(2)
+    })
+  )
+
+})
+
+
+
 
