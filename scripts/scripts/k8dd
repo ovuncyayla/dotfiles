@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Get all namespaces
+namespaces=$(microk8s kubectl get namespaces -o name | cut -d '/' -f2)
+
+# Use fzf to select a namespace
+selected_namespace=$(echo "$namespaces" | fzf --prompt="Select a namespace: ")
+
+if [ -z "$selected_namespace" ]; then
+  echo "No namespace selected."
+  exit 1
+fi
+
+# Get all deployments in the selected namespace
+deployments=$(microk8s kubectl get deployments -n "$selected_namespace" -o name | cut -d '/' -f2)
+
+# Use fzf to select a deployment
+selected_deployment=$(echo "$deployments" | fzf --prompt="Select a deployment: ")
+
+if [ -z "$selected_deployment" ]; then
+  echo "No deployment selected."
+  exit 1
+fi
+
+# Delete the selected deployment
+microk8s kubectl delete deployment "$selected_deployment" -n "$selected_namespace"
+
+echo "Deployment '$selected_deployment' deleted from namespace '$selected_namespace'."
+
