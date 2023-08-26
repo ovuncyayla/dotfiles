@@ -69,7 +69,7 @@ require('lazy').setup({
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp',
-      'L2MON4D3/LuaSnip',
+      'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
@@ -85,6 +85,7 @@ require('lazy').setup({
       -- Additional text objects via treesitter
       'nvim-treesitter/nvim-treesitter-textobjects',
       'nvim-treesitter/playground',
+      'nvim-treesitter/nvim-treesitter-context',
     }
   },
 
@@ -111,6 +112,8 @@ require('lazy').setup({
     'nvim-telescope/telescope-dap.nvim',
     'nvim-telescope/telescope-project.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
+    'nvim-telescope/telescope-media-files.nvim',
+    'nvim-telescope/telescope-symbols.nvim'
   }
   },
 
@@ -127,7 +130,15 @@ require('lazy').setup({
   'imsnif/kdl.vim',
   { 'echasnovski/mini.align', version = '*' },
 
-  'nvim-orgmode/orgmode',
+  {
+    'renerocksai/telekasten.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'renerocksai/calendar-vim',
+    }
+  },
+
+  -- Local Plugins
   { dir = "~/dotfiles/blug", lazy = false },
 
 }, {})

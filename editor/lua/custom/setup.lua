@@ -77,12 +77,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
 
 require("nvim-surround").setup({})
 
-require('orgmode').setup_ts_grammar()
-require('orgmode').setup({
-  org_agenda_files = { '~/org/*' },
-  org_default_notes_file = '~/org/notes.org',
-})
-
 require("stickybuf").setup()
 require("aerial").setup({
   backends = {
@@ -104,4 +98,9 @@ require("mini.align").setup({
     start = 'ga',
     start_with_preview = 'gA',
   },
+})
+
+
+require("telekasten").setup({
+  home = vim.fn.expand("~/zettelkasten"), -- Put the name of your notes directory here
 })

@@ -1,5 +1,10 @@
 -- See `:help vim.keymap.set()`
 local map = vim.keymap.set
+local bmap = function (mod, lhs, rhs, opts)
+	opts = opts or {}
+	opts["buffer"] = true
+	map(mod, lhs, rhs, opts)
+end
 
 -- [[ Basic Keymaps ]]
 -- Keymaps for better default experience
@@ -17,8 +22,8 @@ map("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 map("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down" })
 map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up" })
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc ="Move block down" })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc ="Move block up" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move block down" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move block up" })
 
 map("n", "<A-J>", "m`_:y<CR> p==``", { desc = "Copy line down" })
 map("n", "<A-K>", "m`_:y<CR> P==``", { desc = "Copy line up" })
@@ -117,3 +122,44 @@ map("n", "<A-x>", "<cmd>Legendary<cr>", { desc = "Toggle Lua Scratch Buffer" })
 map("n", "<leader><leader>s", "<cmd>LegendaryEvalBuf<cr>", { desc = "Source Current File" })
 map("n", "<leader><leader>l", "<cmd>LegendaryEvalLine<cr>", { desc = "Source Current Line" })
 map("n", "<leader><leader>v", "<cmd>LegendaryEvalLines<cr>", { desc = "Source Visual Lines" })
+
+map("n", "<leader>z", "<cmd>Telekasten panel<CR>")
+vim.api.nvim_create_autocmd('BufAdd', {
+	group = vim.api.nvim_create_augroup('Zettelkasten', {}),
+	pattern = "zettelkasten/*",
+	callback = function(ev)
+		bmap("n", "f", ":lua require('telekasten').find_notes()<CR>")
+		bmap("n", "d", ":lua require('telekasten').find_daily_notes()<CR>")
+		bmap("n", "g", ":lua require('telekasten').search_notes()<CR>")
+		bmap("n", "l", ":lua require('telekasten').follow_link()<CR>")
+		bmap("n", "T", ":lua require('telekasten').goto_today()<CR>")
+		bmap("n", "W", ":lua require('telekasten').goto_thisweek()<CR>")
+		bmap("n", "w", ":lua require('telekasten').find_weekly_notes()<CR>")
+		bmap("n", "n", ":lua require('telekasten').new_note()<CR>")
+		bmap("n", "N", ":lua require('telekasten').new_templated_note()<CR>")
+		bmap("n", "y", ":lua require('telekasten').yank_notelink()<CR>")
+		bmap("n", "c", ":lua require('telekasten').show_calendar()<CR>")
+		bmap("n", "C", ":CalendarT<CR>")
+		bmap("n", "i", ":lua require('telekasten').paste_img_and_link()<CR>")
+		bmap("n", "t", ":lua require('telekasten').toggle_todo()<CR>")
+		bmap("n", "b", ":lua require('telekasten').show_backlinks()<CR>")
+		bmap("n", "F", ":lua require('telekasten').find_friends()<CR>")
+		bmap("n", "I", ":lua require('telekasten').insert_img_link({ i=true })<CR>")
+		bmap("n", "p", ":lua require('telekasten').preview_img()<CR>")
+		bmap("n", "m", ":lua require('telekasten').browse_media()<CR>")
+		bmap("n", "a", ":lua require('telekasten').show_tags()<CR>")
+		bmap("n", "#", ":lua require('telekasten').show_tags()<CR>")
+		bmap("n", "r", ":lua require('telekasten').rename_note()<CR>")
+	end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+	group = vim.api.nvim_create_augroup('Quicky', {}),
+	pattern = "qf",
+	callback = function(ev)
+		map("n", "<C-j>", "j<CR><CMD>cope<CR>")
+		map("n", "<C-k>", "k<CR><CMD>cope<CR>")
+		map("n", "<C-o>", "<CR><CMD>cope<CR>")
+		map("n", "<C-l>", "<CR><CMD>cope<CR>")
+	end,
+})
