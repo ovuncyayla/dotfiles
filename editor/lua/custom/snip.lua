@@ -67,7 +67,7 @@ ls.add_snippets("all", {
   ),
 })
 
-ls.add_snippets("sh", {
+ls.add_snippets("all", {
 
   s("defenv",
     fmt("{}=${{{}-{}}}", {
@@ -76,7 +76,4 @@ ls.add_snippets("sh", {
   )
 
 })
-
-
-
 

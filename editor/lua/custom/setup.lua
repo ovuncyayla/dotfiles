@@ -1,4 +1,4 @@
-require('legendary').setup({ lazy_nvim = { auto_register = true } })
+--require('legendary').setup({ lazy_nvim = { auto_register = true } })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -20,6 +20,7 @@ require('lualine').setup {
     component_separators = '|',
     section_separators = '',
   },
+  extensions = { 'fugitive' }
 }
 
 -- Enable Comment.nvim
