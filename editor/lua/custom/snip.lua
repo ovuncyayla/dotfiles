@@ -65,6 +65,20 @@ ls.add_snippets("all", {
       c(1, { t(""), t("lar") }), neyi = i(2, "gercegi"), c(3, { t(""), t("ler") })
     })
   ),
+
+
+  s("au",
+    fmt([[
+vim.api.nvim_create_autocmd("{}", {{
+  group = vim.api.nvim_create_augroup("{}", {{ clear = {} }}),
+  pattern = "{}",
+  callback = function(ev)
+    {}
+  end
+}})
+    ]], {
+      i(1, "EventName"), i(2, "GroupName"), c(3, { t("true"), t("false") }), i(4, "Pattern"), i(5)
+      })),
 })
 
 ls.add_snippets("all", {
@@ -76,4 +90,3 @@ ls.add_snippets("all", {
   )
 
 })
-
