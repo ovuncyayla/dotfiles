@@ -184,22 +184,22 @@ vim.keymap.set('n', '<Bslash>ed',
 map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 map('n', '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find() end,
   { desc = '[/] Fuzzily search in current buffer]' })
-map('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 map('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
 map('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 map('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, { desc = 'Search [D]ocument [S]ymbols' })
 map("n", "<leader>sn", function() require("telescope").extensions.notify.notify() end,
   { desc = "[S]earch [n]otifications" })
 map("n", "<leader>sc", function() require("telescope.builtin").commands() end, { desc = "[S]earch [c]ommands" })
+map("n", "<A-x>", function() require("telescope.builtin").commands() end, { desc = "[S]earch [c]ommands" })
 map("n", "<leader>sr", function() require("telescope.builtin").registers() end, { desc = "[S]earch [r]egisters" })
 map("n", "<leader>sm", function() require("telescope.builtin").marks() end, { desc = "[S]earch [m]arks" })
 
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("TeleGru", { clear = true }),
-  pattern = "TelescopePrompt",
-  callback = function(ev)
-    vim.notify("TeleGru")
-    map("i", "<Esc>", "<Esc><Esc>", { buffer = true })
-  end
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = vim.api.nvim_create_augroup("TeleGru", { clear = true }),
+--   pattern = "TelescopePrompt",
+--   callback = function(ev)
+--     vim.notify("TeleGru")
+--     map("i", "<Esc>", "<Esc><Esc>", { buffer = true })
+--   end
+-- })

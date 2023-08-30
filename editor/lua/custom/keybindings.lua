@@ -18,6 +18,8 @@ map("x", "<", "<gv")
 -- map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 map("n", "<leader>.", "<cmd>cd %:p:h<cr>", { desc = "Set CWD" })
+map("n", "<leader><leader>e", function()
+	return ":source " .. vim.fn.stdpath("config") .. "/init.lua<CR>" end, { desc = "Souce Editor Config" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 --map("n", "<leader><leader>s", "<cmd>source %<cr>", { desc = "Source Current File" })
 map("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
@@ -109,8 +111,6 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Legendary
-map("n", "<leader><F12>", "<cmd>LegendaryScratchToggle<cr>", { desc = "Toggle Lua Scratch Buffer" })
-map("n", "<A-x>", "<cmd>Legendary<cr>", { desc = "Toggle Lua Scratch Buffer" })
 map("n", "<leader><leader>s", "<cmd>LegendaryEvalBuf<cr>", { desc = "Source Current File" })
 map("n", "<leader><leader>l", "<cmd>LegendaryEvalLine<cr>", { desc = "Source Current Line" })
 map("n", "<leader><leader>v", "<cmd>LegendaryEvalLines<cr>", { desc = "Source Visual Lines" })
