@@ -156,3 +156,6 @@ require("custom.terminal")
 require("custom.hydra")
 require("custom.dap")
 require("custom.telekasten")
+
+pcall(function() vim.fn.execute(":source " .. vim.fn.expand("~/nvim_private/init.lua")) end)
+
