@@ -64,23 +64,28 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- Buffer local mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
-		map('n', '<leader>lD', vim.lsp.buf.declaration, opts)
-		map('n', '<leader>ld', vim.lsp.buf.definition, opts)
-		map('n', '<leader>L', vim.lsp.buf.hover, opts)
-		map('n', '<leader>li', vim.lsp.buf.implementation, opts)
-		map('n', '<C-l>', vim.lsp.buf.signature_help, opts)
-		map('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, opts)
-		map('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, opts)
+		local withDesc = function (desc)
+			local options = opts
+			options["desc"] = desc
+			return options
+		end
+		map('n', '<leader>lD', vim.lsp.buf.declaration, withDesc("vim.lsp.buf.declaration"))
+		map('n', '<leader>ld', vim.lsp.buf.definition, withDesc("vim.lsp.buf.definition"))
+		map('n', '<leader>L', vim.lsp.buf.hover, withDesc("vim.lsp.buf.hover"))
+		map('n', '<leader>li', vim.lsp.buf.implementation, withDesc("vim.lsp.buf.implementation"))
+		map('n', '<C-l>', vim.lsp.buf.signature_help, withDesc("vim.lsp.buf.signature_help"))
+		map('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, withDesc("vim.lsp.buf.add_workspace_folder"))
+		map('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, withDesc("vim.lsp.buf.remove_workspace_folder"))
 		map('n', '<leader>lwl', function()
 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, opts)
-		map('n', '<leader>lk', vim.lsp.buf.type_definition, opts)
-		map('n', '<leader>ln', vim.lsp.buf.rename, opts)
-		map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-		map('n', '<leader>lr', vim.lsp.buf.references, opts)
+		end, withDesc("vim.lsp.buf.list_workspace_folders"))
+		map('n', '<leader>lk', vim.lsp.buf.type_definition, withDesc("vim.lsp.buf.type_definition"))
+		map('n', '<leader>ln', vim.lsp.buf.rename, withDesc("vim.lsp.buf.rename"))
+		map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, withDesc("vim.lsp.buf.code_action"))
+		map('n', '<leader>lr', vim.lsp.buf.references, withDesc("vim.lsp.buf.references"))
 		map('n', '<leader>lf', function()
 			vim.lsp.buf.format { async = true }
-		end, opts)
+		end, withDesc("vim.lsp.buf.format"))
 
 		map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
 		map("n", "<leader>ln", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
@@ -107,10 +112,11 @@ vim.api.nvim_create_autocmd('FileType', {
 	group = vim.api.nvim_create_augroup('Quicky', {}),
 	pattern = "qf",
 	callback = function(ev)
-		map("n", "<C-j>", "j<CR><CMD>cope<CR>")
-		map("n", "<C-k>", "k<CR><CMD>cope<CR>")
-		map("n", "<C-o>", "<CR><CMD>cope<CR>")
-		map("n", "<C-l>", "<CR><CMD>cope<CR>")
+		bmap("n", "q", ":q<CR>")
+		bmap("n", "<C-j>", "j<CR><CMD>cope<CR>")
+		bmap("n", "<C-k>", "k<CR><CMD>cope<CR>")
+		bmap("n", "<C-o>", "<CR><CMD>cope<CR>")
+		bmap("n", "<C-l>", "<CR><CMD>cope<CR>")
 	end,
 })
 
