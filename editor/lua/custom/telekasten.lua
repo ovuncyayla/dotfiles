@@ -18,7 +18,7 @@ require("telekasten").setup({
 })
 
 map("n", "<leader>z", "<cmd>Telekasten panel<CR>")
-bmap("n", "<Bslash>z", ":lua require('telekasten').find_notes()<CR>")
+map("n", "<Bslash>z", ":lua require('telekasten').find_notes()<CR>")
 vim.api.nvim_create_autocmd('BufEnter', {
 	group = vim.api.nvim_create_augroup('Zettelkasten', {}),
 	pattern = "*zettelkasten/*",
