@@ -79,7 +79,9 @@ local servers = {
     phpcs = {},
     phpcbf = {},
     ["php-cs-fixer"]= {},
-  }
+  },
+
+  sqlls = {}
 }
 
 -- Setup neovim lua configuration
@@ -93,7 +95,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 require('mason').setup()
 
 -- Ensure the servers above are installed
-mason_lspconfig = require 'mason-lspconfig'
+local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
   -- ensureinstalled = ensure_installed,

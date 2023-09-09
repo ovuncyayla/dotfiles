@@ -138,6 +138,15 @@ require('lazy').setup({
     }
   },
 
+  -- Sql stuff
+  {
+    "tpope/vim-dadbod",
+    dependencies = {
+      "kristijanhusak/vim-dadbod-completion",
+      "kristijanhusak/vim-dadbod-ui",
+    }
+  },
+
   -- Local Plugins
   { dir = "~/dotfiles/blug", lazy = false },
 
