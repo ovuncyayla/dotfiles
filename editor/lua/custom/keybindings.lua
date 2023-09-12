@@ -17,13 +17,21 @@ map("x", "<", "<gv")
 -- map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-
-
-local eval_replace_visual = function(cmd)
-	vim.cmd(":'<,'>s/\\%V/\\=system('" .. cmd .. "')[:-2]")
+local eval_replace_visual = function (cmd)
+  local ok, output = pcall(vim.fn.system, cmd)
+  if not ok then
+   vim.notify(vim.inspect(ok))
+    return
+  end
+  vim.notify(output)
+  vim.cmd("'<,'>s//" .. output .. "<CR><Esc>")
+  vim.cmd("<CR><Esc>")
+  return output
 end
 
-vim.keymap.set("v", "<M-!>", function() eval_replace_visual("date -u \"+%Y-%m-%d %H:%M:%S.%9N +02:00\"") end,
+vim.keymap.set("n", "<M-!>", function() return eval_replace_visual("date -u \"+%Y-%m-%dT%H:%M:%S.%9N+02:00\"") end , { desc = "Eval replace visual"} )
+
+map("v", "<M-!>", function() eval_replace_visual("date -u \"+%Y-%m-%d %H:%M:%S.%9N +02:00\"") end,
 	{ desc = "Eval replace visual" })
 
 map("n", "<leader>.", "<cmd>cd %:p:h<cr>", { desc = "Set CWD" })
