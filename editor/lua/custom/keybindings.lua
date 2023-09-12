@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local bmap = function (mod, lhs, rhs, opts)
+local bmap = function(mod, lhs, rhs, opts)
 	opts = opts or {}
 	opts["buffer"] = true
 	map(mod, lhs, rhs, opts)
@@ -17,10 +17,19 @@ map("x", "<", "<gv")
 -- map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+
+
+local eval_replace_visual = function(cmd)
+	vim.cmd(":'<,'>s/\\%V/\\=system('" .. cmd .. "')[:-2]")
+end
+
+vim.keymap.set("v", "<M-!>", function() eval_replace_visual("date -u \"+%Y-%m-%d %H:%M:%S.%9N +02:00\"") end,
+	{ desc = "Eval replace visual" })
+
 map("n", "<leader>.", "<cmd>cd %:p:h<cr>", { desc = "Set CWD" })
 map("n", "<leader><leader>e", ":source " .. vim.fn.stdpath("config") .. "/init.lua<CR>", { desc = "Souce Editor Config" })
 map("n", "<leader><leader>p",
-	function ()
+	function()
 		pcall(function() vim.fn.execute(":source " .. vim.fn.expand("~/nvim_private/init.lua")) end)
 	end,
 	{ desc = "Souce Private Config" })
@@ -64,7 +73,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- Buffer local mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
-		local withDesc = function (desc)
+		local withDesc = function(desc)
 			local options = opts
 			options["desc"] = desc
 			return options
@@ -75,7 +84,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('n', '<leader>li', vim.lsp.buf.implementation, withDesc("vim.lsp.buf.implementation"))
 		map('n', '<C-l>', vim.lsp.buf.signature_help, withDesc("vim.lsp.buf.signature_help"))
 		map('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, withDesc("vim.lsp.buf.add_workspace_folder"))
-		map('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, withDesc("vim.lsp.buf.remove_workspace_folder"))
+		map('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder,
+			withDesc("vim.lsp.buf.remove_workspace_folder"))
 		map('n', '<leader>lwl', function()
 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 		end, withDesc("vim.lsp.buf.list_workspace_folders"))
@@ -91,7 +101,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map("n", "<leader>ln", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
 
 		map('i', '<C-q>', vim.lsp.buf.signature_help, opts)
-
 	end,
 })
 -- Git
@@ -124,4 +133,3 @@ vim.api.nvim_create_autocmd('FileType', {
 map("n", "<leader><leader>s", "<cmd>LegendaryEvalBuf<cr>", { desc = "Source Current File" })
 map("n", "<leader><leader>l", "<cmd>LegendaryEvalLine<cr>", { desc = "Source Current Line" })
 map("n", "<leader><leader>v", "<cmd>LegendaryEvalLines<cr>", { desc = "Source Visual Lines" })
-

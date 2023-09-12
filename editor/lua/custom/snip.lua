@@ -82,11 +82,28 @@ vim.api.nvim_create_autocmd("{}", {{
 })
 
 ls.add_snippets("all", {
-
   s("defenv",
     fmt("{}=${{{}-{}}}", {
       i(1),rep(1),i(2)
     })
-  )
+  ),
 
+  s("allow",
+    fmt("#[allow({})]", {
+      c(1, {
+        t(""),
+        t("dead_code"),
+        t("unused_imports"),
+      })
+    })
+  ),
+
+  s("derserdeb",
+    fmt("#[derive({})]", {
+      c(1, {
+        t(""),
+        t("Serialize, Deserialize, Debug"),
+      })
+    })
+  )
 })
