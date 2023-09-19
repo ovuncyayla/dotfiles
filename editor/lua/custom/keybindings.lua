@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end, withDesc("vim.lsp.buf.format"))
 
 		map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
-		map("n", "<leader>ln", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
+		map("n", "<leader>la", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
 
 		map('i', '<C-q>', vim.lsp.buf.signature_help, opts)
 	end,
