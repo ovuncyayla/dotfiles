@@ -23,7 +23,7 @@ require('lazy').setup({
   { 'rose-pine/neovim', name = 'rose-pine' },
   { 'folke/tokyonight.nvim', lazy = false },
   { 'catppuccin/nvim', name = 'catppuccin', lazy = false },
-
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
 
   -- Icons
   "kyazdani42/nvim-web-devicons",

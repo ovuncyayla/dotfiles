@@ -61,7 +61,8 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
-vim.cmd [[colorscheme rose-pine]]
+vim.cmd [[colorscheme moonfly ]]
+
 vim.o.termguicolors = true
 vim.g.transparent_background = true
 
