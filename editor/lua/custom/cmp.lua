@@ -48,6 +48,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "sql,mysql,plsql",
   callback = function(ev)
     cmp.setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+    vim.api.nvim_buf_set_option(ev.buf, "commentstring", "--%s")
   end
 })
 
