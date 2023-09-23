@@ -3,6 +3,13 @@ alias ll='exa -alF'
 alias la='exa -A'
 alias l='exa -F'
 
+alias nnn='nnn -a'
+
+NNN_PLUG_DEFAULT='p:preview-tui;d:diffs'
+NNN_PLUG="$NNN_PLUG_DEFAULT"
+
+export NNN_PLUG
+
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
