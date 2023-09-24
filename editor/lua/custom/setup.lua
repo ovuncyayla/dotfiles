@@ -13,15 +13,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'tokyonight',
-    component_separators = '|',
-    section_separators = '',
-  },
-  extensions = { 'fugitive' }
-}
+require('lualine').setup {}
 
 -- Enable Comment.nvim
 require('Comment').setup()
