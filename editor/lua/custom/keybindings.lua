@@ -107,6 +107,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('n', ']d', vim.diagnostic.goto_next, withDesc("vim.lsp.buf.references"))
 		map('n', '[d', vim.diagnostic.goto_prev, withDesc("vim.lsp.buf.references"))
 
+		map('n', '<leader>C', "<cmd>TSContextToggle<cr>", withDesc("TSContextToggle"))
 
 		map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
 		map("n", "<leader>la", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
@@ -114,6 +115,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('i', '<C-q>', vim.lsp.buf.signature_help, opts)
 	end,
 })
+
 -- Git
 map("n", "<A-g>", function() require("neogit").open({}) end, { desc = "NeoGit Status" })
 -- LuaSnip
