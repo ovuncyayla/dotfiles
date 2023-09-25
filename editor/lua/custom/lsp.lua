@@ -47,6 +47,7 @@ local servers = {
   rust_analyzer = {},
   jsonls = {},
   tsserver = {},
+  svelte = {},
   -- jdtls = {},
   lua_ls = {
     Lua = {
