@@ -3,6 +3,8 @@ alias ll='exa -alF'
 alias la='exa -A'
 alias l='exa -F'
 
+alias TMS="date -u +\"%Y-%m-%dT%H:%M:%S.%3N\""
+
 alias nnn='nnn -a'
 
 NNN_PLUG_DEFAULT='p:preview-tui;d:diffs'

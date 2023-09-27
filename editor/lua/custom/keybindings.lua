@@ -117,7 +117,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Git
-map("n", "<A-g>", function() require("neogit").open({}) end, { desc = "NeoGit Status" })
+-- map("n", "<A-g>", function() require("neogit").open({}) end, { desc = "NeoGit Status" })
+map("n", "<A-g>", ":tab G<cr>", { desc = "Git Status" })
 -- LuaSnip
 local ls = require("luasnip")
 -- map({ "i" }, "<C-k>", function() ls.expand() end, { silent = true })
