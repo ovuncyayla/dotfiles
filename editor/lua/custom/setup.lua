@@ -78,3 +78,11 @@ require("mini.align").setup({
   },
 })
 
+vim.api.nvim_create_autocmd("BufRead", {
+  group = vim.api.nvim_create_augroup("FE", { clear = true }),
+  pattern = "*.postcss",
+  callback = function(ev)
+    -- vim.notify(vim.inspect(ev))
+    vim.bo.filetype = "postcss"
+  end
+})

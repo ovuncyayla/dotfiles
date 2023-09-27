@@ -62,3 +62,5 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+vim.treesitter.language.register('css', 'postcss') 
