@@ -88,7 +88,8 @@ local servers = {
     ["php-cs-fixer"] = {},
   },
 
-  sqlls = {}
+  sqlls = {},
+  marksman = {}
 }
 
 require('neodev').setup()
