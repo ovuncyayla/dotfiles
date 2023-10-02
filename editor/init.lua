@@ -116,6 +116,8 @@ require('lazy').setup({
   }
   },
 
+  { 'junegunn/fzf' },
+
   "akinsho/toggleterm.nvim",
   'stevearc/stickybuf.nvim',
   'stevearc/aerial.nvim',
