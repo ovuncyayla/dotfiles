@@ -40,7 +40,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'lewis6991/gitsigns.nvim',
-  -- { 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim' },
 
 
   { -- LSP Configuration & Plugins
@@ -89,7 +88,6 @@ require('lazy').setup({
       'JoosepAlviste/nvim-ts-context-commentstring',
     }
   },
-
 
   'nvim-lualine/lualine.nvim', -- Fancier statusline
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
