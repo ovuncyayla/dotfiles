@@ -18,12 +18,7 @@ require('lualine').setup {}
 -- Enable Comment.nvim
 require('Comment').setup()
 
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
-require('ibl').setup {
-  -- char = '┊',
-  -- show_trailing_blankline_indent = false,
-}
+require('ibl').setup {}
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -42,16 +37,6 @@ require("which-key").setup({})
 local notify = require('notify')
 notify.setup({ stages = "slide" })
 vim.notify = notify
-
-require('neogit').setup {}
-vim.api.nvim_create_autocmd('BufEnter', {
-  group = vim.api.nvim_create_augroup('SetNoListGroup', { clear = true }),
-  once = false,
-  callback = function()
-    vim.opt.list = false
-  end,
-  pattern="Neogit*Popup"
-})
 
 require("nvim-surround").setup({})
 

@@ -40,7 +40,7 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'lewis6991/gitsigns.nvim',
-  { 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim' },
+  -- { 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim' },
 
 
   { -- LSP Configuration & Plugins
@@ -92,7 +92,7 @@ require('lazy').setup({
 
 
   'nvim-lualine/lualine.nvim', -- Fancier statusline
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
