@@ -148,6 +148,8 @@ require('lazy').setup({
     }
   },
 
+  { 'mbbill/undotree' },
+
   -- Local Plugins
   { dir = "~/dotfiles/blug", lazy = false },
 

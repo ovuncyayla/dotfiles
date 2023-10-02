@@ -70,6 +70,8 @@ map("n", "<C-w>t", "<cmd>tabnew<cr>", { desc = "New tab buffer" })
 map("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<S-h>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
+map("n", "<F5>" , ":UndotreeToggle<cr>" , { desc = "UndoTree" })
+
 -- Git
 -- map("n", "<A-g>", function() require("neogit").open({}) end, { desc = "NeoGit Status" })
 map("n", "<A-g>", ":tab G<cr>", { desc = "Git Status" })

@@ -6,7 +6,7 @@ session_name=$(basename $selection)
 
 if [[ -z "$TMUX" ]]; then
   [[ -z $selection ]] && echo "No selection" && exit 0
-  tmux new-session -s $session_name -c $selection 
+  tmux new-session -A -s $session_name -c $selection 
   exit 0
 fi
 
