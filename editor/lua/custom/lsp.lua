@@ -61,6 +61,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  bashls = {},
   intelephense = {
 
     stubs = {
