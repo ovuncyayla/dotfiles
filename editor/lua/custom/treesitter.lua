@@ -8,7 +8,7 @@ require('nvim-treesitter.configs').setup {
   
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript',
-    'vim', 'java', 'javascript', 'html', 'markdown', 'css', 'json', 'toml', 'query', 'org', 'hurl', 'yaml',
+    'vim', 'java', 'javascript', 'html', 'markdown', 'markdown_inline', 'css', 'json', 'toml', 'query', 'org', 'hurl', 'yaml',
     'sql', 'svelte', 'zig', 'php'
   },
 
@@ -67,6 +67,11 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
+  -- context_commentstring = {
+  --   enable = true,
+  -- },
 }
+
+require('ts_context_commentstring').setup {}
 
 vim.treesitter.language.register('css', 'postcss') 
