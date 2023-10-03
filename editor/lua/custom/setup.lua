@@ -18,7 +18,7 @@ require('lualine').setup {}
 -- Enable Comment.nvim
 require('Comment').setup()
 
-require('ibl').setup {}
+require("ibl").setup({ scope = { enabled = false } })
 
 -- Gitsigns
 -- See `:help gitsigns.txt`

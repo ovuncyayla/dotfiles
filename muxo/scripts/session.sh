@@ -11,7 +11,7 @@ if [[ -z "$TMUX" ]]; then
 fi
 
 if [[ -z $selection ]]; then
-  tmux display-message 'No selection!'
+  # tmux display-message -d 300 'No selection!'
   exit 0
 fi
 

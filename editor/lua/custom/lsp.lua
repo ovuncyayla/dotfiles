@@ -1,5 +1,7 @@
 local on_attach = function(_, bufnr)
 
+  pcall(vim.lsp.inlay_hint, bufnr, true)
+
   local map = vim.keymap.set
 
   local opts = { buffer = bufnr }
