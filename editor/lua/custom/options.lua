@@ -71,3 +71,5 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- vim.cmd [[highlight Normal ctermbg=none guibg=none]]
 -- vim.cmd [[highlight NonText ctermbg=none guibg=none]]
+
+vim.g.netrw_banner=0

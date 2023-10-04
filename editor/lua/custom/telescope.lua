@@ -95,7 +95,6 @@ telescope.setup({
   pickers = {},
   extensions = {
     file_browser = {
-      hijack_netrw = true,
       use_fd = true,
       mappings = {
         i = {
