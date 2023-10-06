@@ -24,7 +24,7 @@ local eval_replace_visual = function(cmd)
 		return
 	end
 	vim.notify(output)
-	vim.cmd("'<,'>s//" .. output .. "<CR><Esc>")
+	vim.cmd("'<,'>s/.*\\%V/" .. output .. "<CR><Esc>")
 	vim.cmd("<CR><Esc>")
 	return output
 end
@@ -71,6 +71,7 @@ map("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<S-h>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 map("n", "<F5>" , ":UndotreeToggle<cr>" , { desc = "UndoTree" })
+map("n", "<F2>" , ":OverseerRun<cr>" , { desc = "UndoTree" })
 
 -- Git
 -- map("n", "<A-g>", function() require("neogit").open({}) end, { desc = "NeoGit Status" })

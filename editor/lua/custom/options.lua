@@ -36,7 +36,7 @@ vim.o.wrap=false -- Disable wrapping of lines longer than the width of window
 vim.o.writebackup=false -- Disable making a backup before overwriting a file
 vim.o.list=true
 vim.o.listchars="tab:∘ ,trail:∘"--,nbsp:󰯉,eol:󰯉"
-
+vim.o.laststatus=2
 -- Set highlight on search
 vim.o.hlsearch = false
 

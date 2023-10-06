@@ -41,7 +41,6 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
   'lewis6991/gitsigns.nvim',
 
-
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -121,7 +120,8 @@ require('lazy').setup({
   "akinsho/toggleterm.nvim",
   'stevearc/stickybuf.nvim',
   'stevearc/aerial.nvim',
-
+  { 'stevearc/overseer.nvim', opts = {}, },
+  
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
