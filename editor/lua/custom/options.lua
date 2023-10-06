@@ -38,6 +38,7 @@ vim.o.list=true
 vim.o.listchars="tab:∘ ,trail:∘"--,nbsp:󰯉,eol:󰯉"
 vim.o.laststatus=2
 -- Set highlight on search
+vim.o.showtabline = 0
 vim.o.hlsearch = false
 
 -- Make line numbers default
