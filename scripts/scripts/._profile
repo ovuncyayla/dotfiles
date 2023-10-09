@@ -7,7 +7,13 @@ alias TMS="date -u +\"%Y-%m-%dT%H:%M:%S.%3N\""
 
 alias nnn='nnn -a'
 
-NNN_PLUG_DEFAULT='p:preview-tui;d:diffs'
+if [ -n $WAYLAND_DISPLAY ]; then 
+    NNN_PLUG_PREVIEW='p:preview-tui'
+else 
+    NNN_PLUG_PREVIEW='p:preview-tabbed'
+fi
+
+NNN_PLUG_DEFAULT="$NNN_PLUG_PREVIEW;p:preview-tui;d:diffs"
 NNN_PLUG="$NNN_PLUG_DEFAULT"
 
 export NNN_PLUG

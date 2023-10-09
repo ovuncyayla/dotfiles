@@ -107,3 +107,17 @@ ls.add_snippets("all", {
     })
   )
 })
+
+ls.add_snippets("javascript", {
+  s("typ",
+    fmt("/** @type {} **/", {
+      i(1)
+    })
+  ),
+
+  s("typort",
+    fmt("/** @type import('{}').{} **/", {
+      i(1), i(2)
+    })
+  ),
+})
