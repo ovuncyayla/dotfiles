@@ -1,8 +1,29 @@
 local on_attach = function(_, bufnr)
-
   pcall(vim.lsp.inlay_hint, bufnr, true)
 
   local map = vim.keymap.set
+
+  local lsp_attach_buf_to_active_client = function()
+    local clies = {}
+    for i, v in ipairs(vim.lsp.get_active_clients()) do
+      clies[i] = { v.id, v.name }
+    end
+
+    vim.ui.select(
+      clies,
+      {
+        prompt = "Select a client to attach",
+        format_item = function(item)
+          return item[2]
+        end,
+
+      },
+      function(cli)
+        vim.notify("Attaching to client: " .. cli[2])
+        vim.lsp.buf_attach_client(0, cli[1])
+      end
+    )
+  end
 
   local opts = { buffer = bufnr }
   local withDesc = function(desc)
@@ -46,6 +67,7 @@ local on_attach = function(_, bufnr)
   map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
   map("n", "<leader>la", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
 
+  map('n', '<F4>', lsp_attach_buf_to_active_client, { desc = "Select an active client to attach" })
 end
 
 local servers = {
@@ -56,6 +78,7 @@ local servers = {
   jsonls = {},
   tsserver = {},
   svelte = {},
+  tailwindcss = {},
   -- jdtls = {},
   lua_ls = {
     Lua = {

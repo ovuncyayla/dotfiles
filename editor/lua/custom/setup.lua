@@ -24,7 +24,7 @@ require('lualine').setup {
 
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'fugitive', 'diff', 'diagnostics'},
+    lualine_b = {'branch', 'FugitiveStatusline', 'diff', 'diagnostics'},
     lualine_c = {'filename', 'quickfix'},
     lualine_x = {'overseer', 'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
@@ -33,7 +33,7 @@ require('lualine').setup {
 
   inactive_sections = {
     lualine_a = {'filename'},
-    lualine_b = {},
+    lualine_b = {'FugitiveStatusline'},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {'filetype'},
