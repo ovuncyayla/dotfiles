@@ -1,9 +1,11 @@
+alias SP="source $HOME/.profile"
 alias ls='exa'
 alias ll='exa -alF'
 alias la='exa -A'
 alias l='exa -F'
 
 alias TMS="date -u +\"%Y-%m-%dT%H:%M:%S.%3N\""
+alias CDOWN='curl -fsSLO'
 
 alias nnn='nnn -a'
 
@@ -21,5 +23,7 @@ export NNN_PLUG
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+export PATH=$PATH:$HOME/dotfiles/scripts/scripts
 
 [[ -f ~/._private_profile ]] && source ~/._private_profile
