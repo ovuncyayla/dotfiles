@@ -1,3 +1,52 @@
+local servers = {
+  clangd = {},
+  -- gopls = {},
+  -- pyright = {},
+  rust_analyzer = {},
+  jsonls = {},
+  tsserver = {},
+  svelte = {},
+  tailwindcss = {},
+  -- jdtls = {},
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+  bashls = {},
+  intelephense = {
+
+    stubs = {
+      "bcmath",
+      "bz2",
+      "calendar",
+      "Core",
+      "curl",
+      "zip",
+      "zlib",
+      "wordpress",
+      "woocommerce",
+      "acf-pro",
+      "wordpress-globals",
+      "wp-cli",
+      "genesis",
+      "polylang"
+    },
+
+    phpactor = {},
+    phpstan = {},
+    phpmd = {},
+    phpcs = {},
+    phpcbf = {},
+    ["php-cs-fixer"] = {},
+  },
+
+  sqlls = {},
+  marksman = {}
+}
+
+
 local on_attach = function(_, bufnr)
   pcall(vim.lsp.inlay_hint, bufnr, true)
 
@@ -69,54 +118,6 @@ local on_attach = function(_, bufnr)
 
   map('n', '<F4>', lsp_attach_buf_to_active_client, { desc = "Select an active client to attach" })
 end
-
-local servers = {
-  clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  rust_analyzer = {},
-  jsonls = {},
-  tsserver = {},
-  svelte = {},
-  tailwindcss = {},
-  -- jdtls = {},
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-  bashls = {},
-  intelephense = {
-
-    stubs = {
-      "bcmath",
-      "bz2",
-      "calendar",
-      "Core",
-      "curl",
-      "zip",
-      "zlib",
-      "wordpress",
-      "woocommerce",
-      "acf-pro",
-      "wordpress-globals",
-      "wp-cli",
-      "genesis",
-      "polylang"
-    },
-
-    phpactor = {},
-    phpstan = {},
-    phpmd = {},
-    phpcs = {},
-    phpcbf = {},
-    ["php-cs-fixer"] = {},
-  },
-
-  sqlls = {},
-  marksman = {}
-}
 
 require('neodev').setup()
 
