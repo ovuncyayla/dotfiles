@@ -1,6 +1,6 @@
 #!/bin/bash
 
-selection=$(fd --type=directory --hidden --exclude '**/node_modules/*' --follow --max-depth=7  --glob '**/.git'  ~/bookmarks/ | sed 's/.git\/$//' | fzf)
+selection=$(fd --type=directory --hidden --exclude '**/node_modules/*' --follow --max-depth=7  --glob '**/.git'  ~/bookmarks/ | sed 's/.git//' | sed 's/\/\/$/\//' | fzf)
 
 session_name=$(basename $selection)
 
