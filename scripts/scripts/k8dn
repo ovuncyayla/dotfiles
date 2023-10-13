@@ -3,7 +3,7 @@
 cmd_kubectl=${cmd_kubectl-kubectl}
 
 # Get all namespaces
-namespaces=$($cmd_kubectl get namespaces | awk '{print $1}' | tail -n +2)
+namespaces=$($cmd_kubectl get namespaces | awk '{print $1}' | tail -n +2) 
 
 # Use fzf to select a namespace
 selected_namespace=$(echo "$namespaces" | fzf --prompt="Select a namespace: ")
