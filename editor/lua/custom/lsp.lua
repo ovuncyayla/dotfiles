@@ -112,7 +112,7 @@ local on_attach = function(_, bufnr)
   map('n', ']d', vim.diagnostic.goto_next, withDesc("vim.lsp.buf.references"))
   map('n', '[d', vim.diagnostic.goto_prev, withDesc("vim.lsp.buf.references"))
 
-  map('n', '<leader>C', "<cmd>TSContextToggle<cr>", withDesc("TSContextToggle"))
+  map('n', '<leader>lC', "<cmd>TSContextToggle<cr>", withDesc("TSContextToggle"))
   map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
   map("n", "<leader>la", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
 
