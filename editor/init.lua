@@ -24,7 +24,8 @@ require('lazy').setup({
   { 'folke/tokyonight.nvim', lazy = false },
   { 'catppuccin/nvim', name = 'catppuccin', lazy = false },
   { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
-
+  { 'projekt0n/github-nvim-theme' },
+  
   -- Icons
   "kyazdani42/nvim-web-devicons",
 
