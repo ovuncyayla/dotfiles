@@ -88,5 +88,6 @@ do
   #echo "\"${rate}\" },${line#,\[}" || exit 1
 
   kbd=$(setxkbmap -query | grep 'layout:' | sed -e 's/^layout:\W*\(\w*\)/\U\1/')
-  echo ",[{\"color\":\"#ffffff\",\"full_text\":\"$kbd\"}, {\"color\":\"#ffffff\",\"full_text\":\" ${rate}\" },${line#,\[}" || exit 1
+  bat=$($HOME/.local/bin/bat.sh | xargs echo)
+  echo ",[{\"color\":\"#ffffff\",\"full_text\":\" ${rate}\" }, {\"color\":\"#ffffff\",\"full_text\":\"$bat\"}, {\"color\":\"#ffffff\",\"full_text\":\"$kbd\"}, ${line#,\[}" || exit 1
 done)
