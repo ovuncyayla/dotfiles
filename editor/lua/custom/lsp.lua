@@ -7,6 +7,7 @@ local servers = {
   tsserver = {},
   svelte = {},
   tailwindcss = {},
+  cssls = {},
   jdtls = {},
   lua_ls = {
     Lua = {
