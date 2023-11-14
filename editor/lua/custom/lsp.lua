@@ -7,7 +7,7 @@ local servers = {
   tsserver = {},
   svelte = {},
   tailwindcss = {},
-  -- jdtls = {},
+  jdtls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
