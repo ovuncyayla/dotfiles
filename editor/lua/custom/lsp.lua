@@ -9,6 +9,7 @@ local servers = {
   tailwindcss = {},
   cssls = {},
   jdtls = {},
+  angularls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

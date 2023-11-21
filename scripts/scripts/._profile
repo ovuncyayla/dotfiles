@@ -7,6 +7,20 @@ alias l='exa -F'
 alias TMS="date -u +\"%Y-%m-%dT%H:%M:%S.%3N\""
 alias CDOWN='curl -fsSLO'
 
+
+n() {
+    export NNN_TMPFILE=$(date -u +"/tmp/NNN_TEMP_%Y-%m-%d")
+    touch    $NNN_TMPFILE
+    chmod +x $NNN_TMPFILE
+    echo     $NNN_TMPFILE
+
+    command nnn -a
+
+    . $NNN_TMPFILE
+
+    # rm -f $NNN_TMPFILE > /dev/null
+}
+
 alias nnn='nnn -a'
 
 if [ -n $WAYLAND_DISPLAY ]; then 
