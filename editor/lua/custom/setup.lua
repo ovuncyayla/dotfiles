@@ -23,28 +23,33 @@ require('lualine').setup {
   -- },
 
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'FugitiveStatusline', 'diff', 'diagnostics'},
-    lualine_c = {'filename', 'quickfix'},
-    lualine_x = {'overseer', 'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch', 'FugitiveStatusline', 'diff', 'diagnostics' },
+    lualine_c = { 'filename', 'quickfix' },
+    lualine_x = { 'overseer', 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'location' }
   },
 
   inactive_sections = {
-    lualine_a = {'filename'},
-    lualine_b = {'FugitiveStatusline'},
+    lualine_a = { 'filename' },
+    lualine_b = { 'FugitiveStatusline' },
     lualine_c = {},
     lualine_x = {},
-    lualine_y = {'filetype'},
-    lualine_z = {'progress', 'location'}
+    lualine_y = { 'filetype' },
+    lualine_z = { 'progress', 'location' }
   },
 
   extensions = { 'fugitive', 'quickfix', 'overseer' }
 }
 
 -- Enable Comment.nvim
-require('Comment').setup()
+require('Comment').setup({
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+})
+
+local ft = require('Comment.ft')
+ft.set('typescriptreact', { '{/* %s */}', '{/* %s */}' })
 
 require("ibl").setup({ scope = { enabled = false } })
 
@@ -71,9 +76,9 @@ require("nvim-surround").setup({})
 require("stickybuf").setup()
 require("aerial").setup({
   backends = {
-      ['_']  = {"lsp", "treesitter", "markdown", "man"},
-      -- python = {"treesitter"},
-      -- rust   = {"lsp"},
+    ['_'] = { "lsp", "treesitter", "markdown", "man" },
+    -- python = {"treesitter"},
+    -- rust   = {"lsp"},
   },
   filter_kind = false,
   layout = {
@@ -106,8 +111,8 @@ vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("SyntaxFold", { clear = true }),
   pattern = "gitcommit,git",
   callback = function(ev)
-    vim.wo.foldmethod='syntax'
-    vim.keymap.set('n', '<Tab>', 'za', { desc = "Toggle fold under cursor", buffer=true})
-    vim.keymap.set('n', '=', 'za', { desc = "Toggle fold under cursor", buffer=true})
+    vim.wo.foldmethod = 'syntax'
+    vim.keymap.set('n', '<Tab>', 'za', { desc = "Toggle fold under cursor", buffer = true })
+    vim.keymap.set('n', '=', 'za', { desc = "Toggle fold under cursor", buffer = true })
   end
 })

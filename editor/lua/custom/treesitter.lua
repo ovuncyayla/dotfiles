@@ -68,10 +68,22 @@ require('nvim-treesitter.configs').setup {
     },
   },
   -- context_commentstring = {
-  --   enable = true,
+  --   javascript = {
+  --     __default = '// %s',
+  --     jsx_element = '{/* %s */}',
+  --     jsx_fragment = '{/* %s */}',
+  --     jsx_attribute = '// %s',
+  --     comment = '// %s',
+  --   },
+  --   typescript = { __default = '{// %s }', __multiline = '{/* %s */}' },
+  --   typescriptreact = { __default = '{// %s }', __multiline = '{/* %s */}' },
   -- },
 }
 
-require('ts_context_commentstring').setup {}
+require('ts_context_commentstring').setup {
+  enable_autocmd = false
+}
+
+
 
 vim.treesitter.language.register('css', 'postcss') 
