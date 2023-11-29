@@ -20,12 +20,12 @@ require('lazy').setup({
   'navarasu/onedark.nvim', -- Theme inspired by Atom
   'LunarVim/darkplus.nvim',
   'rebelot/kanagawa.nvim',
-  { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'folke/tokyonight.nvim', lazy = false },
-  { 'catppuccin/nvim', name = 'catppuccin', lazy = false },
-  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+  { 'rose-pine/neovim',           name = 'rose-pine' },
+  { 'folke/tokyonight.nvim',      lazy = false },
+  { 'catppuccin/nvim',            name = 'catppuccin', lazy = false },
+  { "bluz71/vim-moonfly-colors",  name = "moonfly",    lazy = false, priority = 1000 },
   { 'projekt0n/github-nvim-theme' },
-  
+
   -- Icons
   "kyazdani42/nvim-web-devicons",
 
@@ -58,13 +58,12 @@ require('lazy').setup({
 
   {
     "folke/lsp-trouble.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     event = "LspAttach",
   },
 
   -- Dap Configuration
-  { 'mfussenegger/nvim-dap', dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' } },
-
+  { 'mfussenegger/nvim-dap',               dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' } },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp',
@@ -90,9 +89,9 @@ require('lazy').setup({
   },
 
   'nvim-lualine/lualine.nvim', -- Fancier statusline
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl",                                                                opts = {} },
+  'numToStr/Comment.nvim',     -- "gc" to comment visual regions/lines
+  'tpope/vim-sleuth',          -- Detect tabstop and shiftwidth automatically
 
   'anuvyklack/hydra.nvim',
 
@@ -103,17 +102,20 @@ require('lazy').setup({
   "folke/which-key.nvim",
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = {
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-live-grep-args.nvim',
-    'nvim-telescope/telescope-file-browser.nvim',
-    'nvim-telescope/telescope-dap.nvim',
-    'nvim-telescope/telescope-project.nvim',
-    'nvim-telescope/telescope-ui-select.nvim',
-    'nvim-telescope/telescope-media-files.nvim',
-    'nvim-telescope/telescope-symbols.nvim'
-  }
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-dap.nvim',
+      'nvim-telescope/telescope-project.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+      'nvim-telescope/telescope-media-files.nvim',
+      'nvim-telescope/telescope-symbols.nvim'
+    }
   },
 
   { 'junegunn/fzf' },
@@ -122,7 +124,7 @@ require('lazy').setup({
   'stevearc/stickybuf.nvim',
   'stevearc/aerial.nvim',
   { 'stevearc/overseer.nvim', opts = {}, },
-  
+
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -148,11 +150,16 @@ require('lazy').setup({
       "kristijanhusak/vim-dadbod-ui",
     }
   },
-
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
   { 'mbbill/undotree' },
 
   -- Local Plugins
-  { dir = "~/dotfiles/blug", lazy = false },
+  { dir = "~/dotfiles/blug",  lazy = false },
 
 }, {})
 
@@ -171,4 +178,3 @@ require("custom.dap")
 require("custom.telekasten")
 
 pcall(function() vim.fn.execute(":source " .. vim.fn.expand("~/nvim_private/init.lua")) end)
-
