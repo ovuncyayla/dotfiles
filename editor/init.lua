@@ -20,10 +20,10 @@ require('lazy').setup({
   'navarasu/onedark.nvim', -- Theme inspired by Atom
   'LunarVim/darkplus.nvim',
   'rebelot/kanagawa.nvim',
-  { 'rose-pine/neovim',           name = 'rose-pine' },
-  { 'folke/tokyonight.nvim',      lazy = false },
-  { 'catppuccin/nvim',            name = 'catppuccin', lazy = false },
-  { "bluz71/vim-moonfly-colors",  name = "moonfly",    lazy = false, priority = 1000 },
+  { 'rose-pine/neovim', name = 'rose-pine' },
+  { 'folke/tokyonight.nvim', lazy = false },
+  { 'catppuccin/nvim', name = 'catppuccin', lazy = false },
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
   { 'projekt0n/github-nvim-theme' },
 
   -- Icons
@@ -63,7 +63,10 @@ require('lazy').setup({
   },
 
   -- Dap Configuration
-  { 'mfussenegger/nvim-dap',               dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' } },
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' }
+  },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp',
@@ -89,9 +92,9 @@ require('lazy').setup({
   },
 
   'nvim-lualine/lualine.nvim', -- Fancier statusline
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl",                                                                opts = {} },
-  'numToStr/Comment.nvim',     -- "gc" to comment visual regions/lines
-  'tpope/vim-sleuth',          -- Detect tabstop and shiftwidth automatically
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   'anuvyklack/hydra.nvim',
 
@@ -159,7 +162,7 @@ require('lazy').setup({
   { 'mbbill/undotree' },
 
   -- Local Plugins
-  { dir = "~/dotfiles/blug",  lazy = false },
+  { dir = "~/dotfiles/blug", lazy = false },
 
 }, {})
 
