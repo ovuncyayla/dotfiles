@@ -9,5 +9,8 @@
   },
   "workspace": [
     "./defs.lua"
+  ],
+  "diagnostics.disable": [
+    "lowercase-global"
   ]
 }
