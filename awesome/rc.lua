@@ -45,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -196,7 +196,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -209,15 +209,16 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
+            wibox.widget.systray(),
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
-            wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
         },
     }
 end)
 -- }}}
+
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -521,51 +522,65 @@ client.connect_signal("manage", function(c)
     end
 end)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({}, 1, function()
-            c:emit_signal("request::activate", "titlebar", { raise = true })
-            awful.mouse.client.move(c)
-        end),
-        awful.button({}, 3, function()
-            c:emit_signal("request::activate", "titlebar", { raise = true })
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c):setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton(c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton(c),
-            awful.titlebar.widget.ontopbutton(c),
-            awful.titlebar.widget.closebutton(c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end)
-
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", { raise = false })
 end)
-
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Execute .desktop entries
+-- awful.spawn.with_shell("dex -a -s /etc/xdg/autostart:~/.config/autostart/")
+
+-- XFCE4 Settings Daemon for managing settings
+awful.spawn.with_shell("xfsettingsd")
+
+-- Power Management
+awful.spawn.with_shell("xfce4-power-manager")
+
+-- Volume Management (if you use XFCE's volume control)
+awful.spawn.with_shell("xfce4-volumed")
+
+-- Clipboard Manager (optional)
+-- awful.spawn.with_shell("xfce4-clipman")
+awful.spawn.with_shell("copyq")
+
+-- Screensaver/Screen Locker
+awful.spawn.with_shell("xscreensaver")
+
+awful.spawn.with_shell("gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh")
+
+awful.spawn.with_shell("/usr/libexec/xdg-desktop-portal")
+
+-- XFCE4 Panel
+awful.spawn.with_shell("xfce4-panel")
+
+-- Network Manager Applet
+awful.spawn.with_shell("nm-applet --indicator")
+
+-- Bluetooth
+awful.spawn.with_shell("blueman-applet")
+-- awful.spawn.with_shell("blueberry-tray")
+
+-- Audio
+-- awful.spawn.with_shell("pasystray")
+awful.spawn.with_shell("pamac-tray")
+
+-- PulseAudio Volume Control (if you need a GUI for audio management)
+-- awful.spawn.with_shell("pavucontrol")
+
+-- File Manager Daemon (if you use Thunar)
+awful.spawn.with_shell("thunar --daemon")
+
+-- PolicyKit Authentication Agent
+awful.spawn.with_shell("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
+
+-- Wallpaper Management (optional, if you want to set wallpapers with XFCE tools)
+awful.spawn.with_shell("nitrogen --restore")
+
+-- Compositor for window effects (like transparency)
+awful.spawn.with_shell("picom")
+
+awful.spawn.with_shell("syncthingtray --wait")
+
