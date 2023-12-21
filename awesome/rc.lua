@@ -221,12 +221,12 @@ end)
 
 
 -- {{{ Mouse bindings
-root.buttons(gears.table.join(
-    awful.button({}, 3, function() awful.spawn.with_shell("xfdesktop --menu") end)
-    -- awful.button({}, 3, function() mymainmenu:toggle() end),
-    -- awful.button({}, 4, awful.tag.viewnext),
-    -- awful.button({}, 5, awful.tag.viewprev)
-))
+-- root.buttons(gears.table.join(
+--     awful.button({}, 3, function() awful.spawn.with_shell("xfdesktop --menu") end)
+--     -- awful.button({}, 3, function() mymainmenu:toggle() end),
+--     -- awful.button({}, 4, awful.tag.viewnext),
+--     -- awful.button({}, 5, awful.tag.viewprev)
+-- ))
 -- }}}
 
 -- {{{ Key bindings
@@ -450,7 +450,8 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = {},
-        properties = { border_width = beautiful.border_width,
+        properties = {
+            border_width = beautiful.border_width,
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
@@ -531,56 +532,55 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Execute .desktop entries
--- awful.spawn.with_shell("dex -a -s /etc/xdg/autostart:~/.config/autostart/")
+awful.spawn.with_shell("dex -a -s /etc/xdg/autostart:~/.config/autostart/")
 
--- XFCE4 Settings Daemon for managing settings
-awful.spawn.with_shell("xfsettingsd")
-
--- Power Management
-awful.spawn.with_shell("xfce4-power-manager")
-
--- Volume Management (if you use XFCE's volume control)
-awful.spawn.with_shell("xfce4-volumed")
-
--- Clipboard Manager (optional)
--- awful.spawn.with_shell("xfce4-clipman")
-awful.spawn.with_shell("copyq")
-
--- Screensaver/Screen Locker
-awful.spawn.with_shell("xscreensaver")
-
-awful.spawn.with_shell("gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh")
-
-awful.spawn.with_shell("/usr/libexec/xdg-desktop-portal")
-
--- XFCE4 Panel
-awful.spawn.with_shell("xfce4-panel")
-
--- Network Manager Applet
-awful.spawn.with_shell("nm-applet --indicator")
-
--- Bluetooth
-awful.spawn.with_shell("blueman-applet")
--- awful.spawn.with_shell("blueberry-tray")
-
--- Audio
--- awful.spawn.with_shell("pasystray")
-awful.spawn.with_shell("pamac-tray")
-
--- PulseAudio Volume Control (if you need a GUI for audio management)
--- awful.spawn.with_shell("pavucontrol")
-
--- File Manager Daemon (if you use Thunar)
-awful.spawn.with_shell("thunar --daemon")
-
--- PolicyKit Authentication Agent
-awful.spawn.with_shell("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
-
--- Wallpaper Management (optional, if you want to set wallpapers with XFCE tools)
-awful.spawn.with_shell("nitrogen --restore")
-
--- Compositor for window effects (like transparency)
-awful.spawn.with_shell("picom")
-
-awful.spawn.with_shell("syncthingtray --wait")
-
+-- -- XFCE4 Settings Daemon for managing settings
+-- awful.spawn.with_shell("xfsettingsd")
+--
+-- -- Power Management
+-- awful.spawn.with_shell("xfce4-power-manager")
+--
+-- -- Volume Management (if you use XFCE's volume control)
+-- awful.spawn.with_shell("xfce4-volumed")
+--
+-- -- Clipboard Manager (optional)
+-- -- awful.spawn.with_shell("xfce4-clipman")
+-- awful.spawn.with_shell("copyq")
+--
+-- -- Screensaver/Screen Locker
+-- awful.spawn.with_shell("xscreensaver")
+--
+-- awful.spawn.with_shell("gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh")
+--
+-- awful.spawn.with_shell("/usr/libexec/xdg-desktop-portal")
+--
+-- -- XFCE4 Panel
+-- awful.spawn.with_shell("xfce4-panel")
+--
+-- -- Network Manager Applet
+-- awful.spawn.with_shell("nm-applet --indicator")
+--
+-- -- Bluetooth
+-- awful.spawn.with_shell("blueman-applet")
+-- -- awful.spawn.with_shell("blueberry-tray")
+--
+-- -- Audio
+-- -- awful.spawn.with_shell("pasystray")
+-- awful.spawn.with_shell("pamac-tray")
+--
+-- -- PulseAudio Volume Control (if you need a GUI for audio management)
+-- -- awful.spawn.with_shell("pavucontrol")
+--
+-- -- File Manager Daemon (if you use Thunar)
+-- awful.spawn.with_shell("thunar --daemon")
+--
+-- -- PolicyKit Authentication Agent
+-- awful.spawn.with_shell("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
+--
+-- -- Wallpaper Management (optional, if you want to set wallpapers with XFCE tools)
+-- awful.spawn.with_shell("nitrogen --restore")
+--
+-- -- Compositor for window effects (like transparency)
+-- awful.spawn.with_shell("picom")
+--
+-- awful.spawn.with_shell("syncthingtray --wait")
