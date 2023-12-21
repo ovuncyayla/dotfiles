@@ -6,7 +6,7 @@ dap.adapters.codelldb = {
   executable = {
     -- CHANGE THIS to your path!
     command = '/usr/bin/codelldb',
-    args = {"--port", "${port}"},
+    args = { "--port", "${port}" },
   }
 }
 
@@ -32,7 +32,6 @@ dap.adapters = {
   }
 }
 
-
 dap.configurations = {
   python = {
     {
@@ -47,6 +46,49 @@ dap.configurations = {
   },
 }
 
+-- dap.adapters['pwa-node'] = {
+--   type = 'executable',
+--   -- command = 'node',
+--   -- args = {os.getenv('HOME') .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter'},
+--   command = os.getenv('HOME') .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter',
+-- }
+
+
+dap.adapters['pwa-node'] = {
+  type = 'server',
+  host = "localhost",
+  port = 8123
+}
+
+
+dap.configurations['typescriptreact'] = {
+  {
+    -- Name of the configuration
+    name = 'Launch Next.js App',
+    type = 'pwa-node',
+    request = 'launch',
+    program = '${workspaceFolder}/node_modules/next/dist/bin/next',
+    cwd = '${workspaceFolder}',
+    sourceMaps = true,
+    protocol = 'inspector',
+    console = 'integratedTerminal',
+    env = {
+      NODE_ENV = "development",
+    },
+    args = { 'dev' },
+  },
+  {
+    -- Attach configuration
+    name = 'Attach to Next.js App',
+    type = 'pwa-node',
+    request = 'attach',
+    processId = require'dap.utils'.pick_process,
+    cwd = '${workspaceFolder}',
+    sourceMaps = true,
+    protocol = 'inspector',
+  },
+}
+
 -- dap.adapters.lldb = {
 --   type = 'executable',
 --   command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
@@ -54,92 +96,8 @@ dap.configurations = {
 -- }
 
 
--- dap.adapters = {
---   python = {
---     type = "executable",
---     command = "/usr/bin/python",
---     args = { "-m", "debugpy.adapter" },
---   },
---   cppdbg = {
---     id = "cppdbg",
---     type = "executable",
---     command = os.getenv("HOME") .. "/stuff/cpptools-linux/extension/debugAdapters/bin/OpenDebugAD7"
---   },
---   lldb = {
---           type = 'executable',
---           attach = {pidProperty = "pid", pidSelect = "ask"},
---           command = 'lldb-vscode',
---           name = "lldb",
---           env = {LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES"}
---       }
---
--- }
 
--- dap.configurations = {
---   python = {
---     {
---       type = "python",
---       request = "launch",
---       name = "Launch file",
---       program = "${file}",
---       pythonPath = function()
---         return "python"
---       end,
---     },
---   },
---   -- cpp = {
---   --   {
---   --     name = "Launch (auto choose debug file)",
---   --     type = "cppdbg",
---   --     request = "launch",
---   --     program = function()
---   --       return vim.fn.expand "%:r" .. ".out"
---   --     end,
---   --     cwd = "${workspaceFolder}",
---   --     stopOnEntry = true,
---   --     runInTerminal = true,
---   --   },
---   --   {
---   --     name = "Launch (choose debug file manually)",
---   --     type = "cppdbg",
---   --     request = "launch",
---   --     program = function()
---   --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
---   --     end,
---   --     cwd = "${workspaceFolder}",
---   --     stopOnEntry = true,
---   --   },
---   -- },
---   rust = {
---     {
---       name = "Launch file",
---       type = "cppdbg",
---       request = "launch",
---       program = function()
---         -- local function get_project(table)
---         --   for index, value in pairs(table) do
---         --     if value == "src" then
---         --       return table[index - 1]
---         --     end
---         --   end
---         -- end
---         --
---         -- local pname = get_project(require("user.custom.utils").split(vim.fn.expand "%", "/"))
---         -- return vim.fn.expand "%:h" .. "/../target/debug/" .. pname
---         return vim.fn.getcwd() .. "/target/debug/cj"
---         -- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
---       end,
---       cwd = "${workspaceFolder}",
---       args = function ()
---         return {"-p", "test.json"}
---       end ,
---       stopOnEntry = true,
---       runInTerminal = true,
---     MIMode= "gdb",
---     miDebuggerPath= "/home/us3r/.cargo/bin/rust-gdb"
---     },
---   },
--- }
+
 
 
 -- get notify
@@ -215,5 +173,4 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 
-require("nvim-dap-virtual-text").setup()
-
+require("nvim-dap-virtual-text").setup({})
