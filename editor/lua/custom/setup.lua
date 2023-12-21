@@ -98,10 +98,6 @@ require("mini.align").setup({
   },
 })
 
-require('oil').setup({
-  default_file_explorer = false,
-})
-
 vim.api.nvim_create_autocmd("BufRead", {
   group = vim.api.nvim_create_augroup("FE", { clear = true }),
   pattern = "*.postcss",

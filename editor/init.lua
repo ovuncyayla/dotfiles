@@ -27,7 +27,7 @@ require('lazy').setup({
   { 'projekt0n/github-nvim-theme' },
 
   -- Icons
-  "kyazdani42/nvim-web-devicons",
+  "nvim-tree/nvim-web-devicons",
 
   {
     'mrjones2014/legendary.nvim',
@@ -153,13 +153,9 @@ require('lazy').setup({
       "kristijanhusak/vim-dadbod-ui",
     }
   },
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
   { 'mbbill/undotree' },
+
+  'tpope/vim-vinegar',
 
   -- Local Plugins
   { dir = "~/dotfiles/blug", lazy = false },
