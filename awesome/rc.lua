@@ -10,8 +10,6 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
-local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -22,9 +20,8 @@ require("awful.hotkeys_popup.keys")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-        title = "Oops, there were errors during startup!",
-        text = awesome.startup_errors })
+    awful.spawn("notify-send", "-u", "critical",
+        "Oops, there were errors during startup!", awesome.startup_errors )
 end
 
 -- Handle runtime errors after startup
@@ -35,9 +32,8 @@ do
         if in_error then return end
         in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-            title = "Oops, an error happened!",
-            text = tostring(err) })
+        awful.spawn("nofify-send", "-u", "critical",
+            "Oops, an error happened!", err )
         in_error = false
     end)
 end
@@ -63,17 +59,17 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.bottom,
+    -- awful.layout.suit.tile.top,
+    -- awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.magnifier,
+    -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -532,7 +528,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Execute .desktop entries
-awful.spawn.with_shell("dex -a -s /etc/xdg/autostart:~/.config/autostart/")
+-- awful.spawn.with_shell("dex -a -s /etc/xdg/autostart:~/.config/autostart/")
 
 -- -- XFCE4 Settings Daemon for managing settings
 -- awful.spawn.with_shell("xfsettingsd")
@@ -584,3 +580,36 @@ awful.spawn.with_shell("dex -a -s /etc/xdg/autostart:~/.config/autostart/")
 -- awful.spawn.with_shell("picom")
 --
 -- awful.spawn.with_shell("syncthingtray --wait")
+
+-- awful.spawn.single_instance("/usr/lib/at-spi-bus-launcher --launch-immediately")
+-- awful.spawn.single_instance("/usr/bin/autorandr -c --default default")
+-- -- awful.spawn.single_instance("/usr/lib/blueberry/blueberry-obex-agent.py")
+-- -- awful.spawn.single_instance("blueberry-tray")
+-- awful.spawn.single_instance("blueman-applet")
+-- awful.spawn.single_instance({"conky",  "--daemonize --pause=1" })
+-- awful.spawn.single_instance("/usr/bin/garuda-system-maintenance")
+-- awful.spawn.single_instance("/usr/lib/geoclue-2.0/demos/agent")
+-- awful.spawn.single_instance("/usr/bin/gnome-keyring-daemon --start --components=pkcs11")
+-- awful.spawn.single_instance("/usr/bin/gnome-keyring-daemon --start --components=secrets")
+-- awful.spawn.single_instance("/usr/bin/gnome-keyring-daemon --start --components=ssh")
+-- awful.spawn.single_instance("nm-applet")
+-- -- awful.spawn.single_instance("onboard --not-show-in=GNOME,GNOME-Classic")
+-- awful.spawn.single_instance("/usr/lib/evolution-data-server/evolution-alarm-notify")
+-- awful.spawn.single_instance("/usr/lib/gsd-disk-utility-notify")
+-- -- awful.spawn.single_instance("sh -c GDK_BACKEND=x11 pamac-tray")
+-- awful.spawn.once({"pasystray"})
+-- awful.spawn.single_instance("picom")
+-- -- awful.spawn.single_instance("bash -c grep -q .snapshots /proc/cmdline && sleep 3 && snapper-tools --autostart")
+-- -- awful.spawn.single_instance("/usr/lib/xapps/xapp-sn-watcher")
+-- awful.spawn.single_instance("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+-- -- awful.spawn.single_instance("sh -c systemctl --user start xfce4-notifyd.service 2>/dev/null || exec /usr/lib/xfce4/notifyd/xfce4-notifyd")
+-- awful.spawn.single_instance("xfce4-power-manager")
+-- awful.spawn.single_instance("xfce4-screensaver")
+-- awful.spawn.single_instance("xfsettingsd")
+-- -- awful.spawn.single_instance("mv ~/.bashrc_garuda ~/.bashrc; rm ~/.config/autostart/bashrc-setup.desktop")
+-- awful.spawn.single_instance("systemctl --user enable --now gamemoded;setup_dxvk install;rm ~/.config/autostart/initial-user-setup.desktop")
+-- awful.spawn.single_instance("sh -c xrandr --output HDMI-2 --mode 1920x1080 --rate 60.00 --output eDP-1 --mode 1920x1080 --rate 59.98 --left-of HDMI-2")
+-- awful.spawn.single_instance("flameshot")
+-- awful.spawn.single_instance("/usr/bin/syncthingtray qt-widgets-gui --single-instance")
+-- -- awful.spawn.single_instance.once("xfce4-clipman")
+-- awful.spawn.single_instance("copyq")
