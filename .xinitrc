@@ -1,3 +1,5 @@
+#!/bin/env bash
+
 # Accesibility daemon
 /usr/lib/at-spi-bus-launcher --launch-immediately &
 
@@ -25,6 +27,7 @@ nm-applet &
 
 pasystray &
 
+xfdesktop &
 xfce4-power-manager &
 xfce4-screensaver &
 # xfsettingsd &
@@ -48,4 +51,5 @@ nitrogen --restore &
 
 xset r rate 600 25 &
 
-exec awesome
+# exec awesome
+dbus-launch --sh-syntax --exit-with-session awesome

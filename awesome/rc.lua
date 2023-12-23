@@ -20,8 +20,8 @@ require("awful.hotkeys_popup.keys")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    awful.spawn("notify-send", "-u", "critical",
-        "Oops, there were errors during startup!", awesome.startup_errors )
+    awful.spawn.with_shell("notify-send", "-u", "critical",
+        "Oops, there were errors during startup!", awesome.startup_errors)
 end
 
 -- Handle runtime errors after startup
@@ -32,8 +32,8 @@ do
         if in_error then return end
         in_error = true
 
-        awful.spawn("nofify-send", "-u", "critical",
-            "Oops, an error happened!", err )
+        awful.spawn.with_shell("nofify-send", "-u", "critical",
+            "Oops, an error happened!", err)
         in_error = false
     end)
 end
@@ -41,7 +41,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -76,23 +76,9 @@ awful.layout.layouts = {
 }
 -- }}}
 
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", editor_cmd .. " " .. awesome.conffile },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end },
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-    { "open terminal", terminal }
-}
-})
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-    menu = mymainmenu })
+-- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, command = function ()
+-- awful.spawn.with_shell("xfdesktop --menu")
+-- end  })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -108,36 +94,11 @@ mytextclock = wibox.widget.textclock()
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
     awful.button({}, 1, function(t) t:view_only() end),
-    awful.button({ modkey }, 1, function(t)
-        if client.focus then
-            client.focus:move_to_tag(t)
-        end
-    end),
-    awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button({ modkey }, 3, function(t)
-        if client.focus then
-            client.focus:toggle_tag(t)
-        end
-    end),
     awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
     awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
 local tasklist_buttons = gears.table.join(
-    awful.button({}, 1, function(c)
-        if c == client.focus then
-            c.minimized = true
-        else
-            c:emit_signal(
-                "request::activate",
-                "tasklist",
-                { raise = true }
-            )
-        end
-    end),
-    awful.button({}, 3, function()
-        awful.menu.client_list({ theme = { width = 250 } })
-    end),
     awful.button({}, 4, function()
         awful.client.focus.byidx(1)
     end),
@@ -145,27 +106,10 @@ local tasklist_buttons = gears.table.join(
         awful.client.focus.byidx(-1)
     end))
 
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-
 awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -217,12 +161,14 @@ end)
 
 
 -- {{{ Mouse bindings
--- root.buttons(gears.table.join(
---     awful.button({}, 3, function() awful.spawn.with_shell("xfdesktop --menu") end)
---     -- awful.button({}, 3, function() mymainmenu:toggle() end),
---     -- awful.button({}, 4, awful.tag.viewnext),
---     -- awful.button({}, 5, awful.tag.viewprev)
--- ))
+root.buttons(gears.table.join(
+    awful.button({}, 3, function()
+        awful.spawn.with_shell("xfdesktop --menu")
+    end),
+    -- awful.button({}, 3, function() mymainmenu:toggle() end),
+    awful.button({}, 4, awful.tag.viewnext),
+    awful.button({}, 5, awful.tag.viewprev)
+))
 -- }}}
 
 -- {{{ Key bindings
@@ -276,8 +222,8 @@ globalkeys = gears.table.join(
         { description = "open a terminal", group = "launcher" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
-    -- awful.key({ modkey, "Shift" }, "q", awesome.quit,
-    --     { description = "quit awesome", group = "awesome" }),
+    awful.key({ modkey, "Shift" }, "x", awesome.quit,
+        { description = "quit awesome", group = "awesome" }),
 
     awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
         { description = "increase master width factor", group = "layout" }),
@@ -308,23 +254,21 @@ globalkeys = gears.table.join(
         end,
         { description = "restore minimized", group = "client" }),
 
-    -- Prompt
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-        { description = "run prompt", group = "launcher" }),
-
-    awful.key({ modkey }, "x",
-        function()
-            awful.prompt.run {
-                prompt       = "Run Lua code: ",
-                textbox      = awful.screen.focused().mypromptbox.widget,
-                exe_callback = awful.util.eval,
-                history_path = awful.util.get_cache_dir() .. "/history_eval"
-            }
-        end,
-        { description = "lua execute prompt", group = "awesome" }),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-        { description = "show the menubar", group = "launcher" })
+    awful.key({ modkey }, "p", function() awful.spawn.with_shell("rofi -show run") end,
+        { description = "show the menubar", group = "launcher" }),
+
+    awful.key({ modkey, "Shift" }, "p", function() awful.spawn.with_shell("rofi -show window") end,
+        { description = "show the menubar", group = "launcher" }),
+
+    awful.key({ "Control", "Mod1" }, "l", function() awful.spawn("xflock4") end,
+        { description = "Lock window", group = "launcher" }),
+
+    awful.key({ modkey }, "v", function() awful.spawn("copyq toggle") end,
+        { description = "Clipboard manager", group = "launcher" }),
+
+    awful.key({}, "Print" ,function() awful.spawn("flameshot gui") end,
+        { description = "Screenshot", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
@@ -376,10 +320,11 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 10 do
+    local ti = i % 10
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
-        awful.key({ modkey }, "#" .. i + 9,
+        awful.key({ modkey }, ti,
             function()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
@@ -387,39 +332,29 @@ for i = 1, 9 do
                     tag:view_only()
                 end
             end,
-            { description = "view tag #" .. i, group = "tag" }),
-        -- Toggle tag display.
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-            function()
-                local screen = awful.screen.focused()
-                local tag = screen.tags[i]
-                if tag then
-                    awful.tag.viewtoggle(tag)
-                end
-            end,
-            { description = "toggle tag #" .. i, group = "tag" }),
+            { description = "view tag #" .. ti, group = "tag" }),
         -- Move client to tag.
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Shift" }, ti,
             function()
                 if client.focus then
-                    local tag = client.focus.screen.tags[i]
+                    local tag = client.focus.screen.tags[ti]
                     if tag then
                         client.focus:move_to_tag(tag)
                     end
                 end
             end,
-            { description = "move focused client to tag #" .. i, group = "tag" }),
+            { description = "move focused client to tag #" .. ti, group = "tag" }),
         -- Toggle tag on focused client.
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Control", "Shift" }, ti,
             function()
                 if client.focus then
-                    local tag = client.focus.screen.tags[i]
+                    local tag = client.focus.screen.tags[ti]
                     if tag then
                         client.focus:toggle_tag(tag)
                     end
                 end
             end,
-            { description = "toggle focused client on tag #" .. i, group = "tag" })
+            { description = "toggle focused client on tag #" .. 10, group = "tag" })
     )
 end
 
@@ -458,38 +393,6 @@ awful.rules.rules = {
         }
     },
 
-    -- Floating clients.
-    { rule_any = {
-        instance = {
-            "DTA", -- Firefox addon DownThemAll.
-            "copyq", -- Includes session name in class.
-            "pinentry",
-        },
-        class = {
-            "Arandr",
-            "Blueman-manager",
-            "Gpick",
-            "Kruler",
-            "MessageWin", -- kalarm.
-            "Sxiv",
-            "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-            "Wpa_gui",
-            "veromix",
-            "xtightvncviewer"
-        },
-
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
-        name = {
-            "Event Tester", -- xev.
-        },
-        role = {
-            "AlarmWindow", -- Thunderbird's calendar.
-            "ConfigManager", -- Thunderbird's about:config.
-            "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-    }, properties = { floating = true } },
-
     -- Add titlebars to normal clients and dialogs
     {
         rule_any = {
@@ -498,9 +401,6 @@ awful.rules.rules = {
         properties = { titlebars_enabled = false }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
 -- }}}
 
@@ -527,89 +427,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- Execute .desktop entries
--- awful.spawn.with_shell("dex -a -s /etc/xdg/autostart:~/.config/autostart/")
 
--- -- XFCE4 Settings Daemon for managing settings
--- awful.spawn.with_shell("xfsettingsd")
---
--- -- Power Management
--- awful.spawn.with_shell("xfce4-power-manager")
---
--- -- Volume Management (if you use XFCE's volume control)
--- awful.spawn.with_shell("xfce4-volumed")
---
--- -- Clipboard Manager (optional)
--- -- awful.spawn.with_shell("xfce4-clipman")
--- awful.spawn.with_shell("copyq")
---
--- -- Screensaver/Screen Locker
--- awful.spawn.with_shell("xscreensaver")
---
--- awful.spawn.with_shell("gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh")
---
--- awful.spawn.with_shell("/usr/libexec/xdg-desktop-portal")
---
--- -- XFCE4 Panel
--- awful.spawn.with_shell("xfce4-panel")
---
--- -- Network Manager Applet
--- awful.spawn.with_shell("nm-applet --indicator")
---
--- -- Bluetooth
--- awful.spawn.with_shell("blueman-applet")
--- -- awful.spawn.with_shell("blueberry-tray")
---
--- -- Audio
--- -- awful.spawn.with_shell("pasystray")
--- awful.spawn.with_shell("pamac-tray")
---
--- -- PulseAudio Volume Control (if you need a GUI for audio management)
--- -- awful.spawn.with_shell("pavucontrol")
---
--- -- File Manager Daemon (if you use Thunar)
--- awful.spawn.with_shell("thunar --daemon")
---
--- -- PolicyKit Authentication Agent
--- awful.spawn.with_shell("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
---
--- -- Wallpaper Management (optional, if you want to set wallpapers with XFCE tools)
--- awful.spawn.with_shell("nitrogen --restore")
---
--- -- Compositor for window effects (like transparency)
--- awful.spawn.with_shell("picom")
---
--- awful.spawn.with_shell("syncthingtray --wait")
-
--- awful.spawn.single_instance("/usr/lib/at-spi-bus-launcher --launch-immediately")
--- awful.spawn.single_instance("/usr/bin/autorandr -c --default default")
--- -- awful.spawn.single_instance("/usr/lib/blueberry/blueberry-obex-agent.py")
--- -- awful.spawn.single_instance("blueberry-tray")
--- awful.spawn.single_instance("blueman-applet")
--- awful.spawn.single_instance({"conky",  "--daemonize --pause=1" })
--- awful.spawn.single_instance("/usr/bin/garuda-system-maintenance")
--- awful.spawn.single_instance("/usr/lib/geoclue-2.0/demos/agent")
--- awful.spawn.single_instance("/usr/bin/gnome-keyring-daemon --start --components=pkcs11")
--- awful.spawn.single_instance("/usr/bin/gnome-keyring-daemon --start --components=secrets")
--- awful.spawn.single_instance("/usr/bin/gnome-keyring-daemon --start --components=ssh")
--- awful.spawn.single_instance("nm-applet")
--- -- awful.spawn.single_instance("onboard --not-show-in=GNOME,GNOME-Classic")
--- awful.spawn.single_instance("/usr/lib/evolution-data-server/evolution-alarm-notify")
--- awful.spawn.single_instance("/usr/lib/gsd-disk-utility-notify")
--- -- awful.spawn.single_instance("sh -c GDK_BACKEND=x11 pamac-tray")
--- awful.spawn.once({"pasystray"})
--- awful.spawn.single_instance("picom")
--- -- awful.spawn.single_instance("bash -c grep -q .snapshots /proc/cmdline && sleep 3 && snapper-tools --autostart")
--- -- awful.spawn.single_instance("/usr/lib/xapps/xapp-sn-watcher")
--- awful.spawn.single_instance("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
--- -- awful.spawn.single_instance("sh -c systemctl --user start xfce4-notifyd.service 2>/dev/null || exec /usr/lib/xfce4/notifyd/xfce4-notifyd")
--- awful.spawn.single_instance("xfce4-power-manager")
--- awful.spawn.single_instance("xfce4-screensaver")
--- awful.spawn.single_instance("xfsettingsd")
--- -- awful.spawn.single_instance("mv ~/.bashrc_garuda ~/.bashrc; rm ~/.config/autostart/bashrc-setup.desktop")
--- awful.spawn.single_instance("systemctl --user enable --now gamemoded;setup_dxvk install;rm ~/.config/autostart/initial-user-setup.desktop")
--- awful.spawn.single_instance("sh -c xrandr --output HDMI-2 --mode 1920x1080 --rate 60.00 --output eDP-1 --mode 1920x1080 --rate 59.98 --left-of HDMI-2")
--- awful.spawn.single_instance("flameshot")
--- awful.spawn.single_instance("/usr/bin/syncthingtray qt-widgets-gui --single-instance")
--- -- awful.spawn.single_instance.once("xfce4-clipman")
--- awful.spawn.single_instance("copyq")
+awful.spawn("nitrogen --restore")
