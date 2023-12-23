@@ -27,7 +27,7 @@ nm-applet &
 
 pasystray &
 
-xfdesktop &
+# xfdesktop &
 xfce4-power-manager &
 xfce4-screensaver &
 # xfsettingsd &
