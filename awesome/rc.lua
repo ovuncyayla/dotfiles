@@ -267,7 +267,11 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "v", function() awful.spawn("copyq toggle") end,
         { description = "Clipboard manager", group = "launcher" }),
 
-    awful.key({}, "Print" ,function() awful.spawn("flameshot gui") end,
+    awful.key({}, "Print", function() awful.spawn("flameshot gui") end,
+        { description = "Screenshot", group = "launcher" }),
+
+    awful.key({ modkey, "Shift" }, "F12",
+        function() awful.spawn("rofi -show power-menu -modi power-menu:~/dotfiles/scripts/scripts/rofi-power-menu") end,
         { description = "Screenshot", group = "launcher" })
 )
 
