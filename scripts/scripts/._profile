@@ -29,13 +29,13 @@ else
     NNN_PLUG_PREVIEW='p:preview-tabbed'
 fi
 
-NNN_PLUG_DEFAULT="$NNN_PLUG_PREVIEW;p:preview-tui;d:diffs"
+NNN_PLUG_DEFAULT="$NNN_PLUG_PREVIEW;d:diffs"
 NNN_PLUG="$NNN_PLUG_DEFAULT"
 
 export NNN_PLUG
 
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin:$PATH
 fi
 
 export PATH=$PATH:$HOME/dotfiles/scripts/scripts
