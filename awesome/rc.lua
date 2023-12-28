@@ -44,6 +44,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
+terminal_tmux_cmd = "kitty -e tmux new -As defo"
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
@@ -218,11 +219,14 @@ globalkeys = gears.table.join(
         { description = "go back", group = "client" }),
 
     -- Standard program
-    awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
+    awful.key({ modkey, }, "Return", function() awful.spawn(terminal_tmux_cmd) end,
+        { description = "open a terminal with tmux session", group = "launcher" }),
+    awful.key({ modkey, "Shift" }, "Return", function() awful.spawn(terminal) end,
         { description = "open a terminal", group = "launcher" }),
+
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
-    awful.key({ modkey, "Shift" }, "x", awesome.quit,
+    awful.key({ modkey, "Control", "Shift" }, "x", awesome.quit,
         { description = "quit awesome", group = "awesome" }),
 
     awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
@@ -256,12 +260,16 @@ globalkeys = gears.table.join(
 
     -- Menubar
     awful.key({ modkey }, "p", function() awful.spawn.with_shell("rofi -show run") end,
-        { description = "show the menubar", group = "launcher" }),
+        { description = "Show the menubar", group = "launcher" }),
 
     awful.key({ modkey, "Shift" }, "p", function() awful.spawn.with_shell("rofi -show window") end,
-        { description = "show the menubar", group = "launcher" }),
+        { description = "Show windows", group = "launcher" }),
 
-    awful.key({ "Control", "Mod1" }, "l", function() awful.spawn("xflock4") end,
+    awful.key({ modkey, "Control" }, "m", function() awful.spawn.with_shell("~/dotfiles/scripts/scripts/keyboard") end,
+        { description = "Change keyboard layout", group = "launcher" }),
+
+    awful.key({ "Control", "Mod1" }, "l",
+        function() awful.spawn.with_shell("loginctl lock-session ${XDG_SESSION_ID-}") end,
         { description = "Lock window", group = "launcher" }),
 
     awful.key({ modkey }, "v", function() awful.spawn("copyq toggle") end,
@@ -272,7 +280,8 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey, "Shift" }, "F12",
         function() awful.spawn("rofi -show power-menu -modi power-menu:~/dotfiles/scripts/scripts/rofi-power-menu") end,
-        { description = "Screenshot", group = "launcher" })
+        { description = "Power Menu", group = "launcher" })
+
 )
 
 clientkeys = gears.table.join(
@@ -288,37 +297,39 @@ clientkeys = gears.table.join(
         { description = "close", group = "client" }),
     awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
         { description = "toggle floating", group = "client" }),
-    awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
-        { description = "move to master", group = "client" }),
+
+    -- awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
+    --     { description = "move to master", group = "client" }),
+
     awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
         { description = "move to screen", group = "client" }),
     awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
-        { description = "toggle keep on top", group = "client" }),
-    awful.key({ modkey, }, "n",
-        function(c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end,
-        { description = "minimize", group = "client" }),
-    awful.key({ modkey, }, "m",
-        function(c)
-            c.maximized = not c.maximized
-            c:raise()
-        end,
-        { description = "(un)maximize", group = "client" }),
-    awful.key({ modkey, "Control" }, "m",
-        function(c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end,
-        { description = "(un)maximize vertically", group = "client" }),
-    awful.key({ modkey, "Shift" }, "m",
-        function(c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c:raise()
-        end,
-        { description = "(un)maximize horizontally", group = "client" })
+        { description = "toggle keep on top", group = "client" })
+-- awful.key({ modkey, }, "n",
+--     function(c)
+--         -- The client currently has the input focus, so it cannot be
+--         -- minimized, since minimized clients can't have the focus.
+--         c.minimized = true
+--     end,
+--     { description = "minimize", group = "client" }),
+-- awful.key({ modkey, }, "m",
+--     function(c)
+--         c.maximized = not c.maximized
+--         c:raise()
+--     end,
+--     { description = "(un)maximize", group = "client" }),
+-- awful.key({ modkey, "Control" }, "m",
+--     function(c)
+--         c.maximized_vertical = not c.maximized_vertical
+--         c:raise()
+--     end,
+--     { description = "(un)maximize vertically", group = "client" }),
+-- awful.key({ modkey, "Shift" }, "m",
+--     function(c)
+--         c.maximized_horizontal = not c.maximized_horizontal
+--         c:raise()
+--     end,
+--     { description = "(un)maximize horizontally", group = "client" })
 )
 
 -- Bind all key numbers to tags.
