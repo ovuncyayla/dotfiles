@@ -6,6 +6,7 @@
 # Display stuff
 # sh -c xrandr --output HDMI-2 --mode 1920x1080 --rate 60.00 --output eDP-1 --mode 1920x1080 --rate 59.98 --left-of HDMI-2 &
 /usr/bin/autorandr -c --default default &
+[[ -e ~/.screenlayout/default.sh ]] && . ~/.screenlayout/default.sh &
 
 /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -28,9 +29,11 @@ nm-applet &
 pasystray &
 
 # xfdesktop &
-xfce4-power-manager &
-xfce4-screensaver &
+# xfce4-power-manager &
+# xfce4-screensaver &
 # xfsettingsd &
+# light-locker --no-idle-hint --lock-on-suspend --lock-on-lid --lock-after-screensaver=30 &
+xscreensaver --no-splash &
 
 sh -c GDK_BACKEND=x11 pamac-tray &
 

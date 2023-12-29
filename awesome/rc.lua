@@ -269,7 +269,9 @@ globalkeys = gears.table.join(
         { description = "Change keyboard layout", group = "launcher" }),
 
     awful.key({ "Control", "Mod1" }, "l",
-        function() awful.spawn.with_shell("loginctl lock-session ${XDG_SESSION_ID-}") end,
+        -- function() awful.spawn.with_shell("loginctl lock-session ${XDG_SESSION_ID-}") end,
+        -- function() awful.spawn.with_shell("xscreensaver-command -lock") end,
+        function() awful.spawn.with_shell("dm-tool switch-to-greeter") end,
         { description = "Lock window", group = "launcher" }),
 
     awful.key({ modkey }, "v", function() awful.spawn("copyq toggle") end,
