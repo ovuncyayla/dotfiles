@@ -73,7 +73,6 @@ vim.notify = notify
 
 require("nvim-surround").setup({})
 
-require("stickybuf").setup()
 require("aerial").setup({
   backends = {
     ['_'] = { "lsp", "treesitter", "markdown", "man" },

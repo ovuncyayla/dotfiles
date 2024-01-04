@@ -123,8 +123,6 @@ require('lazy').setup({
 
   { 'junegunn/fzf' },
 
-  "akinsho/toggleterm.nvim",
-  'stevearc/stickybuf.nvim',
   'stevearc/aerial.nvim',
   { 'stevearc/overseer.nvim', opts = {}, },
 
@@ -134,7 +132,7 @@ require('lazy').setup({
     event = "VeryLazy",
   },
 
-  'imsnif/kdl.vim',
+  'imsnif/kdl.vim', -- Syntax and indent files for KDL
   { 'echasnovski/mini.align', version = '*' },
 
   {
@@ -171,7 +169,6 @@ require("custom.lsp")
 require("custom.treesitter")
 require("custom.cmp")
 require("custom.snip")
-require("custom.terminal")
 require("custom.hydra")
 require("custom.dap")
 require("custom.telekasten")
