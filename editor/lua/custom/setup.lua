@@ -25,7 +25,7 @@ require('lualine').setup {
   sections = {
     lualine_a = { 'mode' },
     lualine_b = { 'branch', 'FugitiveStatusline', 'diff', 'diagnostics' },
-    lualine_c = { 'filename', 'quickfix' },
+    lualine_c = { { 'filename', path = 2}, 'quickfix' },
     lualine_x = { 'overseer', 'encoding', 'fileformat', 'filetype' },
     lualine_y = { 'progress' },
     lualine_z = { 'location' }

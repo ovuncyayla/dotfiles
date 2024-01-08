@@ -3,8 +3,7 @@
 # canberra-gtk-play -i service-login
 
 if [[ $DUNST_BODY =~ teams.microsoft.com ]]; then
-  gsound-play -i service-logout
+  gsound-play -f ~/dotfiles/dunst/coin.wav
   exit 0
 fi
-
-gsound-play -i service-login
+gsound-play -f ~/dotfiles/dunst/notificaton1.wav

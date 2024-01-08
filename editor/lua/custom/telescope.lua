@@ -148,7 +148,8 @@ vim.keymap.set("n", "<Bslash>b", ":Telescope file_browser path=%:p:h select_buff
   { desc = "Search Files [B]rowser" })
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 
-vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+-- vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<Bslash><Bslash>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find() end,
   { desc = '[/] Fuzzily search in current buffer]' })
 
