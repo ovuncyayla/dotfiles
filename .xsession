@@ -5,8 +5,9 @@
 
 # Display stuff
 # sh -c xrandr --output HDMI-2 --mode 1920x1080 --rate 60.00 --output eDP-1 --mode 1920x1080 --rate 59.98 --left-of HDMI-2 &
-/usr/bin/autorandr -c --default default &
+# /usr/bin/autorandr -c --default default &
 [[ -e ~/.screenlayout/default.sh ]] && . ~/.screenlayout/default.sh &
+[[ -e ~/.screenlayout/home.sh ]] && . ~/.screenlayout/home.sh &
 
 /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -55,4 +56,4 @@ nitrogen --restore &
 xset r rate 600 25 &
 
 # exec awesome
-dbus-launch --sh-syntax --exit-with-session awesome
+#dbus-launch --sh-syntax --exit-with-session awesome
