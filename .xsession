@@ -23,11 +23,11 @@
 dunst &
 
 # Systray
+pasystray &
 /usr/lib/xapps/xapp-sn-watcher &
-
 nm-applet &
 
-pasystray &
+
 
 # xfdesktop &
 # xfce4-power-manager &
