@@ -46,10 +46,11 @@ bindsym Print exec --no-startup-id $preferredScreenCaptureTool
 # - alacritty & xfce4-terminal can also be started using their individual keybindings
 
 bindsym $super+Return exec $preferredTerminalEmulator -e tmux new -As defo
+bindsym $super+Shift+Return exec $preferredTerminalEmulator
 #bindsym $super+t exec xfce4-terminal
 
 # set font
-font pango: source code pro 10
+font pango: Source Code Pro 10
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
