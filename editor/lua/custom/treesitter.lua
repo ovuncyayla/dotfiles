@@ -5,7 +5,7 @@ require('nvim-treesitter.configs').setup {
   auto_install = false,
   ignore_install = {},
   modules = {},
-  
+
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript',
     'vim', 'java', 'javascript', 'html', 'markdown', 'markdown_inline', 'css', 'json', 'toml', 'query', 'org', 'hurl', 'yaml',
@@ -66,18 +66,27 @@ require('nvim-treesitter.configs').setup {
         ['<leader>A'] = '@parameter.inner',
       },
     },
+    lsp_interop = {
+      enable = true,
+      border = 'none',
+      floating_preview_opts = {},
+      peek_definition_code = {
+        ["<leader>df"] = "@function.outer",
+        ["<leader>dF"] = "@class.outer",
+      },
+    },
   },
-  -- context_commentstring = {
-  --   javascript = {
-  --     __default = '// %s',
-  --     jsx_element = '{/* %s */}',
-  --     jsx_fragment = '{/* %s */}',
-  --     jsx_attribute = '// %s',
-  --     comment = '// %s',
-  --   },
-  --   typescript = { __default = '{// %s }', __multiline = '{/* %s */}' },
-  --   typescriptreact = { __default = '{// %s }', __multiline = '{/* %s */}' },
-  -- },
+  context_commentstring = {
+    javascript = {
+      __default = '// %s',
+      jsx_element = '{/* %s */}',
+      jsx_fragment = '{/* %s */}',
+      jsx_attribute = '// %s',
+      comment = '// %s',
+    },
+    typescript = { __default = '{// %s }', __multiline = '{/* %s */}' },
+    typescriptreact = { __default = '{// %s }', __multiline = '{/* %s */}' },
+  },
 }
 
 require('ts_context_commentstring').setup {
@@ -86,4 +95,4 @@ require('ts_context_commentstring').setup {
 
 
 
-vim.treesitter.language.register('css', 'postcss') 
+vim.treesitter.language.register('css', 'postcss')
