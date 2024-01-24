@@ -7,7 +7,7 @@ require('nvim-treesitter.configs').setup {
   modules = {},
 
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript',
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'tsx', 'ron',
     'vim', 'java', 'javascript', 'html', 'markdown', 'markdown_inline', 'css', 'json', 'toml', 'query', 'org', 'hurl', 'yaml',
     'sql', 'svelte', 'zig', 'php'
   },
