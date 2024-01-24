@@ -73,7 +73,7 @@ exec --no-startup-id xfce4-power-manager
 #exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx on
 exec blueberry-tray
-exec --no-startup-id ~/.screenlayout/home.sh
+exec --no-startup-id ~/.config/.screenlayout/home.sh
 
 #bindsym $super+f exec kitty -o allow-remote-control=yes N
 #bindsym $super+g exec kitty -o allow-remote-control=yes lazygit
@@ -180,9 +180,10 @@ bindsym $super+minus scratchpad show
 bindsym $super+Ctrl+Right workspace next
 bindsym $super+Ctrl+Left workspace prev
 
+bindsym $super+Shift+Ctrl+Right exec "wm-helper next"
+bindsym $super+Shift+Ctrl+Left  exec "wm-helper prev"
+
 # switch to workspace
-#bindsym $alt+Control+Right workspace next
-#bindsym $alt+Control+Left workspace prev
 bindsym $super+1 workspace 1
 bindsym $super+2 workspace 2
 bindsym $super+3 workspace 3
@@ -193,6 +194,17 @@ bindsym $super+7 workspace 7
 bindsym $super+8 workspace 8
 bindsym $super+9 workspace 9
 bindsym $super+0 workspace 10
+
+bindsym $super+Ctrl+1 workspace 11
+bindsym $super+Ctrl+2 workspace 12
+bindsym $super+Ctrl+3 workspace 13
+bindsym $super+Ctrl+4 workspace 14
+bindsym $super+Ctrl+5 workspace 15
+bindsym $super+Ctrl+6 workspace 16
+bindsym $super+Ctrl+7 workspace 17
+bindsym $super+Ctrl+8 workspace 18
+bindsym $super+Ctrl+9 workspace 19
+bindsym $super+Ctrl+0 workspace 20
 
 # move focused container to workspace
 bindsym $super+Shift+1 move container to workspace 1
@@ -206,17 +218,29 @@ bindsym $super+Shift+8 move container to workspace 8
 bindsym $super+Shift+9 move container to workspace 9
 bindsym $super+Shift+0 move container to workspace 10
 
+bindsym $super+Ctrl+Shift+1 move container to workspace 11
+bindsym $super+Ctrl+Shift+2 move container to workspace 12
+bindsym $super+Ctrl+Shift+3 move container to workspace 13
+bindsym $super+Ctrl+Shift+4 move container to workspace 14
+bindsym $super+Ctrl+Shift+5 move container to workspace 15
+bindsym $super+Ctrl+Shift+6 move container to workspace 16
+bindsym $super+Ctrl+Shift+7 move container to workspace 17
+bindsym $super+Ctrl+Shift+8 move container to workspace 18
+bindsym $super+Ctrl+Shift+9 move container to workspace 19
+bindsym $super+Ctrl+Shift+0 move container to workspace 20
+
+
 # Move to workspace with focused container
-bindsym $super+$alt+Shift+1 move container to workspace 1; workspace 1
-bindsym $super+$alt+Shift+2 move container to workspace 2; workspace 2
-bindsym $super+$alt+Shift+3 move container to workspace 3; workspace 3
-bindsym $super+$alt+Shift+4 move container to workspace 4; workspace 4
-bindsym $super+$alt+Shift+5 move container to workspace 5; workspace 5
-bindsym $super+$alt+Shift+6 move container to workspace 6; workspace 6
-bindsym $super+$alt+Shift+7 move container to workspace 7; workspace 7
-bindsym $super+$alt+Shift+8 move container to workspace 8; workspace 8
-bindsym $super+$alt+Shift+9 move container to workspace 9; workspace 9
-bindsym $super+$alt+Shift+0 move container to workspace 10; workspace 10
+# bindsym $super+$alt+Shift+1 move container to workspace 1; workspace 1
+# bindsym $super+$alt+Shift+2 move container to workspace 2; workspace 2
+# bindsym $super+$alt+Shift+3 move container to workspace 3; workspace 3
+# bindsym $super+$alt+Shift+4 move container to workspace 4; workspace 4
+# bindsym $super+$alt+Shift+5 move container to workspace 5; workspace 5
+# bindsym $super+$alt+Shift+6 move container to workspace 6; workspace 6
+# bindsym $super+$alt+Shift+7 move container to workspace 7; workspace 7
+# bindsym $super+$alt+Shift+8 move container to workspace 8; workspace 8
+# bindsym $super+$alt+Shift+9 move container to workspace 9; workspace 9
+# bindsym $super+$alt+Shift+0 move container to workspace 10; workspace 10
 
 # reload the configuration file
 bindsym $super+Shift+c reload
