@@ -96,6 +96,7 @@ telescope.setup({
   extensions = {
     file_browser = {
       use_fd = true,
+      follow_symlinks = true,
       mappings = {
         i = {
           ["<S-z>"] = fb_actions.toggle_hidden,
@@ -106,15 +107,16 @@ telescope.setup({
           Z = fb_actions.toggle_hidden,
           h = fb_actions.goto_parent_dir,
           l = actions.select_default,
+          I = fb_actions.toggle_respect_gitignore
         },
       },
     },
     dap = {},
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
     media_files = {
       -- filetypes whitelist
@@ -176,13 +178,21 @@ vim.keymap.set('n', '<Bslash>ep',
   function() require('telescope.builtin').find_files({ cwd = vim.fn.stdpath("data"), find_command = cmd_find }) end,
   { desc = 'Search [E]ditor [P]ugins' })
 vim.keymap.set('n', '<Bslash>ed',
-  function() require('telescope.builtin').find_files({ cwd = vim.fn.expand("~/dotfiles"),
-    find_command = cmd_find }) end,
+  function()
+    require('telescope.builtin').find_files({
+      cwd = vim.fn.expand("~/dotfiles"),
+      find_command = cmd_find
+    })
+  end,
   { desc = 'Search Dotfiles' })
 
 vim.keymap.set('n', '<Bslash>ec',
-  function() require('telescope.builtin').find_files({ cwd = vim.fn.expand("~/.config"),
-    find_command = cmd_find }) end,
+  function()
+    require('telescope.builtin').find_files({
+      cwd = vim.fn.expand("~/.config"),
+      find_command = cmd_find
+    })
+  end,
   { desc = 'Search .config' })
 
 -- TODO
