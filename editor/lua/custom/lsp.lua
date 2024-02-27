@@ -17,7 +17,9 @@ local servers = {
       telemetry = { enable = false },
     },
   },
-  bashls = {},
+  bashls = {
+    
+  },
   intelephense = {
 
     stubs = {
@@ -146,3 +148,13 @@ mason_lspconfig.setup_handlers {
 
 -- Turn on lsp status information
 require('fidget').setup({})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'sh,bash,zsh',
+  callback = function()
+    vim.lsp.start({
+      name = 'bash-language-server',
+      cmd = { 'bash-language-server', 'start' },
+    })
+  end,
+})
