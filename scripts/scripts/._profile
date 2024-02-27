@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias SP="source $HOME/.profile"
 alias ls='exa'
 alias ll='exa -alF'

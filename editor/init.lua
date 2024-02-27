@@ -2,6 +2,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+if os.getenv('NVIM_MINIMAL') then
+  require('custom.options')
+  require('custom.minimal')
+  return
+end
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
