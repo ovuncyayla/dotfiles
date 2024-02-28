@@ -4,7 +4,7 @@
 # --no-ignore for fd 9.0.0
 selection=$(fd --type=directory --hidden --no-ignore --exclude '**/node_modules/*' --follow --max-depth=7  --glob '**/.git'  ~/bookmarks/ | sed 's/.git//' | sed 's/\/\/$/\//' | fzf)
 
-session_name=$(basename $selection)
+session_name=$(basename $selection | tr '.' '_' | tr ':' '_')
 
 if [[ -z "$TMUX" ]]; then
   [[ -z $selection ]] && echo "No selection" && exit 0
