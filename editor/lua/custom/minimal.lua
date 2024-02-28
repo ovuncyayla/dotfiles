@@ -12,7 +12,7 @@ map("x", ">", ">gv")
 map("x", "<", "<gv")
 
 map("n", "<leader>.", "<cmd>cd %:p:h<cr>", { desc = "Set CWD" })
-map("n", "<leader><leader>e", ":source " .. vim.fn.stdpath("config") .. "/init.lua<CR>", { desc = "Souce Editor Config" })
+map("n", "<leader><leader>e", ":source " .. vim.fn.stdpath("config") .. "/lua/custom/init.lua<CR>", { desc = "Souce Editor Config" })
 map("n", "<leader><leader>p",
 	function()
 		pcall(function() vim.fn.execute(":source " .. vim.fn.expand("~/nvim_private/init.lua")) end)
