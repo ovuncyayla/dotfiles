@@ -145,7 +145,9 @@ local findy = function(hidden)
   end
 end
 
-vim.keymap.set("n", "<Bslash>t", ":Telescope<CR>", { desc = "[T]elescope" })
+vim.keymap.set("n", "<Bslash>t", require('telescope.builtin').resume, { desc = "[T]elescope" })
+map('n', '<leader>t', ":Telescope<CR>", { desc = 'Resume Telescope' })
+
 vim.keymap.set("n", "<Bslash>b", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
   { desc = "Search Files [B]rowser" })
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -208,7 +210,6 @@ map("n", "<leader>sc", function() require("telescope.builtin").commands() end, {
 map("n", "<A-x>", function() require("telescope.builtin").commands() end, { desc = "[S]earch [c]ommands" })
 map("n", "<leader>sr", function() require("telescope.builtin").registers() end, { desc = "[S]earch [r]egisters" })
 map("n", "<leader>sm", function() require("telescope.builtin").marks() end, { desc = "[S]earch [m]arks" })
-
 
 -- vim.api.nvim_create_autocmd("FileType", {
 --   group = vim.api.nvim_create_augroup("TeleGru", { clear = true }),
