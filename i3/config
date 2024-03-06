@@ -20,7 +20,7 @@ set $lockScreenWallpaper /usr/share/wallpapers/garuda-wallpapers/Dr460nized\ Hon
 
 ### Applications: ###
 
-set $preferredTerminalEmulator /usr/bin/kitty
+set $preferredTerminalEmulator /usr/bin/alacritty
 set $preferredBrowser /usr/bin/brave
 set $preferredFileManager /usr/bin/thunar
 set $preferredMailClient /usr/bin/geary
@@ -42,9 +42,6 @@ bindsym $super+F9 exec $preferredScreenCaptureTool
 bindsym Print exec --no-startup-id $preferredScreenCaptureTool
 
 ### Start a Terminal Emulator: ###
-# - You can change the preferredTerminalEmulator variable
-# - alacritty & xfce4-terminal can also be started using their individual keybindings
-
 bindsym $super+Return exec $preferredTerminalEmulator -e tmux new -As defo
 bindsym $super+Shift+Return exec $preferredTerminalEmulator
 #bindsym $super+t exec xfce4-terminal
