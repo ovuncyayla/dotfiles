@@ -34,7 +34,6 @@ source /usr/share/fzf/completion.zsh
 # Advanced command-not-found hook
 [[ -e /usr/share/doc/find-the-command/ftc.zsh ]] && source /usr/share/doc/find-the-command/ftc.zsh
 
-
 ## Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -73,7 +72,6 @@ autoload -U +X bashcompinit && bashcompinit
 HISTFILE=~/.zhistory
 HISTSIZE=50000
 SAVEHIST=10000
-
 
 ## Keys
 # Use emacs key bindings
@@ -226,14 +224,14 @@ n() {
     chmod +x $NNN_TMPFILE
     echo     $NNN_TMPFILE
 
-    command nnn -a
+    NVIM_MINIMAL=1 command nnn -a
 
     . $NNN_TMPFILE
 
     # rm -f $NNN_TMPFILE > /dev/null
 }
 
-alias nnn='nnn -a'
+alias nnn='NVIM_MINIMAL=1 command nnn -a'
 
 if [ -n $WAYLAND_DISPLAY ]; then 
     NNN_PLUG_PREVIEW='p:preview-tui'
