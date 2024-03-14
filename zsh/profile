@@ -31,8 +31,14 @@ alias jctl="journalctl -p 3 -xb"
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
-alias vim="export NVIM_MINIMAL=1 nvim"
-export EDITOR=/usr/bin/nvim
+_editor() {
+    NVIM_MINIMAL=1 nvim $@
+}
+
+# alias vim='NVIM_MINIMAL=1 command nvim'
+alias vim='_editor'
+export EDITOR='_editor'
+# export EDITOR="/usr/bin/nvim"
 
 export BROWSER=firedragon
 export TERM=kitty
