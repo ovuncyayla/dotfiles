@@ -180,8 +180,8 @@ bindsym $super+Ctrl+Left workspace prev
 bindsym $super+Ctrl+h move workspace to output left
 bindsym $super+Ctrl+l move workspace to output right
 
-bindsym $super+Shift+Ctrl+Right exec "wm-helper next"
-bindsym $super+Shift+Ctrl+Left  exec "wm-helper prev"
+bindsym $super+Shift+Ctrl+Right exec "$HOME/dotfiles/scripts/scripts/wm-helper next"
+bindsym $super+Shift+Ctrl+Left  exec "$HOME/dotfiles/scripts/scripts/wm-helper prev"
 
 # switch to workspace
 bindsym $super+1 workspace 1
