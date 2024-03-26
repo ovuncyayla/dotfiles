@@ -99,9 +99,10 @@ telescope.setup({
       follow_symlinks = true,
       mappings = {
         i = {
-          ["<S-z>"] = fb_actions.toggle_hidden,
+          ["<C-z>"] = fb_actions.toggle_hidden,
           ["<C-h>"] = fb_actions.goto_parent_dir,
           ["<C-l>"] = actions.select_default,
+          ["<C-I>"] = fb_actions.toggle_respect_gitignore,
         },
         n = {
           Z = fb_actions.toggle_hidden,

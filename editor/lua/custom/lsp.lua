@@ -110,7 +110,12 @@ local servers = {
   },
 
   sqlls = {},
-  marksman = {}
+  marksman = {
+    filetypes = { "markdown", "markdown.mdx", "mdx" }
+  },
+  mdx_analyzer = {
+    filetypes = { "markdown", "markdown.mdx", "mdx" }
+  },
 }
 
 
@@ -220,3 +225,4 @@ vim.api.nvim_create_autocmd('FileType', {
     })
   end,
 })
+

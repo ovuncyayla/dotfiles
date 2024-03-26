@@ -93,6 +93,14 @@ require('ts_context_commentstring').setup {
   enable_autocmd = false
 }
 
-
-
 vim.treesitter.language.register('css', 'postcss')
+
+vim.filetype.add({
+  extension = {
+    mdx = 'mdx'
+  }
+})
+-- local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+-- ft_to_parser.mdx = "markdown"
+-- vim.treesitter.language.register('tsx', 'mdx')
+vim.treesitter.language.register('markdown', 'mdx')
