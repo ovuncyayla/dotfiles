@@ -26,10 +26,10 @@ require('lazy').setup({
   'navarasu/onedark.nvim', -- Theme inspired by Atom
   'LunarVim/darkplus.nvim',
   'rebelot/kanagawa.nvim',
-  { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'folke/tokyonight.nvim', lazy = false },
-  { 'catppuccin/nvim', name = 'catppuccin', lazy = false },
-  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+  { 'rose-pine/neovim',           name = 'rose-pine' },
+  { 'folke/tokyonight.nvim',      lazy = false },
+  { 'catppuccin/nvim',            name = 'catppuccin', lazy = false },
+  { "bluz71/vim-moonfly-colors",  name = "moonfly",    lazy = false, priority = 1000 },
   { 'projekt0n/github-nvim-theme' },
 
   -- Icons
@@ -48,6 +48,63 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
   'lewis6991/gitsigns.nvim',
 
+
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  { -- Linting
+    'mfussenegger/nvim-lint',
+    enabled = false, -- TODO To configure later
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      -- local lint = require 'lint'
+      -- lint.linters_by_ft = {
+      --   markdown = { 'marksman' },
+      -- }
+
+      -- To allow other plugins to add linters to require('lint').linters_by_ft,
+      -- instead set linters_by_ft like this:
+      -- lint.linters_by_ft = lint.linters_by_ft or {}
+      -- lint.linters_by_ft['markdown'] = { 'markdownlint' }
+      --
+      -- However, note that this will enable a set of default linters,
+      -- which will cause errors unless these tools are available:
+      -- {
+      --   clojure = { "clj-kondo" },
+      --   dockerfile = { "hadolint" },
+      --   inko = { "inko" },
+      --   janet = { "janet" },
+      --   json = { "jsonlint" },
+      --   markdown = { "vale" },
+      --   rst = { "vale" },
+      --   ruby = { "ruby" },
+      --   terraform = { "tflint" },
+      --   text = { "vale" }
+      -- }
+      --
+      -- You can disable the default linters by setting their filetypes to nil:
+      -- lint.linters_by_ft['clojure'] = nil
+      -- lint.linters_by_ft['dockerfile'] = nil
+      -- lint.linters_by_ft['inko'] = nil
+      -- lint.linters_by_ft['janet'] = nil
+      -- lint.linters_by_ft['json'] = nil
+      -- lint.linters_by_ft['markdown'] = nil
+      -- lint.linters_by_ft['rst'] = nil
+      -- lint.linters_by_ft['ruby'] = nil
+      -- lint.linters_by_ft['terraform'] = nil
+      -- lint.linters_by_ft['text'] = nil
+
+      -- Create autocommand which carries out the actual linting
+      -- on the specified events.
+      -- local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+      -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+      --   group = lint_augroup,
+      --   callback = function()
+      --     require('lint').try_lint()
+      --   end,
+      -- })
+    end,
+  },
+
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -56,7 +113,7 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim',  event = "LspAttach" },
+      { 'j-hui/fidget.nvim', event = "LspAttach" },
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
@@ -67,6 +124,8 @@ require('lazy').setup({
     dependencies = "nvim-tree/nvim-web-devicons",
     event = "LspAttach",
   },
+-- Highlight todo, notes, etc in comments
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   -- Dap Configuration
   {
@@ -85,6 +144,13 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets' },
   },
 
+  { -- Autoformat
+    'stevearc/conform.nvim', lazy = false,
+  },
+
+
+  'nvimtools/none-ls.nvim',
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
@@ -99,8 +165,8 @@ require('lazy').setup({
 
   'nvim-lualine/lualine.nvim', -- Fancier statusline
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'numToStr/Comment.nvim',     -- "gc" to comment visual regions/lines
+  'tpope/vim-sleuth',          -- Detect tabstop and shiftwidth automatically
 
   'anuvyklack/hydra.nvim',
 
@@ -161,10 +227,26 @@ require('lazy').setup({
 
   'tpope/vim-vinegar',
 
+
+  {
+    'Exafunction/codeium.vim',
+    config = function()
+
+vim.g.codeium_enabled = false
+
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+        { expr = true, silent = true })
+      vim.keymap.set('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+        { expr = true, silent = true })
+      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
+    end
+  },
+
   -- Local Plugins
   { dir = "~/dotfiles/blug", lazy = false },
 
 }, {})
 
 require("custom.init")
-
