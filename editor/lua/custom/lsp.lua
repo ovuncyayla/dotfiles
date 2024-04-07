@@ -59,6 +59,8 @@ local servers = {
 		["php-cs-fixer"] = {},
 	},
 
+	dockerls = {},
+
 	sqlls = {},
 	marksman = {
 		filetypes = { "markdown", "markdown.mdx", "mdx" },
