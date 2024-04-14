@@ -353,6 +353,7 @@ client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
 
+for_window [urgent="latest" class=Brave-browser] focus
 
 #############################
 ### settings for i3-gaps: ###
