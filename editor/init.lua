@@ -35,14 +35,6 @@ require('lazy').setup({
   -- Icons
   "nvim-tree/nvim-web-devicons",
 
-  {
-    'mrjones2014/legendary.nvim',
-    version = 'v2.1.0',
-    --priority = 10000
-    -- sqlite is only needed if you want to use frecency sorting
-    -- dependencies = { 'kkharji/sqlite.lua' }
-  },
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -130,7 +122,7 @@ require('lazy').setup({
   -- Dap Configuration
   {
     'mfussenegger/nvim-dap',
-    dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' }
+    dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text', 'nvim-neotest/nvim-nio' }
   },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
