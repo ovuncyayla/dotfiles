@@ -19,7 +19,7 @@ map("n", "<leader><leader>p",
 	end,
 	{ desc = "Souce Private Config" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
---map("n", "<leader><leader>s", "<cmd>source %<cr>", { desc = "Source Current File" })
+map("n", "<leader><leader>s", "<cmd>source %<cr><cmd>lua vim.notify_once('Sourced: ' .. vim.fn.expand('%'))<cr>", { desc = "Source Current File" })
 map("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 map("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down" })
