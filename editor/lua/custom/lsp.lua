@@ -187,5 +187,6 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.completion.spell,
 		null_ls.builtins.formatting.prettierd,
+		-- null_ls.builtins.diagnostics.checkmake,
 	},
 })
