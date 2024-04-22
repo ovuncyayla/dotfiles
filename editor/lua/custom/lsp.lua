@@ -140,6 +140,8 @@ local on_attach = function(_, bufnr)
 
 	map("n", "<leader>lC", "<cmd>TSContextToggle<cr>", withDesc("TSContextToggle"))
 	map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
+	map("n", "<leader>lwd", function() require("trouble").toggle("workspace_diagnostics") end)
+	map("n", "<leader>ldd", function() require("trouble").toggle("document_diagnostics") end)
 	map("n", "<leader>la", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
 
 	map("n", "<F4>", lsp_attach_buf_to_active_client, { desc = "Select an active client to attach" })

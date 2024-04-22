@@ -3,6 +3,7 @@
 local telescope = require('telescope')
 local actions = require "telescope.actions"
 local fb_actions = telescope.extensions.file_browser.actions
+local trouble = require("trouble.providers.telescope")
 
 telescope.setup({
   defaults = {
@@ -58,6 +59,7 @@ telescope.setup({
         --       ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         --       ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         --       ["<C-l>"] = actions.complete_tag,
+        ["<C-t>"] = trouble.smart_open_with_trouble, 
       },
       --
       n = {
@@ -89,6 +91,7 @@ telescope.setup({
         ["<C-d>"] = actions.preview_scrolling_down,
         --       ["<PageUp>"] = actions.results_scrolling_up,
         --       ["<PageDown>"] = actions.results_scrolling_down,
+        ["<C-t>"] = trouble.smart_open_with_trouble,
       },
     },
   },
