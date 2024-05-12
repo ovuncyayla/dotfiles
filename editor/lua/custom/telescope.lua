@@ -175,11 +175,3 @@ map("n", "<A-x>", function() require("telescope.builtin").commands() end, { desc
 map("n", "<leader>sr", function() require("telescope.builtin").registers() end, { desc = "[S]earch [r]egisters" })
 map("n", "<leader>sm", function() require("telescope.builtin").marks() end, { desc = "[S]earch [m]arks" })
 
--- vim.api.nvim_create_autocmd("FileType", {
---   group = vim.api.nvim_create_augroup("TeleGru", { clear = true }),
---   pattern = "TelescopePrompt",
---   callback = function(ev)
---     vim.notify("TeleGru")
---     map("i", "<Esc>", "<Esc><Esc>", { buffer = true })
---   end
--- })
