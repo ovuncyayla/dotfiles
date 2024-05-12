@@ -70,7 +70,7 @@ exec --no-startup-id xfce4-power-manager
 #exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx on
 exec blueberry-tray
-exec --no-startup-id ~/.config/.screenlayout/home.sh
+exec --no-startup-id ~/.config/.screenlayout/split.sh
 
 #bindsym $super+f exec kitty -o allow-remote-control=yes N
 #bindsym $super+g exec kitty -o allow-remote-control=yes lazygit
@@ -146,6 +146,7 @@ bindsym $super+Shift+X split v
 
 # enter fullscreen mode for the focused container
 bindsym F11 fullscreen toggle
+bindsym $super+Shift+F11 exec --no-startup-id ~/dotfiles/scripts/scripts/screen
 
 # change container layout split
 bindsym $super+s layout toggle split
@@ -269,7 +270,7 @@ bindsym $super+r mode "resize"
 
 # change borders
 # Set shut down, restart and locking features
-bindsym $super+F11 mode "$mode_border"
+# bindsym $super+F11 mode "$mode_border"
 set $mode_border (u)none, (1)px, (n)normal
 mode "$mode_border" {
     bindsym u border none
@@ -354,6 +355,7 @@ client.background           #2f343f
 
 
 for_window [urgent="latest" class=Brave-browser] focus
+# focus_on_window_activation urgent|focus|none
 
 #############################
 ### settings for i3-gaps: ###
@@ -379,7 +381,7 @@ smart_borders on
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $super+Shift+F11 mode "$mode_gaps"
+# bindsym $super+Shift+F11 mode "$mode_gaps"
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"

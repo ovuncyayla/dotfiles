@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -euo pipefail
+
+layouts=('split' 'single')
+l_size="${#layouts[@]}"
+
+# printf "$l_size ${layouts[1]} \n"
+
+loc_file=$(realpath ~/.config/screenlayout/current)
+index=0
+
+if [ ! -e $loc_file ]
+then
+    echo $index > $loc_file
+else
+    declare -i index=$(cat "$loc_file")
+    index=$(((index + 1) % l_size))
+    echo $index >  $loc_file
+fi
+
+script_dir=$(dirname $loc_file)
+layout_name=${layouts[$index]}
+scripth_path="$script_dir/$layout_name"
+
+notify-send $scripth_path
+source $scripth_path
+
