@@ -26,3 +26,17 @@ Hydra({
       { '|', '<C-w>|',  { desc = "âŸº  / Max Out Width÷¸†»ù¾´€÷¸‡" } },
    }
 })
+
+-- Hydra({
+--    color = 'pink',
+--    name = 'DAP Control',
+--    mode = 'n',
+--    body = '<F8>',
+--    heads = {
+--       { '<F6>', '<Cmd>DapStepOver<CR>', { desc = "Step Over" } },
+--       { '<F7>', '<Cmd>DapStepInto<CR>', { desc = "Step Into" } },
+--       { '<F8>', '<Cmd>DapContinue<CR>', { desc = "Continue" } },
+--       { '<F9>', '<Cmd>DapStepOut <CR>',  { desc = "Step Out" } },
+--    }
+-- })
+
