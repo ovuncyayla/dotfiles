@@ -23,31 +23,31 @@ dap.adapters.lldb = {
 
 dap.configurations.c = {
 
-	{
-		name = "Launch with GDB",
-		type = "gdb",
-		request = "launch",
-		-- program = require("utils").dap_pick_exec,
-		-- program = function()
-		--   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-		-- end,
-		cwd = "${workspaceFolder}",
-		stopAtBeginningOfMainSubprogram = false,
-		-- args = function()
-		--   -- Get the arguments from the user
-		--   local input_args = vim.fn.input('Program arguments: ')
-		--   return vim.split(input_args, " ", { trimempty = true })
-		-- end,
-		-- stdio = function()
-		--   -- Get the path to the file to be used as stdin
-		--   local stdin_file = vim.fn.input('Path to stdin file: ')
-		--   if stdin_file == '' then
-		--     return nil
-		--   end
-		--   return { stdin_file, nil, nil }
-		-- end,
-		-- sourceLanguages = { "c" },
-	},
+	-- {
+	-- 	name = "Launch with GDB",
+	-- 	type = "gdb",
+	-- 	request = "launch",
+	-- 	-- program = require("utils").dap_pick_exec,
+	-- 	-- program = function()
+	-- 	--   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+	-- 	-- end,
+	-- 	cwd = "${workspaceFolder}",
+	-- 	stopAtBeginningOfMainSubprogram = false,
+	-- 	-- args = function()
+	-- 	--   -- Get the arguments from the user
+	-- 	--   local input_args = vim.fn.input('Program arguments: ')
+	-- 	--   return vim.split(input_args, " ", { trimempty = true })
+	-- 	-- end,
+	-- 	-- stdio = function()
+	-- 	--   -- Get the path to the file to be used as stdin
+	-- 	--   local stdin_file = vim.fn.input('Path to stdin file: ')
+	-- 	--   if stdin_file == '' then
+	-- 	--     return nil
+	-- 	--   end
+	-- 	--   return { stdin_file, nil, nil }
+	-- 	-- end,
+	-- 	-- sourceLanguages = { "c" },
+	-- },
 
 	{
 		name = "Launch with LLDB",
@@ -71,15 +71,15 @@ dap.configurations.c = {
 		end,
 	},
 
-	{
-		type = "codelldb",
-		request = "launch",
-		name = "Launch file",
-		program = "${file}",
-		-- pythonPath = function()
-		--   return "/usr/bin/python"
-		-- end,
-	},
+	-- {
+	-- 	type = "codelldb",
+	-- 	request = "launch",
+	-- 	name = "Launch file",
+	-- 	program = "${file}",
+	-- 	-- pythonPath = function()
+	-- 	--   return "/usr/bin/python"
+	-- 	-- end,
+	-- },
 }
 
 dap.configurations.cpp = {
@@ -243,6 +243,7 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 require("nvim-dap-virtual-text").setup({})
+require("dap.ext.vscode").load_launchjs(nil, { lldb = { 'c', 'cpp', 'rs' } })
 
 local api = vim.api
 local debuggerkeys = {
