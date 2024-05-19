@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-layouts=('split' 'single')
+layouts=('split' 'single' 'only')
 l_size="${#layouts[@]}"
 
 # printf "$l_size ${layouts[1]} \n"
