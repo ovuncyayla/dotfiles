@@ -57,6 +57,7 @@ telescope.setup({
     file_browser = {
       use_fd = true,
       follow_symlinks = true,
+      layout_strategy = "bottom_pane",
       mappings = {
         i = {
           ["<C-z>"] = fb_actions.toggle_hidden,
