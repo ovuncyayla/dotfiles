@@ -31,10 +31,11 @@ set $preferredScreenCaptureTool /usr/bin/flameshot gui
 ### Commonly Used Application Keybinds: ###
 ###########################################
 
-bindsym $super+F1 exec $preferredBrowser;focus
-bindsym $super+F2 exec $preferredMailClient;focus
-bindsym $super+F3 exec $preferredFileManager;focus
-bindsym $super+F4 exec $preferredTextEditor;focus
+bindsym $super+F1 exec ~/dotfiles/scripts/scripts/sound;focus
+# bindsym $super+F1 exec $preferredBrowser;focus
+# bindsym $super+F2 exec $preferredMailClient;focus
+# bindsym $super+F3 exec $preferredFileManager;focus
+# bindsym $super+F4 exec $preferredTextEditor;focus
 
 ### Screen Capturing & Print Screen: ###
 
