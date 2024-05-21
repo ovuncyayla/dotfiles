@@ -112,7 +112,7 @@ dap.configurations.rust = dap.configurations.c
 
 dap.adapters.python = {
 	type = "executable",
-	command = "/usr/bin/python",
+	command = "python3",
 	args = { "-m", "debugpy.adapter" },
 }
 
@@ -243,17 +243,17 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 require("nvim-dap-virtual-text").setup({})
-require("dap.ext.vscode").load_launchjs(nil, { lldb = { 'c', 'cpp', 'rs' } })
+require("dap.ext.vscode").json_decode = require("overseer.json").decode
+require("dap.ext.vscode").load_launchjs(nil, { lldb = { "c", "cpp", "rs" } })
 
 local api = vim.api
 local debuggerkeys = {
-	['<F6>'] = "<Cmd>DapStepOver<CR>",
-	['<F7>'] = "<Cmd>DapStepInto<CR>",
-	['<F8>'] = "<Cmd>DapContinue<CR>",
-	['<F9>'] = "<Cmd>DapStepOut<CR>",
-	['<leader>b'] = "<Cmd>DapToggleBreakpoint<CR>",
+	["<F6>"] = "<Cmd>DapStepOver<CR>",
+	["<F7>"] = "<Cmd>DapStepInto<CR>",
+	["<F8>"] = "<Cmd>DapContinue<CR>",
+	["<F9>"] = "<Cmd>DapStepOut<CR>",
+	["<leader>b"] = "<Cmd>DapToggleBreakpoint<CR>",
 }
-
 
 for key, keymap in pairs(debuggerkeys) do
 	api.nvim_set_keymap("n", key, keymap, { desc = keymap })

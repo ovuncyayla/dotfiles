@@ -162,6 +162,15 @@ vim.keymap.set('n', '<Bslash>ec',
   end,
   { desc = 'Search .config' })
 
+vim.keymap.set('n', '<Bslash>eb',
+  function()
+    require('telescope').extensions.file_browser.file_browser({
+      cwd = vim.fn.expand("~/dotfiles"),
+      -- find_command = cmd_find
+    })
+  end,
+  { desc = 'Search Dotfiles' })
+
 -- TODO
 map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 map('n', '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find() end,

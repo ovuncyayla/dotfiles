@@ -34,8 +34,7 @@ map("i", "<A-K>", "<Esc>m`_:y<CR> P==``gi", { desc = "Copy line up" })
 map("v", "<A-J>", "_:'<,'>y<CR> '>p==gv=gv", { desc = "Copy selection down" })
 map("v", "<A-K>", "_:'<,'>y<CR> '<p==gv=gv", { desc = "Copy selection down" })
 
-
-map("x", "ss", ":<ESC>:'<,'>g/^/m '>", { desc = "Reverse selected lines" })
+map("x", "gss", ":<ESC>:'<,'>g/^/m '><cr>", { desc = "Reverse selected lines" })
 
 -- Navigate buffers
 map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close buffer" })
