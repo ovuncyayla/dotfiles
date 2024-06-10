@@ -130,6 +130,11 @@ require("lazy").setup({
     dependencies = { "rcarriga/nvim-dap-ui", "theHamsta/nvim-dap-virtual-text", "nvim-neotest/nvim-nio" },
   },
 
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    dependencies = { "mfussenegger/nvim-dap" },
+  },
+
   { -- Autocompletion
     "hrsh7th/nvim-cmp",
     dependencies = {

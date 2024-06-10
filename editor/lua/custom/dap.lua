@@ -135,39 +135,69 @@ dap.configurations.python = {
 --   command = os.getenv('HOME') .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter',
 -- }
 
-dap.adapters["pwa-node"] = {
-	type = "server",
-	host = "localhost",
-	port = 8123,
-}
+require("dap-vscode-js").setup({
+	-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+	-- debugger_path = "~/opt/vscode-js-debug/out/src/vsDebugServer.js", -- Path to vscode-js-debug installation.
+	-- debugger_cmd = "~/opt/vscode-js-debug/out/src/vsDebugServer.js", -- Path to vscode-js-debug installation.
+	-- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+	adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
+	-- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
+	-- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
+	-- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
+})
 
-dap.configurations["typescriptreact"] = {
-	{
-		-- Name of the configuration
-		name = "Launch Next.js App",
-		type = "pwa-node",
-		request = "launch",
-		program = "${workspaceFolder}/node_modules/next/dist/bin/next",
-		cwd = "${workspaceFolder}",
-		sourceMaps = true,
-		protocol = "inspector",
-		console = "integratedTerminal",
-		env = {
-			NODE_ENV = "development",
+for _, language in ipairs({ "typescript", "javascript" }) do
+	require("dap").configurations[language] = {
+		{
+			type = "pwa-node",
+			request = "launch",
+			name = "Launch file",
+			program = "${file}",
+			cwd = "${workspaceFolder}",
 		},
-		args = { "dev" },
-	},
-	{
-		-- Attach configuration
-		name = "Attach to Next.js App",
-		type = "pwa-node",
-		request = "attach",
-		-- processId = require("dap.utils").pick_process,
-		cwd = "${workspaceFolder}",
-		sourceMaps = true,
-		protocol = "inspector",
-	},
-}
+		{
+			type = "pwa-node",
+			request = "attach",
+			name = "Attach",
+			processId = require("dap.utils").pick_process,
+			cwd = "${workspaceFolder}",
+		},
+	}
+end
+
+-- dap.adapters["pwa-node"] = {
+-- 	type = "server",
+-- 	host = "localhost",
+-- 	port = 8123,
+-- }
+--
+-- dap.configurations["typescriptreact"] = {
+-- 	{
+-- 		-- Name of the configuration
+-- 		name = "Launch Next.js App",
+-- 		type = "pwa-node",
+-- 		request = "launch",
+-- 		program = "${workspaceFolder}/node_modules/next/dist/bin/next",
+-- 		cwd = "${workspaceFolder}",
+-- 		sourceMaps = true,
+-- 		protocol = "inspector",
+-- 		console = "integratedTerminal",
+-- 		env = {
+-- 			NODE_ENV = "development",
+-- 		},
+-- 		args = { "dev" },
+-- 	},
+-- 	{
+-- 		-- Attach configuration
+-- 		name = "Attach to Next.js App",
+-- 		type = "pwa-node",
+-- 		request = "attach",
+-- 		-- processId = require("dap.utils").pick_process,
+-- 		cwd = "${workspaceFolder}",
+-- 		sourceMaps = true,
+-- 		protocol = "inspector",
+-- 	},
+-- }
 
 -- get notify
 local function start_session(_, _)
