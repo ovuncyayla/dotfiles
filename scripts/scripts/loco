@@ -1,0 +1,19 @@
+#!/bin/bash 
+
+set -e pipe-fail
+
+locales=('Europe/Rome' 'Europe/Istanbul')
+l_size="${#locales[@]}"
+
+current_locale=$(timedatectl status | grep -i "time zone" | sed 's/.*: \(.*\) (.*/\1/')
+
+for item in $(seq 0 $(($l_size - 1)) ); do
+  if [ "$current_locale" == "${locales[$item]}" ] ; then
+    next=$(( ($item + 1) % l_size ))
+    next_locale=${locales[next]}
+    echo "Setting timezone to $next_locale"
+    sudo timedatectl set-timezone $next_locale
+    sudo hwclock --systohc
+  fi
+done
+
