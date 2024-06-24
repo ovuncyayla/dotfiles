@@ -15,5 +15,5 @@ fi
 
 $cmd_kubectl delete ns $selected_namespace
 
-echo "Namespace '$namespace' deleted."
+echo "Namespace '$selected_namespace' deleted."
 
