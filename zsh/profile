@@ -56,4 +56,10 @@ fi
 
 export PATH=$PATH:$HOME/dotfiles/scripts/scripts
 
+
+if [ -d "$(pwd)/.dirme" ] ; then
+    export PATH="$(pwd)/.dirme:$PATH"
+fi
+
+
 [[ -f ~/._private_profile ]] && source ~/._private_profile
