@@ -246,3 +246,6 @@ NNN_PLUG="$NNN_PLUG_DEFAULT"
 
 export NNN_PLUG
 
+path_dirs=$(fd --type=directory --hidden --no-ignore --follow --max-depth=1  . ~/dirme)
+export PATH="$(echo $path_dirs | xargs echo | sed 's#/ #:#g' | sed 's#/$##g'):$PATH"
+
