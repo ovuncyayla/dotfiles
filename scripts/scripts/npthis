@@ -7,6 +7,7 @@ if [ -d "$1" ]; then
   to_path=$(realpath $1);
 fi
 
-echo $to_path
+last_seg=$(echo $to_path | tr "/" "\n" | tail -n1)
+echo "~/dirme/$last_seg"
+rm ~/dirme/$last_seg
 
-ln -s $to_path ~/dirme && exec source $HOME/dotfiles/zsh/rc
