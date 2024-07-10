@@ -1,5 +1,0 @@
-exec picom -b &
-exec kmix &
-exec nm-applet --indicator &
-#exec feh --bg-scale /usr/share/wallpapers/MilkyWay/contents/images/1080x1920.png &
-exec qtile

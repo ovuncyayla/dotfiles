@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=Qtile
-Comment=Qtile Session
-Exec=/usr/src/.init_wm
-Type=Application
-Keywords=wm;tiling
