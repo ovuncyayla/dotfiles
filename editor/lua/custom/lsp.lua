@@ -1,5 +1,6 @@
 local servers = {
 	clangd = {},
+	cmake = {},
 	-- gopls = {},
 	-- pyright = {},
 	jedi_language_server = {},

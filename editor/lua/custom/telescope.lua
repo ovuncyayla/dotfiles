@@ -7,6 +7,9 @@ local trouble = require("trouble.providers.telescope")
 
 telescope.setup({
   defaults = {
+    preview = {
+      treesitter = false
+    },
     hidden = true,
     prompt_prefix = " ",
     selection_caret = "❯ ",
