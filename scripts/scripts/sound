@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+sinks=($(pactl list sinks short | awk '{print $2}'))
+current_sink=$(pactl info | grep 'Default Sink:' | awk '{print $3}')
+nsink=${#sinks[@]}
+
+declare -i i=1;
+for sink in "${sinks[@]}"; do
+    if [[ "$sink" == "$current_sink" ]]; then
+        i=$i+1
+        next_sink_index=$(($i%$nsink))
+        next_sink_index=$((next_sink_index == 0 ? nsink : next_sink_index))
+        next_sink=${sinks[$next_sink_index]}
+
+        # echo "$i % $nsink $next_sink_index"
+        pactl set-default-sink $next_sink
+        if [[ $? == 0 ]]; then 
+            notify-send "Active sink: $next_sink"
+        else 
+            notify-send "Could not activate sink:   $next_sink"
+        fi
+    fi
+    i+=1
+done

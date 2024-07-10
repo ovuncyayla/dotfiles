@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cmd_kubectl=${cmd_kubectl-kubectl}
+
+# Get all namespaces
+namespaces=$($cmd_kubectl get namespaces | awk '{print $1}' | tail -n +2) 
+
+# Use fzf to select a namespace
+selected_namespace=$(echo "$namespaces" | fzf --prompt="Select a namespace: ")
+
+if [ -z "$selected_namespace" ]; then
+  echo "No namespace selected."
+  exit 1
+fi
+
+$cmd_kubectl delete ns $selected_namespace
+
+echo "Namespace '$selected_namespace' deleted."
+

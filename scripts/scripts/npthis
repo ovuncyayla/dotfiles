@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+set -eo pipefail
+
+to_path=$(pwd)
+if [ -d "$1" ]; then
+  to_path=$(realpath $1);
+fi
+
+last_seg=$(echo $to_path | tr "/" "\n" | tail -n1)
+echo "~/dirme/$last_seg"
+rm ~/dirme/$last_seg
+

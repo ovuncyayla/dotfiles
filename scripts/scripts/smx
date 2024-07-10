@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Get the list of tmux sessions with additional information
+sessions=$(tmux list-sessions)
+
+# Use fzf to select a session interactively
+selected_session=$(echo "$sessions" | fzf --height=40% --reverse --cycle --ansi)
+
+# If a session is selected, open it in tmux
+if [ -n "$selected_session" ]; then
+  session_name=$(echo "$selected_session" | awk -F ' ' '{print $1}') # Extract session name
+  tmux attach-session -t "$session_name"
+fi

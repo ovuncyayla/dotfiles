@@ -1,0 +1,11 @@
+#!/bin/env bash
+
+focused_wspc=$(i3-msg -t get_workspaces | jq 'map(select(.focused == true).num)[]')
+if [ 'next' == $1 ]; then
+  wnext=$((focused_wspc + 1))
+  i3-msg "move container to workspace $wnext;workspace $wnext"
+elif [ 'prev' == $1 ]; then
+  wnext=$((focused_wspc - 1))
+  i3-msg "move container to workspace $wnext;workspace $wnext"
+fi
+

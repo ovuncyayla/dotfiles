@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+set -eo pipefail
+
+to_path=$(pwd)
+if [ -d "$1" ]; then
+  to_path=$(realpath $1);
+fi
+
+echo $to_path
+
+ln -s $to_path ~/dirme && exec source $HOME/dotfiles/zsh/rc

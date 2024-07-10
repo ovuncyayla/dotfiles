@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ubip=$(VBoxManage guestproperty enumerate ubu | grep 0/V4/IP | sed "s/.*'\(.*\)'.*/\1 ubu/")
+
+sudo sed -i "/ubu/c $ubip" /etc/hosts
+

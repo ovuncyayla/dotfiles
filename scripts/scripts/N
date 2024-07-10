@@ -1,0 +1,3 @@
+#!/bin/bash
+echo 'NNNN'
+NNN_PLUG='p:preview-tui;d:diffs' nnn -a
