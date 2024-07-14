@@ -1,0 +1,6 @@
+vim.notify("FT QF")
+vim.keymap.set("n", "q", ":q<CR>", { buffer = true })
+vim.keymap.set("n", "<C-j>", "j<CR><CMD>cope<CR>", { buffer = true })
+vim.keymap.set("n", "<C-k>", "k<CR><CMD>cope<CR>", { buffer = true })
+vim.keymap.set("n", "<C-o>", "<CR><CMD>cope<CR>", { buffer = true })
+vim.keymap.set("n", "<C-l>", "<CR><CMD>cope<CR>", { buffer = true })
