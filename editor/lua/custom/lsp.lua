@@ -73,13 +73,15 @@ local servers = {
 }
 
 local on_attach = function(_, bufnr)
-	pcall(vim.lsp.inlay_hint, bufnr, true)
+	vim.lsp.inlay_hint = {
+		enable = true
+	}
 
 	local map = vim.keymap.set
 
 	local lsp_attach_buf_to_active_client = function()
 		local clies = {}
-		for i, v in ipairs(vim.lsp.get_active_clients()) do
+		for i, v in ipairs(vim.lsp.get_clients()) do
 			clies[i] = { v.id, v.name }
 		end
 
@@ -89,8 +91,10 @@ local on_attach = function(_, bufnr)
 				return item[2]
 			end,
 		}, function(cli)
-			vim.notify("Attaching to client: " .. cli[2])
-			vim.lsp.buf_attach_client(0, cli[1])
+				if cli then
+					vim.notify("Attaching to client: " .. cli[2])
+					vim.lsp.buf_attach_client(0, cli[1])
+				end
 		end)
 	end
 
