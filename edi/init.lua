@@ -1,5 +1,3 @@
-vim.notify("Edi")
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
