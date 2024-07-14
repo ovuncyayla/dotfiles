@@ -4,7 +4,7 @@ local configure_telescope = function()
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local fb_actions = telescope.extensions.file_browser.actions
-local trouble = require("trouble.providers.telescope")
+-- local trouble = require("trouble.providers.telescope")
 
 telescope.setup({
   defaults = {
@@ -42,7 +42,7 @@ telescope.setup({
         ["<C-y>"] = actions.results_scrolling_up,
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
-        ["<C-t>"] = require("trouble.sources.telescope").open(),
+        -- ["<C-t>"] = require("trouble.sources.telescope").open(),
         ["<C-]>"] = actions.edit_command_line,
       },
       --
@@ -51,7 +51,7 @@ telescope.setup({
         ["<C-y>"] = actions.results_scrolling_up,
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
-        ["<C-t>"] = require("trouble.sources.telescope").open(),
+        -- ["<C-t>"] = require("trouble.sources.telescope").open(),
         ["<C-]>"] = actions.edit_command_line,
       },
     },
