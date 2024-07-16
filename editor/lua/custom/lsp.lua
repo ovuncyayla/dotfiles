@@ -19,6 +19,7 @@ local servers = {
 	},
 	svelte = {},
 	tailwindcss = {},
+	yamlls = {},
 	cssls = {},
 	jdtls = {
 		require("custom.jdtls"),
