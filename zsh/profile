@@ -36,7 +36,7 @@ _editor() {
 }
 
 # alias vim='NVIM_MINIMAL=1 command nvim'
-alias e='nvim'
+alias e='NVIM_APPNAME=edi nvim'
 alias vim='_editor'
 export EDITOR='_editor'
 # export EDITOR="/usr/bin/nvim"
