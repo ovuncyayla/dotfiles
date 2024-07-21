@@ -108,12 +108,13 @@ local configure = function()
     end
 
     map("n", "<leader>lD", vim.lsp.buf.declaration, withDesc("vim.lsp.buf.declaration"))
+    map("n", "<leader>dd", vim.lsp.buf.definition, withDesc("vim.lsp.buf.definition"))
     map("n", "<leader>ld", vim.lsp.buf.definition, withDesc("vim.lsp.buf.definition"))
     map("n", "<leader>li", vim.lsp.buf.implementation, withDesc("vim.lsp.buf.implementation"))
     map("n", "<leader>lk", vim.lsp.buf.type_definition, withDesc("vim.lsp.buf.type_definition"))
     map("n", "<leader>lr", vim.lsp.buf.references, withDesc("vim.lsp.buf.references"))
 
-    map("n", "<leader>lds", require("telescope.builtin").lsp_document_symbols, withDesc("lsp_document_symbols,"))
+    map("n", "<leader>ls", require("telescope.builtin").lsp_document_symbols, withDesc("lsp_document_symbols,"))
     map(
       "n",
       "<leader>lws",

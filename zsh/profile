@@ -31,21 +31,16 @@ alias jctl="journalctl -p 3 -xb"
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
-_editor() {
-    NVIM_MINIMAL=1 nvim $@
-}
-
 # alias vim='NVIM_MINIMAL=1 command nvim'
 alias e='NVIM_APPNAME=edi nvim'
-alias vim='_editor'
-export EDITOR='_editor'
+export EDITOR='NVIM_APPNAME=edi nvim'
 # export EDITOR="/usr/bin/nvim"
 
-export BROWSER=firedragon
-export TERM=kitty
-export MAIL=thunderbird
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# export BROWSER=firedragon
+# export TERM=kitty
+# export MAIL=thunderbird
+# export QT_QPA_PLATFORMTHEME="qt5ct"
+# export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 alias TMS="date -u +\"%Y-%m-%dT%H:%M:%S.%3N\""
 alias CDOWN='curl -fsSLO'

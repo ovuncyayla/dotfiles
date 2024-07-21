@@ -19,33 +19,20 @@ set $alt Mod1
 set $lockScreenWallpaper /usr/share/wallpapers/garuda-wallpapers/Dr460nized\ Honeycomb.png
 
 ### Applications: ###
-
-set $preferredTerminalEmulator /usr/bin/alacritty
-set $preferredBrowser /usr/bin/brave
-set $preferredFileManager /usr/bin/thunar
-set $preferredMailClient /usr/bin/geary
-set $preferredTextEditor /usr/bin/nvim
+set $preferredTerminalEmulator /usr/bin/kitty
 set $preferredScreenCaptureTool /usr/bin/flameshot gui
 
 ###########################################
 ### Commonly Used Application Keybinds: ###
 ###########################################
-
 bindsym $super+F1 exec ~/dotfiles/scripts/scripts/sound;focus
-# bindsym $super+F1 exec $preferredBrowser;focus
-# bindsym $super+F2 exec $preferredMailClient;focus
-# bindsym $super+F3 exec $preferredFileManager;focus
-# bindsym $super+F4 exec $preferredTextEditor;focus
 
 ### Screen Capturing & Print Screen: ###
-
-bindsym $super+F9 exec $preferredScreenCaptureTool
 bindsym Print exec --no-startup-id $preferredScreenCaptureTool
 
 ### Start a Terminal Emulator: ###
 bindsym $super+Return exec $preferredTerminalEmulator -e tmux new -As defo
 bindsym $super+Shift+Return exec $preferredTerminalEmulator
-#bindsym $super+t exec xfce4-terminal
 
 # set font
 font pango: Source Code Pro 10
@@ -56,25 +43,16 @@ floating_modifier $super
 #autostart
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd &
-#exec --no-startup-id pasystray
-#exec --no-startup-id conky
-#exec --no-startup-id conky -c ~/.config/conky/conky-shcts
 exec --no-startup-id copyq
 exec --no-startup-id dunst
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-#exec --no-startup-id redshift
-exec --no-startup-id desktop-items
 exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xfce4-power-manager
-#exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx on
 exec blueberry-tray
 exec --no-startup-id ~/.config/.screenlayout/split.sh
-
-#bindsym $super+f exec kitty -o allow-remote-control=yes N
-#bindsym $super+g exec kitty -o allow-remote-control=yes lazygit
 
 # Switch keyboard layout
 bindsym $super+Control+m exec "${HOME}/dotfiles/scripts/scripts/keyboard"
