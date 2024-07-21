@@ -34,5 +34,5 @@ return {
       local ft = require("Comment.ft")
       ft.set("typescriptreact", { "{/* %s */}", "{/* %s */}" })
     end,
-  }
+  },
 }

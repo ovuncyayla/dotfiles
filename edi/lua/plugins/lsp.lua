@@ -1,5 +1,4 @@
 local configure = function()
-
   local servers = {
     clangd = {},
     cmake = {},
@@ -76,7 +75,7 @@ local configure = function()
 
   local on_attach = function(_, bufnr)
     vim.lsp.inlay_hint = {
-      enable = true
+      enable = true,
     }
 
     local map = vim.keymap.set
@@ -135,8 +134,8 @@ local configure = function()
     map("n", "<leader>ln", vim.lsp.buf.rename, withDesc("vim.lsp.buf.rename"))
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, withDesc("vim.lsp.buf.code_action"))
 
-    map('n', '<leader>lf', function()
-      vim.lsp.buf.format { async = true }
+    map("n", "<leader>lf", function()
+      vim.lsp.buf.format({ async = true })
     end, withDesc("vim.lsp.buf.format"))
 
     map("n", "<leader>lf", function()
@@ -203,7 +202,7 @@ local configure = function()
 end
 
 return {
-  {  -- LSP Configuration & Plugins
+  { -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -211,7 +210,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
 
       -- Useful status updates for LSP
-      { "j-hui/fidget.nvim",    event = "LspAttach" },
+      { "j-hui/fidget.nvim",     event = "LspAttach" },
       -- Additional lua configuration, makes nvim stuff amazing
       "folke/neodev.nvim",
       {
@@ -221,12 +220,10 @@ return {
       },
       "nvimtools/none-ls.nvim",
 
-  { "stevearc/conform.nvim", lazy = false },
-
+      { "stevearc/conform.nvim", lazy = false },
 
       { "nvim-lua/plenary.nvim" },
     },
-    config = configure
+    config = configure,
   },
-
 }
