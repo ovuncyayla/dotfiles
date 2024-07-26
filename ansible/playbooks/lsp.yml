@@ -1,0 +1,11 @@
+---
+- name: Install Lsp Servers using pacman
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Prettier
+      community.general.pacman:
+        name: prettier
+        state: present
+        # executable: yay
+
