@@ -4,7 +4,6 @@ local configure_telescope = function()
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local fb_actions = telescope.extensions.file_browser.actions
--- local trouble = require("trouble.providers.telescope")
 
 telescope.setup({
   defaults = {

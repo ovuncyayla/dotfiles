@@ -12,7 +12,6 @@ Hydra({
    }
 })
 
-
 Hydra({
    name = 'Resize win',
    mode = 'n',

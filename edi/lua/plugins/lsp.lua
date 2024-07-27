@@ -149,7 +149,7 @@ local configure = function()
 		map("n", "[d", vim.diagnostic.goto_prev, withDesc("vim.lsp.buf.references"))
 
 		map("n", "<leader>lC", "<cmd>TSContextToggle<cr>", withDesc("TSContextToggle"))
-		map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
+		-- map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
 		-- map("n", "<leader>lwd", function() require("trouble").toggle("workspace_diagnostics") end)
 		-- map("n", "<leader>ldd", function() require("trouble").toggle("document_diagnostics") end)
 		map("n", "<leader>la", "<cmd>AerialToggle<cr>", { desc = "Aerial Toggle" })
@@ -157,15 +157,12 @@ local configure = function()
 		map("n", "<F4>", lsp_attach_buf_to_active_client, { desc = "Select an active client to attach" })
 	end
 
-	-- require("neodev").setup()
-
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 	require("mason").setup()
 	local mason_lspconfig = require("mason-lspconfig")
 	mason_lspconfig.setup({
-		-- ensureinstalled = ensure_installed,
 		ensure_installed = vim.tbl_keys(servers),
 	})
 
@@ -191,7 +188,6 @@ local configure = function()
 			})
 		end,
 	})
-
 end
 
 return {
