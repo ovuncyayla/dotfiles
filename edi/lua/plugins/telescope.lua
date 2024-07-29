@@ -178,6 +178,13 @@ vim.keymap.set("n", "<Bslash>eb", function()
   })
 end, { desc = "Search Dotfiles" })
 
+vim.keymap.set("n", "<Bslash>z", function()
+  require("telescope.builtin").find_files({
+    cwd = vim.fn.expand("~/zettelkasten"),
+    find_command = cmd_find,
+  })
+end, { desc = "Search Zettelkasten" })
+
 -- TODO
 map("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 map("n", "<leader>/", function()

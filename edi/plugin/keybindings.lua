@@ -1,19 +1,8 @@
 local map = vim.keymap.set
-local bmap = function(mod, lhs, rhs, opts)
-	opts = opts or {}
-	opts["buffer"] = true
-	map(mod, lhs, rhs, opts)
-end
-
-local map = vim.keymap.set
-local bmap = function(mod, lhs, rhs, opts)
-	opts = opts or {}
-	opts["buffer"] = true
-	map(mod, lhs, rhs, opts)
-end
 
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader><leader>s", "<cmd>source %<cr><cmd>lua vim.notify_once('Sourced: ' .. vim.fn.expand('%'))<cr>", { desc = "Source Current File" })
+map("v", "<leader><leader>s", ":lua<cr><cmd>lua vim.notify_once('Sourced visual')<cr>", { desc = "Source visual" })
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map("i", "jk", "<ESC>")
