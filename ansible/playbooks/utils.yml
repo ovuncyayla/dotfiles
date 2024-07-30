@@ -1,0 +1,22 @@
+---
+- name: Install various utility packages using pacman
+  hosts: localhost
+  become: true
+  tasks:
+    - name: OpenPrinting CUPS
+      community.general.pacman:
+        name: cups
+        state: present
+    - name: GhostScript - An interpreter for the PostScript language
+      community.general.pacman:
+        name: ghostscript
+        state: present
+    - name: System Config Printer - A CUPS printer configuration tool and status applet
+      community.general.pacman:
+        name: system-config-printer
+        state: present
+    - name: CUPS Pdf - to "print" into a PDF document
+      community.general.pacman:
+        name: cups
+        state: present
+
