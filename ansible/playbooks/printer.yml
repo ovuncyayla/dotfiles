@@ -1,5 +1,5 @@
 ---
-- name: Install various utility packages using pacman
+- name: Install printing utility packages using pacman
   hosts: localhost
   become: true
   tasks:
