@@ -7,5 +7,7 @@
       community.general.pacman:
         name: prettier
         state: present
-        # executable: yay
-
+    - name: Ruff
+      community.general.pacman:
+        name: python-ruff
+        state: present
