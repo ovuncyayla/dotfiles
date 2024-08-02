@@ -32,7 +32,7 @@ alias jctl="journalctl -p 3 -xb"
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 # alias vim='NVIM_MINIMAL=1 command nvim'
-alias e='NVIM_APPNAME=edi nvim'
+alias e='nvim'
 export EDITOR='nvim'
 # export EDITOR="/usr/bin/nvim"
 

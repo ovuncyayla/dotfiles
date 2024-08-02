@@ -1,6 +1,7 @@
 local configure = function()
 	local servers = {
 		clangd = {},
+    asm_lsp = {},
 		cmake = {},
 		-- gopls = {},
 		-- pyright = {},

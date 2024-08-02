@@ -11,3 +11,7 @@
       community.general.pacman:
         name: python-ruff
         state: present
+    - name: Clang
+      community.general.pacman:
+        name: clang
+        state: present
