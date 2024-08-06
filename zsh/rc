@@ -36,7 +36,7 @@ export LS_COLORS='di=38;5;39:fi=38;5;255:ln=38;5;45:pi=38;5;214:so=38;5;214:bd=3
 # Light theme
 # export LS_COLORS='di=38;5;23:fi=38;5;232:ln=38;5;24:pi=38;5;166:so=38;5;166:bd=38;5;18:cd=38;5;18:or=38;5;160:mi=38;5;160:ex=38;5;22'
 # Completion.
- export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=magenta,bg=white"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=magenta,bg=white"
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion

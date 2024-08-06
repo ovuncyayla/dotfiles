@@ -22,11 +22,11 @@ return {
       --   },
       -- }
 
-      -- dap.adapters.gdb = {
-      --   type = "executable",
-      --   command = "gdb",
-      --   args = { "-i", "dap" }
-      -- }
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "-i", "dap" }
+      }
 
       dap.adapters.lldb = {
         type = "executable",
