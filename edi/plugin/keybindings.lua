@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
-map("n", "<leader><leader>s", "<cmd>source %<cr><cmd>lua vim.notify_once('Sourced: ' .. vim.fn.expand('%'))<cr>", { desc = "Source Current File" })
-map("v", "<leader><leader>s", ":lua<cr><cmd>lua vim.notify_once('Sourced visual')<cr>", { desc = "Source visual" })
+map("n", "<leader><leader>s", "<cmd>luafile %<cr><cmd>lua vim.notify('Sourced: ' .. vim.fn.expand('%'))<cr>", { desc = "Source Current File" })
+map("v", "<leader><leader>s", ":lua<cr><cmd>lua vim.notify('Sourced visual')<cr>", { desc = "Source visual" })
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map("i", "jk", "<ESC>")
