@@ -3,6 +3,7 @@ local configure = function()
 		clangd = {},
     asm_lsp = {},
 		cmake = {},
+    arduino_language_server = {},
 		-- gopls = {},
 		-- pyright = {},
 		jedi_language_server = {},
