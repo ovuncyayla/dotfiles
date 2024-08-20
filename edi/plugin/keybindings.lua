@@ -35,3 +35,12 @@ map("n", "<C-k>", "<C-w>k", { desc = "Win up" })
 map("n", "<C-h>", "<C-w>h", { desc = "Win left" })
 map("n", "<C-l>", "<C-w>l", { desc = "Win right" })
 
+local function exec_line()
+  local line = vim.fn.getline(".")
+  -- vim.cmd(":!" .. line)
+  return ":!" .. line .. "<CR>"
+end
+
+vim.keymap.set("n", "<leader>0", exec_line , { expr = true })
+
+
