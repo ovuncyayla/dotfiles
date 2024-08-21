@@ -31,61 +31,68 @@ return {
 			vim.keymap.set("n", "<Bslash>h", ":FzfLua helptags<CR>", { desc = "FzfLua helptags" })
 			vim.keymap.set("n", "<leader>sk", ":FzfLua keymaps<CR>", { desc = "FzfLua keymaps" })
 
-			vim.keymap.set("n", "<Bslash>g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_grep" })
-
-			-- vim.keymap.set("n", "<leader>pp", function() require("telescope").extensions.project.project() end,
-			--   { desc = "[P]rojectile find [P]roject" })
-
-			-- vim.keymap.set("n", "<leader>pf", function() findy(true) end, { desc = "[P]roject Files" })
+			vim.keymap.set("n", "<Bslash>gg", ":FzfLua live_grep<CR>", { desc = "FzfLua live_grep" })
+			vim.keymap.set("n", "<Bslash>gw", ":FzfLua grep_cword<CR>", { desc = "FzfLua grep_cword" })
+			vim.keymap.set("n", "<leader>gw", ":FzfLua grep_cWORD<CR>", { desc = "FzfLua grep_cWORD" })
 
 			vim.keymap.set("n", "<Bslash>fe", function()
 				require("fzf-lua").files({ cwd = vim.fn.stdpath("config"), hidden = true })
 			end, { desc = "Search [E]ditor Config" })
 
-			local cmd_find = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "--glob", "!**/node_modules/**" }
 			vim.keymap.set("n", "<Bslash>fep", function()
-				require("fzf-lua").files({ cwd = vim.fn.stdpath("data"), find_command = cmd_find })
+				require("fzf-lua").files({ cwd = vim.fn.stdpath("data") })
 			end, { desc = "FzfLua [E]ditor [P]ugins" })
-			vim.keymap.set("n", "<Bslash>fd", function() require("fzf-lua").files({ cwd = vim.fn.expand("~/dotfiles"), find_command = cmd_find, })
+			vim.keymap.set("n", "<Bslash>fd", function()
+				require("fzf-lua").files({ cwd = vim.fn.expand("~/dotfiles") })
 			end, { desc = "FzfLua files Dotfiles" })
 
 			vim.keymap.set("n", "<Bslash>fec", function()
-				require("fzf-lua").files({ cwd = vim.fn.expand("~/.config"), find_command = cmd_find,
-				})
+				require("fzf-lua").files({ cwd = vim.fn.expand("~/.config") })
 			end, { desc = "Search .config" })
-
-			-- vim.keymap.set("n", "<Bslash>eb", function()
-			--   require("telescope").extensions.file_browser.file_browser({
-			--     cwd = vim.fn.expand("~/dotfiles"),
-			--     -- find_command = cmd_find
-			--   })
-			-- end, { desc = "FzfLua Dotfiles" })
 
 			vim.keymap.set("n", "<Bslash>z", function()
 				require("fzf-lua").files({
 					cwd = vim.fn.expand("~/zettelkasten"),
-					find_command = cmd_find,
 				})
 			end, { desc = "Search Zettelkasten" })
 
-			local map = vim.keymap.set
-			-- TODO
-			map("n", "<leader>fd", require("fzf-lua").diagnostics_document, { desc = "FzfLua diagnostics_document" })
-			map("n", "<leader>fw", require("fzf-lua").diagnostics_workspace, { desc = "FzfLua diagnostics_document" })
-			map("n", "<leader>fsd", require("fzf-lua").lsp_document_symbols, { desc = "Search [D]ocument [S]ymbols" })
-			map("n", "<leader>fsw", require("fzf-lua").lsp_workspace_symbols, { desc = "Search [D]ocument [S]ymbols" })
-			map("n", "<leader>sn", function()
-				require("telescope").extensions.notify.notify()
-			end, { desc = "[S]earch [n]otifications" })
-			map("n", "<leader>fc", function()
+			vim.keymap.set(
+				"n",
+				"<leader>fd",
+				require("fzf-lua").diagnostics_document,
+				{ desc = "FzfLua diagnostics_document" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>fw",
+				require("fzf-lua").diagnostics_workspace,
+				{ desc = "FzfLua diagnostics_document" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>fsd",
+				require("fzf-lua").lsp_document_symbols,
+				{ desc = "Search [D]ocument [S]ymbols" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>fsw",
+				require("fzf-lua").lsp_workspace_symbols,
+				{ desc = "Search [D]ocument [S]ymbols" }
+			)
+			vim.keymap.set("n", "<leader>fc", function()
 				require("fzf-lua").commands()
 			end, { desc = "[S]earch [c]ommands" })
-			map("n", "<leader>fr", function()
+			vim.keymap.set("n", "<leader>fr", function()
 				require("fzf-lua").registers()
 			end, { desc = "[S]earch [r]egisters" })
-			map("n", "<leader>fm", function()
+			vim.keymap.set("n", "<leader>fm", function()
 				require("fzf-lua").marks()
 			end, { desc = "[S]earch [m]arks" })
+
+			vim.keymap.set("n", "<leader>sn", function()
+				require("telescope").extensions.notify.notify()
+			end, { desc = "[S]earch [n]otifications" })
 		end,
 	},
 }
