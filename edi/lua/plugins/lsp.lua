@@ -139,13 +139,9 @@ local configure = function()
 		map("n", "<leader>ln", vim.lsp.buf.rename, withDesc("vim.lsp.buf.rename"))
 		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, withDesc("vim.lsp.buf.code_action"))
 
-		map("n", "<leader>lf", function()
-			vim.lsp.buf.format({ async = true })
-		end, withDesc("vim.lsp.buf.format"))
-
-		map("n", "<leader>lf", function()
-			require("conform").format({ async = true, lsp_fallback = true })
-		end, withDesc("vim.lsp.buf.format"))
+		-- map("n", "<leader>lf", function()
+		-- 	vim.lsp.buf.format({ async = true })
+		-- end, withDesc("vim.lsp.buf.format"))
 
 		map("n", "]d", vim.diagnostic.goto_next, withDesc("vim.lsp.buf.references"))
 		map("n", "[d", vim.diagnostic.goto_prev, withDesc("vim.lsp.buf.references"))
