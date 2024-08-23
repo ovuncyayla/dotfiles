@@ -54,6 +54,13 @@ return {
           cwd = vim.fn.expand("~/zettelkasten"),
         })
       end, { desc = "Search Zettelkasten" })
+
+      vim.keymap.set("n", "<Bslash>fb", function()
+        require("fzf-lua").files({
+          cwd = vim.fn.expand("~/bookmarks/projects"),
+        })
+      end, { desc = "Find in Projects" })
+
       vim.keymap.set(
         "n",
         "<leader>fd",
