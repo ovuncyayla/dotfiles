@@ -93,6 +93,7 @@ return {
         },
       })
       vim.keymap.set("n", "<Bslash>b", ":Oil<CR>", { desc = "Oil file browser" })
+      vim.keymap.set("n", "<C-w>b", ":vert Oil<CR>", { desc = "Oil file browser" })
     end,
   },
 }
