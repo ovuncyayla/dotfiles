@@ -42,5 +42,5 @@ local function exec_line()
 end
 
 vim.keymap.set("n", "<leader>0", exec_line , { expr = true })
-
+vim.keymap.set("n", "<leader>\t", ":%s/\r//g<CR>", { desc = "Del EOL" })
 
