@@ -1,6 +1,5 @@
 return {
   "nvim-tree/nvim-web-devicons",
-  "tpope/vim-vinegar",
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
