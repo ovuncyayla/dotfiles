@@ -8,6 +8,12 @@ return {
         winopts = {
           fullscreen = true,
         },
+        -- keymap = {
+        --   fzf = {
+        --     ["C-d"] = "preview-page-down",
+        --     ["C-u"]   = "preview-page-up",
+        --   }
+        -- }
       })
 
       vim.keymap.set("i", "<C-L>", require("fzf-lua").complete_line, { desc = "FzfLua complete_line" })
@@ -94,6 +100,10 @@ return {
       vim.keymap.set("n", "<leader>fm", function()
         require("fzf-lua").marks()
       end, { desc = "[S]earch [m]arks" })
+
+      vim.keymap.set("n", "<leader>sm", function()
+        require("fzf-lua").manpages()
+      end, { desc = "[S]earch [m]an pages" })
 
       vim.keymap.set("n", "<leader>sn", function()
         require("telescope").extensions.notify.notify()
