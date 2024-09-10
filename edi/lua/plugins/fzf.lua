@@ -16,7 +16,7 @@ return {
         -- }
       })
 
-      vim.keymap.set("i", "<C-L>", require("fzf-lua").complete_line, { desc = "FzfLua complete_line" })
+      vim.keymap.set("n", "<Bslash>fl", require("fzf-lua").complete_line, { desc = "FzfLua complete_line" })
 
       vim.keymap.set("n", "<Bslash>fzf", ":FzfLua<CR>", { desc = "FzfLua" })
 

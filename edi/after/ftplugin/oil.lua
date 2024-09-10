@@ -22,3 +22,6 @@ end
 vim.keymap.set("n", "<leader>y", oil_copy, { desc = "Oil copy path", buffer = true })
 vim.keymap.set("n", "f.", oil_files, { desc = "Oil files", buffer = true })
 vim.keymap.set("n", "g.", oil_grep, { desc = "Oil files", buffer = true })
+
+vim.keymap.set("n", "<S-j>", "j", { desc = "Down one line", buffer = true })
+vim.keymap.set("n", "<S-k>", "k", { desc = "Up one line", buffer = true })

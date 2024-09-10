@@ -16,7 +16,7 @@ set $alt Mod1
 ### Wallpaper: ###
 # - You need to specify homescreen wallpaper using azote
 
-set $lockScreenWallpaper /usr/share/wallpapers/garuda-wallpapers/Dr460nized\ Honeycomb.png
+set $lockScreenWallpaper "/usr/share/wallpapers/garuda-wallpapers/Dr460nized Honeycomb.png"
 
 ### Applications: ###
 set $preferredTerminalEmulator /usr/bin/kitty
