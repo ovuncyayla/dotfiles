@@ -6,6 +6,8 @@ return {
       require("conform").setup({
         formatters_by_ft = {
           lua = { "stylua --indent-type spaces" },
+          bash = { "shfmt" },
+          sh = { "shfmt" },
         },
         default_format_opts = {
           lsp_format = "fallback",
