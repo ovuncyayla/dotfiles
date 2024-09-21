@@ -8,16 +8,17 @@ return {
           lua = { "stylua --indent-type spaces" },
           bash = { "shfmt" },
           sh = { "shfmt" },
+          -- rust = { "cargo_fix", lsp_format = "fallback" },
         },
         default_format_opts = {
           lsp_format = "fallback",
         },
-        -- formatters = {
-        --   custom_lua = {
-        --     command = "stylua",
-        --     args = { "--indent-type", "tabs" }
-        --   }
-        -- }
+        formatters = {
+          cargo_fix = {
+            command = "cargo",
+            args = { "fix", "--allow-dirty" }
+          }
+        }
       })
       vim.keymap.set("n", "<leader>lf", function()
         require("conform").format({ async = true, lsp_fallback = true })
