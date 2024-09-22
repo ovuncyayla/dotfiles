@@ -2,6 +2,7 @@ vim.filetype.add({
 	extension = {
 		JSON = "json",
     postcss = "postcss",
+    htmx = "html",
 	},
 })
 
