@@ -28,6 +28,7 @@ map("x", "gss", ":<ESC>:'<,'>g/^/m '><cr>", { desc = "Reverse selected lines" })
 
 -- Navigate buffers
 map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close buffer" })
+map("n", "<leader>Q", "<cmd>bdelete!<cr>", { desc = "Close buffer" })
 map("n", "<C-w><C-j>", "<cmd>new<cr>", { desc = "New buffer" })
 map("n", "<C-w><C-l>", "<cmd>vnew<cr>", { desc = "New vertical buffer" })
 map("n", "<C-j>", "<C-w>j", { desc = "Win down" })
