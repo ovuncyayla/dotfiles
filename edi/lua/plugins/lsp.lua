@@ -8,6 +8,7 @@ local configure = function()
 		-- pyright = {},
 		jedi_language_server = {},
 		rust_analyzer = {},
+    gopls = {},
 		jsonls = {},
 		tsserver = {
 			filetypes = {

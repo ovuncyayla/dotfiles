@@ -4,7 +4,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
-      "rcarriga/nvim-dap-ui",
+      -- "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "nvim-dap-virtual-text",
@@ -13,14 +13,14 @@ return {
     config = function()
       local dap = require("dap")
 
-      -- dap.adapters.codelldb = {
-      --   type = "server",
-      --   port = "${port}",
-      --   executable = {
-      --     command = "/usr/bin/codelldb",
-      --     args = { "--port", "${port}" },
-      --   },
-      -- }
+      dap.adapters.codelldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = "lldb-dap",
+          args = { "--port", "${port}" },
+        },
+      }
 
       dap.adapters.gdb = {
         type = "executable",
@@ -121,7 +121,7 @@ return {
         },
       }
 
-      dap.configurations.rust = dap.configurations.c
+      -- dap.configurations.rust = dap.configurations.c
 
       dap.adapters.python = {
         type = "executable",
@@ -213,18 +213,18 @@ return {
       -- }
 
       -- get notify
-      local function start_session(_, _)
-        local info_string = string.format("%s", dap.session().config.program)
-        vim.notify(info_string, "debug", { title = "Debugger Started", timeout = 500 })
-      end
+      -- local function start_session(_, _)
+      --   local info_string = string.format("%s", dap.session().config.program)
+      --   vim.notify(info_string, "debug", { title = "Debugger Started", timeout = 500 })
+      -- end
+      --
+      -- local function terminate_session(_, _)
+      --   local info_string = string.format("%s", dap.session().config.program)
+      --   vim.notify(info_string, "debug", { title = "Debugger Terminated", timeout = 500 })
+      -- end
 
-      local function terminate_session(_, _)
-        local info_string = string.format("%s", dap.session().config.program)
-        vim.notify(info_string, "debug", { title = "Debugger Terminated", timeout = 500 })
-      end
-
-      dap.listeners.after.event_initialized["dapui"] = start_session
-      dap.listeners.before.event_terminated["dapui"] = terminate_session
+      -- dap.listeners.after.event_initialized["dapui"] = start_session
+      -- dap.listeners.before.event_terminated["dapui"] = terminate_session
       -- Define symbols
       vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticWarn" })
       vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticInfo" })
@@ -232,58 +232,58 @@ return {
       vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticInfo" })
       vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "DiagnosticInfo" })
 
-      local dapui = require("dapui")
-      dapui.setup({
-        icons = { expanded = "▾", collapsed = "▸" },
-        mappings = {
-          expand = "<cr>",
-          open = "o",
-          remove = "d",
-          edit = "e",
-          repl = "r",
-          toggle = "t",
-        },
-        layouts = {
-          {
-            elements = {
-              -- Elements can be strings or table with id and size keys.
-              { id = "scopes", size = 0.25 },
-              "breakpoints",
-              "stacks",
-              "watches",
-            },
-            size = 40, -- 40 columns
-            position = "left",
-          },
-          {
-            elements = {
-              "repl",
-              "console",
-            },
-            size = 0.25, -- 25% of total lines
-            position = "bottom",
-          },
-        },
-        floating = {
-          border = "single",
-          mappings = {
-            close = { "q", "<esc>" },
-          },
-        },
-        windows = { indent = 1 },
-      })
-      -- add listeners to auto open DAP UI
+      -- local dapui = require("dapui")
+      -- dapui.setup({
+      --   icons = { expanded = "▾", collapsed = "▸" },
+      --   mappings = {
+      --     expand = "<cr>",
+      --     open = "o",
+      --     remove = "d",
+      --     edit = "e",
+      --     repl = "r",
+      --     toggle = "t",
+      --   },
+      --   layouts = {
+      --     {
+      --       elements = {
+      --         -- Elements can be strings or table with id and size keys.
+      --         { id = "scopes", size = 0.25 },
+      --         "breakpoints",
+      --         "stacks",
+      --         "watches",
+      --       },
+      --       size = 40, -- 40 columns
+      --       position = "left",
+      --     },
+      --     {
+      --       elements = {
+      --         "repl",
+      --         "console",
+      --       },
+      --       size = 0.25, -- 25% of total lines
+      --       position = "bottom",
+      --     },
+      --   },
+      --   floating = {
+      --     border = "single",
+      --     mappings = {
+      --       close = { "q", "<esc>" },
+      --     },
+      --   },
+      --   windows = { indent = 1 },
+      -- })
+      -- -- add listeners to auto open DAP UI
 
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
+      -- dap.listeners.after.event_initialized["dapui_config"] = function()
+      --   dapui.open()
+      -- end
+      --
+      -- dap.listeners.before.event_terminated["dapui_config"] = function()
+      --   dapui.close()
+      -- end
+      -- dap.listeners.before.event_exited["dapui_config"] = function()
+      --   dapui.close()
+      -- end
 
       -- require("nvim-dap-virtual-text").setup({})
       -- require("dap.ext.vscode").json_decode = require("overseer.json").decode
