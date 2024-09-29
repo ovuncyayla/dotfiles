@@ -59,6 +59,7 @@ bindsym $super+Control+m exec "${HOME}/dotfiles/scripts/scripts/keyboard"
 
 # hide/unhide i3status bar
 bindsym $super+m bar mode toggle
+bindsym $super+Shift+m bar mode invisible
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+p exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=10'"

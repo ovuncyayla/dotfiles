@@ -147,7 +147,7 @@ local configure = function()
 		map("n", "]d", vim.diagnostic.goto_next, withDesc("vim.lsp.buf.references"))
 		map("n", "[d", vim.diagnostic.goto_prev, withDesc("vim.lsp.buf.references"))
 
-		map("n", "<leader>lC", "<cmd>TSContextToggle<cr>", withDesc("TSContextToggle"))
+		-- map("n", "<leader>lC", "<cmd>TSContextToggle<cr>", withDesc("TSContextToggle"))
 		-- map("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble Toggle" })
 		-- map("n", "<leader>lwd", function() require("trouble").toggle("workspace_diagnostics") end)
 		-- map("n", "<leader>ldd", function() require("trouble").toggle("document_diagnostics") end)
