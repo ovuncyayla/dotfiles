@@ -10,3 +10,5 @@ fi
 echo $to_path
 
 ln -s $to_path ~/dirme && exec source $HOME/dotfiles/zsh/rc
+
+# vim: ft=sh
