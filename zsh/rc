@@ -74,7 +74,8 @@ precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
 # Define the prompt format
-PROMPT='%F{blue}%n@%m %F{green}%~ %F{yellow}$(git_prompt_info)%F{reset} \$ '
+# PROMPT='%F{blue}%n@%m %F{green}%~ %F{yellow}$(git_prompt_info)%F{reset} \$ '
+PROMPT='%B%F{cyan}%n@%m %F{reset}%~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
 # RPROMPT='${vcs_info_msg_0_}'
 
 # Function to retrieve git branch information
