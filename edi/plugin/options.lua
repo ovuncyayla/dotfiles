@@ -27,5 +27,8 @@ vim.o.hlsearch = false
 vim.o.undofile = true
 vim.o.showmode = false
 -- vim.o.completeopt = 'menuone,noselect'
-
 vim.g.netrw_banner = 0
+
+-- vim.cmd([[ colorscheme sorbet ]])
+vim.cmd("hi! Normal guibg=NONE ctermbg=NONE")
+vim.cmd("hi! NonText guibg=NONE ctermbg=NONE")
