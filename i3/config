@@ -35,16 +35,17 @@ bindsym $super+Return exec $preferredTerminalEmulator -e tmux new -As defo
 bindsym $super+Shift+Return exec $preferredTerminalEmulator
 
 # set font
-font pango: Source Code Pro 18
+font pango: Source Code Pro 14
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
 #autostart
 exec --no-startup-id ~/.fehbg
-exec --no-startup-id xsettingsd &
+exec --no-startup-id xsettingsd
 exec --no-startup-id copyq
 exec --no-startup-id dunst
+# exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
