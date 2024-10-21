@@ -10,7 +10,7 @@ local configure = function()
 		rust_analyzer = {},
     gopls = {},
 		jsonls = {},
-		tsserver = {
+		ts_ls = {
 			filetypes = {
 				"javascript",
 				"javascriptreact",
