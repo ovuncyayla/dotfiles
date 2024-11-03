@@ -125,5 +125,5 @@ Icon=org.xfce.powermanager
 Exec=xfce4-power-manager
 Terminal=false
 Type=Application
-OnlyShowIn=XFCE;
+#OnlyShowIn=XFCE;
 StartupNotify=false

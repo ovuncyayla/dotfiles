@@ -2,7 +2,7 @@
 Name=Geoclue Demo agent
 GenericName=Demo geoclue agent
 Keywords=geolocation;
-Exec=/usr/lib/geoclue-2.0/demos/agent
+Exec=/usr/libexec/geoclue-2.0/demos/agent
 Icon=mark-location-symbolic
 NotShowIn=GNOME;
 NoDisplay=true

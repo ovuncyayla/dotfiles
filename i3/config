@@ -16,7 +16,7 @@ set $alt Mod1
 ### Wallpaper: ###
 # - You need to specify homescreen wallpaper using azote
 
-set $lockScreenWallpaper "/usr/share/wallpapers/garuda-wallpapers/Dr460nized Honeycomb.png"
+set $lockScreenWallpaper "$HOME/walpaper/sea_waves_black_120771_2560x1600.png"
 
 ### Applications: ###
 set $preferredTerminalEmulator /usr/bin/kitty
@@ -41,19 +41,9 @@ font pango: Source Code Pro 14
 floating_modifier $super
 
 #autostart
+exec --no-startup-id ~/.config/.screenlayout/new.sh
 exec --no-startup-id ~/.fehbg
-exec --no-startup-id xsettingsd
-exec --no-startup-id copyq
-exec --no-startup-id dunst
-# exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-exec --no-startup-id nm-applet
-exec --no-startup-id pamac-tray
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id numlockx on
-exec blueberry-tray
-# exec --no-startup-id ~/.config/.screenlayout/split.sh
+exec --no-startup-id dex-autostart -a -s ~/.config/autostart/
 
 # Switch keyboard layout
 bindsym $super+Control+m exec "${HOME}/dotfiles/scripts/scripts/keyboard"

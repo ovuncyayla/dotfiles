@@ -120,5 +120,5 @@ Icon=printer
 NotShowIn=KDE;GNOME;Cinnamon;
 StartupNotify=false
 X-GNOME-Autostart-Delay=30
-X-Desktop-File-Install-Version=0.27
+X-Desktop-File-Install-Version=0.26
 Categories=System;Monitor;GTK;

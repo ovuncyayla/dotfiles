@@ -112,4 +112,4 @@ Icon=org.xfce.settings.manager
 Terminal=false
 Type=Application
 StartupNotify=false
-OnlyShowIn=XFCE;
+#OnlyShowIn=XFCE;

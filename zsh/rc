@@ -208,14 +208,19 @@ fi
 
 ## Plugins section: Enable fish style features
 # Use autosuggestion
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+[[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Use fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/shell/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
 
 # Arch Linux command-not-found support, you must have package pkgfile installed
 # https://wiki.archlinux.org/index.php/Pkgfile#.22Command_not_found.22_hook
@@ -227,10 +232,15 @@ source /usr/share/fzf/completion.zsh
 # Use syntax highlighting
 # !!!Must be sourced at the end
 # https://github.com/zsh-users/zsh-syntax-highlighting?tab=readme-ov-file#why-must-zsh-syntax-highlightingzsh-be-sourced-at-the-end-of-the-zshrc-file
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+[[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-ZSH_HIGHLIGHT_STYLES[comment]='fg=white,bold'
+# ZSH_HIGHLIGHT_STYLES[comment]='fg=white,bold'
 
 source $HOME/.profile
 source ${HOME}/dotfiles/zsh/profile

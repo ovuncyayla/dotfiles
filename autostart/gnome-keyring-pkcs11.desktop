@@ -154,7 +154,7 @@ Comment[zh_HK]=GNOME 密碼匙圈：PKCS#11 元件
 Comment[zh_TW]=GNOME 鑰匙圈：PKCS#11 元件
 Comment=GNOME Keyring: PKCS#11 Component
 Exec=/usr/bin/gnome-keyring-daemon --start --components=pkcs11
-OnlyShowIn=GNOME;Unity;MATE;Cinnamon;
+#OnlyShowIn=GNOME;Unity;MATE;
 NoDisplay=true
 X-GNOME-Autostart-Phase=PreDisplayServer
 X-GNOME-AutoRestart=false

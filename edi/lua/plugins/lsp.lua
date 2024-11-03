@@ -2,7 +2,7 @@ local configure = function()
 	local servers = {
 		clangd = {},
     asm_lsp = {},
-		cmake = {},
+		-- cmake = {},
     arduino_language_server = {},
 		-- gopls = {},
 		-- pyright = {},
@@ -10,7 +10,7 @@ local configure = function()
 		rust_analyzer = {},
     gopls = {},
 		jsonls = {},
-		ts_ls = {
+		tsserver = {
 			filetypes = {
 				"javascript",
 				"javascriptreact",
