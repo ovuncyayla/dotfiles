@@ -53,7 +53,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id numlockx on
 exec blueberry-tray
-exec --no-startup-id ~/.config/.screenlayout/split.sh
+# exec --no-startup-id ~/.config/.screenlayout/split.sh
 
 # Switch keyboard layout
 bindsym $super+Control+m exec "${HOME}/dotfiles/scripts/scripts/keyboard"
@@ -78,10 +78,6 @@ bindsym $alt+Control+l exec i3lock -i $lockScreenWallpaper
 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +20; exec dunstify -r 86333 "brightness up $(brightnessctl get)"
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 20-; exec notify-send -r 86333 "brightness down $(brightnessctl get)"
-# bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5%; exec notify-send "brightness up $(light -G)"
-# bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5%; exec notify-send "brightness down $(light -G)"
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -93,7 +89,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
 #bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
 #bindsym XF86AudioMute exec pulseaudio-ctl mute
-
 
 # music control
 bindsym XF86AudioNext exec playerctl next

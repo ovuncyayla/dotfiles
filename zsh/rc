@@ -77,7 +77,7 @@ setopt prompt_subst
 # PROMPT='%F{blue}%n@%m %F{green}%~ %F{yellow}$(git_prompt_info)%F{reset} \$ '
 # PROMPT='%B%F{#80a0ff}%n@%m %F{reset}%~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
 
-PROMPT='%B%F{12}%n@%m %F{reset}%~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
+PROMPT='%B%F{12}%n@%m %F{reset}%1~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
 if [[ -n "${SSH_CONNECTION}" ]]; then
   PROMPT='%B%F{12}[${SSH_CONNECTION%% *}] %n@%m%F{reset}%1~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
 fi
