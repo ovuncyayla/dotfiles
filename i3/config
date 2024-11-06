@@ -35,7 +35,7 @@ bindsym $super+Return exec $preferredTerminalEmulator -e tmux new -As defo
 bindsym $super+Shift+Return exec $preferredTerminalEmulator
 
 # set font
-font pango: Source Code Pro 14
+font pango: Source Code Pro 12
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
@@ -53,7 +53,7 @@ bindsym $super+m bar mode toggle
 bindsym $super+Shift+m bar mode invisible
 
 # start dmenu (a program launcher)
-bindsym $super+Shift+p exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=10'"
+bindsym $super+Shift+p exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=12'"
 
 # start rofi (a program launcher) change modus Ctrl + Tab
 bindsym $super+p exec rofi -show run
