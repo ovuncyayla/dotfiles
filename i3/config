@@ -41,7 +41,7 @@ font pango: Source Code Pro 12
 floating_modifier $super
 
 #autostart
-exec --no-startup-id ~/.config/.screenlayout/new.sh
+exec --no-startup-id ~/.screenlayout/new.sh
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id dex-autostart -a -s ~/.config/autostart/
 exec --no-startup-id libinput-gestures
