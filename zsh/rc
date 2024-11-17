@@ -240,7 +240,7 @@ source /usr/share/fzf/shell/key-bindings.zsh
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-# ZSH_HIGHLIGHT_STYLES[comment]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=white,bold'
 
 source $HOME/.profile
 source ${HOME}/dotfiles/zsh/profile
