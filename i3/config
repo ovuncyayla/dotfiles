@@ -49,6 +49,8 @@ exec --no-startup-id libinput-gestures
 # Switch keyboard layout
 bindsym $super+Control+m exec "${HOME}/dotfiles/scripts/scripts/keyboard"
 
+bindsym $super+b exec "${HOME}/opt/firefox/firefox"
+
 # hide/unhide i3status bar
 bindsym $super+m bar mode toggle
 bindsym $super+Shift+m bar mode invisible
@@ -58,15 +60,12 @@ bindsym $super+Shift+p exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:si
 
 # start rofi (a program launcher) change modus Ctrl + Tab
 bindsym $super+p exec rofi -show run
-
-# Switch windows
 bindsym $super+o exec rofi -show window
 
 # Lock screen
 bindsym $alt+Control+l exec i3lock -i $lockScreenWallpaper
 
 # Screen brightness controls
-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +20; exec dunstify -r 86333 "brightness up $(brightnessctl get)"
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 20-; exec notify-send -r 86333 "brightness down $(brightnessctl get)"
 
@@ -285,6 +284,7 @@ for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
+for_window [window_role="bubble"] floating enable
 for_window [class="bauh"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
