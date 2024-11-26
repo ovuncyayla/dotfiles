@@ -45,6 +45,8 @@ export EDITOR='nvim'
 alias TMS="date -u +\"%Y-%m-%dT%H:%M:%S.%3N\""
 alias CDOWN='curl -fsSLO'
 
+alias wgkeygen="umask 077 && wg genkey >> private && wg pubkey < private >> public && umask 022"
+
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
