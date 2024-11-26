@@ -1,4 +1,4 @@
-vim.o.clipboard = "unnamedplus"      -- Connection to the system clipboard
+-- vim.o.clipboard = "unnamedplus"      -- Connection to the system clipboard
 vim.o.cursorline = true              -- Highlight the text line of the cursor
 vim.o.expandtab = true               -- Enable the use of space in tab
 vim.o.smartcase = true

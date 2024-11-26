@@ -40,6 +40,8 @@ return {
       vim.keymap.set("n", "<Bslash>gw", ":FzfLua grep_cword<CR>", { desc = "FzfLua grep_cword" })
       vim.keymap.set("n", "<leader>gw", ":FzfLua grep_cWORD<CR>", { desc = "FzfLua grep_cWORD" })
 
+      vim.keymap.set("n", "<Bslash>ge", ":FzfLua live_grep cwd=~/dotfiles/edi<CR>", { desc = "FzfLua live_grep edi" })
+
       -- Jump
       vim.keymap.set("n", "<leader>j", function()
         require("fzf-lua").files({ cmd="fd . ~ --type=dir", hidden = true, cwd="~" })

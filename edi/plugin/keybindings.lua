@@ -7,6 +7,12 @@ map("v", "<leader><leader>s", ":lua<cr><cmd>lua vim.notify('Sourced visual')<cr>
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map("i", "jk", "<ESC>")
 
+map({"n", "v"}, "<leader>y", "\"+y", { desc = "Copy clipboard" })
+map({"n", "v"}, "<leader>p", "\"+p", { desc = "Paste clipboard" })
+
+map({"n", "v"}, "<leader>Y", "\"*y", { desc = "Copy selection" })
+map({"n", "v"}, "<leader>P", "\"*p", { desc = "Paste selection" })
+
 map("x", ">", ">gv")
 map("x", "<", "<gv")
 
