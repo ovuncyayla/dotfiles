@@ -8,6 +8,7 @@ map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map("i", "jk", "<ESC>")
 
 map({"n", "v"}, "<leader>y", "\"+y", { desc = "Copy clipboard" })
+map({"n", "v"}, "<leader>Y", "\"+Y", { desc = "Copy clipboard" })
 map({"n", "v"}, "<leader>p", "\"+p", { desc = "Paste clipboard" })
 
 map({"n", "v"}, "<leader>Y", "\"*y", { desc = "Copy selection" })
