@@ -1,29 +1,11 @@
 #!/bin/zsh
 
 alias SP="source $HOME/dotfiles/zsh/rc"
-alias ls='exa -al --color=always --group-directories-first --icons' # preferred listing
-alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first --icons'  # long format
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
-alias l.='exa -ald --color=always --group-directories-first --icons .*' # show only dotfiles
-
-alias unlockpacman="sudo rm /var/lib/pacman/db.lck"
-alias tarnow='tar -acf '
-alias untar='tar -zxvf '
-alias rmpkg="sudo pacman -Rdd"
-#alias hw='hwinfo --short'                          # Hardware Info
-alias big="expac -H M '%m\t%n' | sort -h | nl"     # Sort installed packages according to size in MB (expac must be installed)
-alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
-alias ip='ip -color'
+alias l='exa -al --color=always --group-directories-first --icons'
 
 # Replace some more things with better alternatives
-alias cat='bat --style header --style snip --style changes --style header'
-[ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
-
-alias pacdiff='sudo -H DIFFPROG=meld pacdiff'
-
-# Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+# alias cat='bat --style header --style snip --style changes --style header'
+alias bat="bat --theme OneHalfDark "
 
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
