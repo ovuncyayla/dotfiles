@@ -14,6 +14,15 @@ return {
         --     ["C-u"]   = "preview-page-up",
         --   }
         -- }
+
+        grep = {
+          actions = {
+            ["ctrl-g"] = { require "fzf-lua.actions".grep_lgrep },
+            ["ctrl-r"] = { require "fzf-lua.actions".toggle_ignore }
+          }
+
+        }
+
       })
 
       vim.keymap.set("n", "<Bslash>fl", require("fzf-lua").complete_line, { desc = "FzfLua complete_line" })
@@ -42,13 +51,12 @@ return {
 
       vim.keymap.set("n", "<Bslash>ge", ":FzfLua live_grep cwd=~/dotfiles/edi<CR>", { desc = "FzfLua live_grep edi" })
 
-      -- Jump
       vim.keymap.set("n", "<leader>j", function()
-        require("fzf-lua").files({ cmd="fd . ~ --type=dir", hidden = true, cwd="~" })
+        require("fzf-lua").files({ cmd = "fd . ~ --type=dir", hidden = true, cwd = "~" })
       end, { desc = "Jump" })
 
       vim.keymap.set("n", "<Bslash>j", function()
-        require("fzf-lua").files({ cmd="fd . / --type=dir", hidden = true, cwd="~" })
+        require("fzf-lua").files({ cmd = "fd . / --type=dir", hidden = true, cwd = "~" })
       end, { desc = "Jump" })
 
       vim.keymap.set("n", "<Bslash>fe", function()

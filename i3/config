@@ -115,8 +115,9 @@ bindsym $super+x split h
 # split in vertical orientation
 bindsym $super+Shift+X split v
 
+exec fullscreen toggle global
 # enter fullscreen mode for the focused container
-bindsym F11 fullscreen toggle
+bindsym F11 fullscreen toggle global
 bindsym $super+Shift+F11 exec --no-startup-id ~/dotfiles/scripts/scripts/screen
 
 # change container layout split
@@ -318,7 +319,7 @@ for_window [class="copyq"] floating enable border pixel 1
 # TODO WM_NAME(UTF8_STRING) = "teams.microsoft.com is sharing your screen."
 
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border none
 assign [class=URxvt] 1
 for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol|upgrade2ultimate.sh] floating enable
 for_window [class=URxvt|firedragon|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
@@ -350,11 +351,11 @@ gaps outer -2
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
