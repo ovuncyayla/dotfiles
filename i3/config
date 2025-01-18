@@ -45,6 +45,7 @@ exec --no-startup-id ~/.screenlayout/new.sh
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id dex-autostart -a -s ~/.config/autostart/
 exec --no-startup-id libinput-gestures
+exec --no-startup-id xinput set-prop 9 319 1
 
 # Switch keyboard layout
 bindsym $super+Control+m exec "${HOME}/dotfiles/scripts/scripts/keyboard"
@@ -150,6 +151,8 @@ bindsym $super+minus scratchpad show
 bindsym $super+Ctrl+Right workspace next
 bindsym $super+Ctrl+Left workspace prev
 
+bindsym $super+Ctrl+j move container to output down
+bindsym $super+Ctrl+k move container to output up
 bindsym $super+Ctrl+h move workspace to output left
 bindsym $super+Ctrl+l move workspace to output right
 
