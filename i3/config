@@ -40,6 +40,8 @@ font pango: Source Code Pro 12
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
+mouse_warping none
+
 #autostart
 exec --no-startup-id ~/.screenlayout/new.sh
 exec --no-startup-id ~/.fehbg
