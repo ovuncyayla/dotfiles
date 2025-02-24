@@ -1,16 +1,16 @@
 local configure = function()
   local servers = {
-    clangd = {},
-    asm_lsp = {},
+    clangd                  = {},
+    asm_lsp                 = {},
     -- cmake = {},
     arduino_language_server = {},
     -- gopls = {},
     -- pyright = {},
-    jedi_language_server = {},
-    rust_analyzer = {},
-    gopls = {},
-    jsonls = {},
-    ts_ls = {
+    jedi_language_server    = {},
+    rust_analyzer           = {},
+    gopls                   = {},
+    jsonls                  = {},
+    ts_ls                   = {
       filetypes = {
         "javascript",
         "javascriptreact",
@@ -21,15 +21,15 @@ local configure = function()
         "markdown.mdx",
       },
     },
-    svelte = {},
-    tailwindcss = {},
-    cssls = {},
+    svelte                  = {},
+    tailwindcss             = {},
+    cssls                   = {},
     -- jdtls = {
     --  require("custom.jdtls"),
     -- },
-    angularls = {},
-    eslint = {},
-    lua_ls = {
+    angularls               = {},
+    eslint                  = {},
+    lua_ls                  = {
       Lua = {
         workspace = {
           checkThirdParty = false,
@@ -41,8 +41,8 @@ local configure = function()
       },
     },
     -- stylua = {},
-    bashls = {},
-    intelephense = {
+    bashls                  = {},
+    intelephense            = {
 
       stubs = {
         "bcmath",
@@ -69,16 +69,17 @@ local configure = function()
       ["php-cs-fixer"] = {},
     },
 
-    dockerls = {},
+    dockerls                = {},
 
-    sqlls = {},
-    marksman = {
+    sqlls                   = {},
+    marksman                = {
       filetypes = { "markdown", "markdown.mdx", "mdx" },
     },
-    mdx_analyzer = {
+    mdx_analyzer            = {
       filetypes = { "markdown", "markdown.mdx", "mdx" },
     },
-    html = {},
+    html                    = {},
+    ansiblels               = {}
   }
 
   local on_attach = function(_, bufnr)
@@ -198,7 +199,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
 
       -- Useful status updates for LSP
-      { "j-hui/fidget.nvim", event = "LspAttach" },
+      { "j-hui/fidget.nvim",    event = "LspAttach" },
       -- Additional lua configuration, makes nvim stuff amazing
       -- "folke/neodev.nvim",
       {
