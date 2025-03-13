@@ -39,7 +39,7 @@ return {
     "rcarriga/nvim-notify",
     config = function()
       local notify = require("notify")
-      notify.setup({ stages = "slide" })
+      notify.setup({ stages = "slide", timeout = 2500 })
       vim.notify = notify
     end,
   },
