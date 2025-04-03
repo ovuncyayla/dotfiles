@@ -2,3 +2,5 @@
   adog = log --all --decorate --oneline --graph
   lsd = diff-tree --name-only --no-commit-id -r
   top = rev-parse --show-toplevel
+[init]
+	defaultBranch = main
