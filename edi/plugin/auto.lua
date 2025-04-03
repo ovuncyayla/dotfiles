@@ -1,4 +1,10 @@
 vim.filetype.add({
+  filename = {
+    ["go.mod"] = "go",
+    ["go.sum"] = "go",
+    ["go.work"] = "go",
+    ["go.work.sum"] = "go",
+  },
 	extension = {
 		JSON = "json",
     postcss = "postcss",
