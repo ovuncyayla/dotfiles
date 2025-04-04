@@ -7,13 +7,18 @@ return {
       require("fzf-lua").setup({
         winopts = {
           fullscreen = true,
+          preview = {
+            layout = "vertical",
+            vertical = "down:50%"
+          }
         },
-        -- keymap = {
-        --   fzf = {
-        --     ["C-d"] = "preview-page-down",
-        --     ["C-u"]   = "preview-page-up",
-        --   }
-        -- }
+        keymap = {
+          builtin = {
+            true,
+            ["<M-S-j>"] = "preview-down",
+            ["<M-S-k>"]   = "preview-up",
+          }
+        },
 
         grep = {
           actions = {
