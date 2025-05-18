@@ -49,6 +49,8 @@ exec --no-startup-id dex-autostart -a -s ~/.config/autostart/
 exec --no-startup-id libinput-gestures
 exec --no-startup-id xinput set-prop 9 319 1
 
+exec --no-startup-id i3lock --nofork
+
 # Switch keyboard layout
 bindsym $super+Control+m exec "${HOME}/dotfiles/scripts/scripts/keyboard"
 
@@ -66,7 +68,7 @@ bindsym $super+p exec rofi -show run
 bindsym $super+o exec rofi -show window
 
 # Lock screen
-bindsym $alt+Control+l exec i3lock -i $lockScreenWallpaper
+bindsym $super+Delete exec  -i $lockScreenWallpaper
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +20; exec dunstify -r 86333 "brightness up $(brightnessctl get)"
