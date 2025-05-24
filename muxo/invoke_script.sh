@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TMUX_PLUGIN_MANAGER_PATH=${TMUX_PLUGIN_MANAGER_PATH:~}
+
 case $1 in 
   'project-session')
     tmux split-pane "source $TMUX_PLUGIN_MANAGER_PATH/muxo/scripts/session.sh"
