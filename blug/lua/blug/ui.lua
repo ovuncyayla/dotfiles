@@ -34,7 +34,6 @@ U.create_results_win = function(results)
   vim.api.nvim_buf_set_option(buffid, 'modifiable', false)
   vim.api.nvim_buf_set_option(buffid, 'modified', false)
 
-
   vim.api.nvim_create_autocmd('BufLeave', {
     callback = function()
       pcall(vim.api.nvim_buf_delete, buffid, { force = true })

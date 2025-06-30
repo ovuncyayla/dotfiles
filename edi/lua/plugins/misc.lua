@@ -12,6 +12,7 @@ return {
   "anuvyklack/hydra.nvim",
   {
     "rcarriga/nvim-notify",
+    tag = "v3.15.0",
     configure = function()
       local notify = require("notify")
       -- notify.setup({ stages = "slide" })
@@ -95,4 +96,11 @@ return {
       vim.keymap.set("n", "<C-w>b", ":vert Oil<CR>", { desc = "Oil file browser" })
     end,
   },
+  'mustache/vim-mustache-handlebars',
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  --   ft = { "markdown" },
+  --   build = function() vim.fn["mkdp#util#install"]() end,
+  -- }
 }

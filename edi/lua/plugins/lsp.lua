@@ -30,15 +30,15 @@ local configure = function()
     angularls               = {},
     eslint                  = {},
     lua_ls                  = {
-      Lua = {
-        workspace = {
-          checkThirdParty = false,
-          library = {
-            vim.env.VIMRUNTIME,
-          },
-        },
-        telemetry = { enable = false },
-      },
+      -- Lua = {
+      --   workspace = {
+      --     checkThirdParty = false,
+      --     library = {
+      --       vim.env.VIMRUNTIME,
+      --     },
+      --   },
+      --   telemetry = { enable = false },
+      -- },
     },
     -- stylua = {},
     bashls                  = {},
@@ -72,18 +72,19 @@ local configure = function()
     dockerls                = {},
 
     sqlls                   = {},
-    marksman                = {
-      filetypes = { "markdown", "markdown.mdx", "mdx" },
-    },
-    mdx_analyzer            = {
-      filetypes = { "markdown", "markdown.mdx", "mdx" },
-    },
+    -- marksman                = {
+    --   filetypes = { "markdown", "markdown.mdx", "mdx" },
+    -- },
+    -- mdx_analyzer            = {
+    --   filetypes = { "markdown", "markdown.mdx", "mdx" },
+    -- },
     html                    = {},
-    ansiblels               = {}
+    ansiblels               = {},
+    yamlls                  = {}
   }
 
   local on_attach = function(_, bufnr)
-    vim.lsp.inlay_hint.enable = true
+    -- vim.lsp.inlay_hint.enable = true
 
     local map = vim.keymap.set
 
@@ -166,14 +167,49 @@ local configure = function()
     ensure_installed = vim.tbl_keys(servers),
   })
 
-  mason_lspconfig.setup_handlers({
-    function(server_name)
-      require("lspconfig")[server_name].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = servers[server_name],
+  for key, value in pairs(servers) do
+    vim.lsp.config(key, value)
+    vim.lsp.enable(key)
+  end
+
+  vim.lsp.config('*', {
+    capabilities = capabilities,
+    on_attach = on_attach
+  })
+
+
+  vim.lsp.config('lua_ls', {
+    on_init = function(client)
+      if client.workspace_folders then
+        local path = client.workspace_folders[1].name
+        if path ~= vim.fn.stdpath('config') and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then
+          return
+        end
+      end
+
+      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+        runtime = {
+          -- Tell the language server which version of Lua you're using
+          -- (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT'
+        },
+        -- Make the server aware of Neovim runtime files
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME
+            -- Depending on the usage, you might want to add additional paths here.
+            -- "${3rd}/luv/library"
+            -- "${3rd}/busted/library",
+          }
+          -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
+          -- library = vim.api.nvim_get_runtime_file("", true)
+        }
       })
     end,
+    settings = {
+      Lua = {}
+    }
   })
 
   -- Turn on lsp status information
@@ -195,11 +231,12 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      { "williamboman/mason.nvim",           tag = "v2.0.0" },
+      -- { "williamboman/mason-lspconfig.nvim", tag = "v1.32.0" },
+      { "williamboman/mason-lspconfig.nvim", tag = "v2.0.0" },
 
       -- Useful status updates for LSP
-      { "j-hui/fidget.nvim",    event = "LspAttach" },
+      { "j-hui/fidget.nvim",                 event = "LspAttach" },
       -- Additional lua configuration, makes nvim stuff amazing
       -- "folke/neodev.nvim",
       {
