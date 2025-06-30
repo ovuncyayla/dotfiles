@@ -1,18 +1,19 @@
 local map = vim.keymap.set
 
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
-map("n", "<leader><leader>s", "<cmd>luafile %<cr><cmd>lua vim.notify('Sourced: ' .. vim.fn.expand('%'))<cr>", { desc = "Source Current File" })
+map("n", "<leader><leader>s", "<cmd>luafile %<cr><cmd>lua vim.notify('Sourced: ' .. vim.fn.expand('%'))<cr>",
+  { desc = "Source Current File" })
 map("v", "<leader><leader>s", ":lua<cr><cmd>lua vim.notify('Sourced visual')<cr>", { desc = "Source visual" })
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map("i", "jk", "<ESC>")
 
-map({"n", "v"}, "<leader>y", "\"+y", { desc = "Copy clipboard" })
-map({"n", "v"}, "<leader>Y", "\"+Y", { desc = "Copy clipboard" })
-map({"n", "v"}, "<leader>p", "\"+p", { desc = "Paste clipboard" })
+map({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy clipboard" })
+map({ "n", "v" }, "<leader>Y", "\"+Y", { desc = "Copy clipboard" })
+map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste clipboard" })
 
-map({"n", "v"}, "<leader>Y", "\"*y", { desc = "Copy selection" })
-map({"n", "v"}, "<leader>P", "\"*p", { desc = "Paste selection" })
+map({ "n", "v" }, "<leader>Y", "\"*y", { desc = "Copy selection" })
+map({ "n", "v" }, "<leader>P", "\"*p", { desc = "Paste selection" })
 
 map("x", ">", ">gv")
 map("x", "<", "<gv")
@@ -43,12 +44,13 @@ map("n", "<C-k>", "<C-w>k", { desc = "Win up" })
 map("n", "<C-h>", "<C-w>h", { desc = "Win left" })
 map("n", "<C-l>", "<C-w>l", { desc = "Win right" })
 
+map( "n", "<Bslash>tt", "<cmd>Telescope file_browser<CR>", { noremap = true })
+
 local function exec_line()
   local line = vim.fn.getline(".")
   -- vim.cmd(":!" .. line)
   return ":!" .. line .. "<CR>"
 end
 
-vim.keymap.set("n", "<leader>0", exec_line , { expr = true })
+vim.keymap.set("n", "<leader>0", exec_line, { expr = true })
 vim.cmd([[ noremap <leader>t :%s/\r//g<CR> ]])
-
