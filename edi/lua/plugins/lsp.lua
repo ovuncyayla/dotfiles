@@ -85,7 +85,6 @@ local configure = function()
 
   local on_attach = function(_, bufnr)
     -- vim.lsp.inlay_hint.enable = true
-
     local map = vim.keymap.set
 
     local lsp_attach_buf_to_active_client = function()

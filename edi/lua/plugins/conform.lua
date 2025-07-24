@@ -9,6 +9,7 @@ return {
           bash = { "shfmt" },
           sh = { "shfmt" },
           -- rust = { "cargo_fix", lsp_format = "fallback" },
+          yaml = { "yamlfmt" },
         },
         default_format_opts = {
           lsp_format = "fallback",

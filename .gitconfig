@@ -4,3 +4,5 @@
   top = rev-parse --show-toplevel
 [init]
 	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = https://github.com/
