@@ -71,9 +71,11 @@ bindsym $super+o exec rofi -show window
 bindsym $super+Delete exec  -i $lockScreenWallpaper
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +20; exec dunstify -r 86333 "brightness up $(brightnessctl get)"
+# bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +20; exec dunstify -r 86333 "brightness up $(brightnessctl get)"
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +20; exec dunstify "brightness up"
 # bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +20; exec dunstify -r 86333 "brightness up"
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 20-; exec notify-send -r 86333 "brightness down $(brightnessctl get)"
+# bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 20-; exec notify-send -r 86333 "brightness down $(brightnessctl get)"
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 20-; exec notify-send "brightness down"
 # bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 20-; exec notify-send -r 86333 "brightness down"
 
 # Use pactl to adjust volume in PulseAudio.
