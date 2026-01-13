@@ -1,8 +1,0 @@
-- name: Install dotfiles
-  hosts: localhost
-  tasks:
-    - name: Link editor
-      ansible.builtin.file:
-        src: ~/dotfiles/edi
-        dest: ~/.config/nvim
-        state: link
