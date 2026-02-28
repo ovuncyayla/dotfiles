@@ -72,6 +72,7 @@ return {
 
         -- Set buffer-local keymaps using <Space> explicitly
         vim.keymap.set("n", "<Space>y", oil_copy, { desc = "Oil copy path", buffer = ev.buf })
+        vim.keymap.set("n", "<Space>w", "<cmd>w<CR>", { desc = "Save", buffer = ev.buf })
         vim.keymap.set("n", "f.", oil_files, { desc = "Oil files", buffer = ev.buf })
         vim.keymap.set("n", "g.", oil_grep, { desc = "Oil grep", buffer = ev.buf })
 
