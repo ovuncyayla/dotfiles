@@ -21,9 +21,10 @@
 
     "hyprland/language": {
         "format": " {}",
-        "format-en": "US",
+        "format-us": "US",
         "format-it": "IT",
-        "format-tr": "TR"
+        "format-tr": "TR",
+        "keyboard-name": "at-translated-set-2-keyboard"
     },
 
     "battery": {
