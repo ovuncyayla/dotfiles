@@ -7,25 +7,27 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(12, 12, 20, 0.95);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 8px;
     background-color: transparent;
     color: #888888;
 }
 
 #workspaces button.active {
-    background-color: #285577;
-    color: #ffffff;
+    background-color: #313244;
+    color: #89b4fa;
 }
 
 #workspaces button.urgent {
-    background-color: #900000;
+    background-color: #f38ba8;
+    color: #11111b;
 }
 
 #clock,
@@ -40,19 +42,86 @@ window#waybar {
 #tray,
 #mode,
 #idle_inhibitor,
-#keyboard-state {
+#language {
     padding: 0 10px;
+    margin: 3px 0;
+    background-color: #313244;
+    border-radius: 4px;
     color: #ffffff;
 }
 
-#pulseaudio.muted {
-    color: #a0a0a0;
+#battery {
+    color: #a6e3a1;
 }
 
-#network.disconnected {
-    color: #f53c3c;
+#battery.charging, #battery.plugged {
+    color: #94e2d5;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #f9e2af;
+    color: #11111b;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f38ba8;
+    color: #11111b;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#language {
+    color: #f9e2af;
+    min-width: 40px;
+    padding: 0 12px;
+}
+
+#clock {
+    color: #a6e3a1;
+    min-width: 100px;
+}
+
+#pulseaudio {
+    color: #fab387;
+}
+
+#network {
+    color: #cba6f7;
+}
+
+#cpu {
+    color: #89b4fa;
+}
+
+#memory {
+    color: #94e2d5;
+}
+
+#temperature {
+    color: #eba0ac;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: #f38ba8;
+    color: #11111b;
+}
+
+#pulseaudio.muted {
+    background-color: #45475a;
+    color: #a6adc8;
+}
+
+#network.disconnected {
+    background-color: #f38ba8;
+    color: #11111b;
 }
