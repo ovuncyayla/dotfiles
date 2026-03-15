@@ -1,0 +1,52 @@
+# Ghostty Configuration
+
+# Font
+font-family = "Hack"
+font-size = 12
+
+theme = Duckbones
+
+# Cursor
+cursor-style = block
+
+# Window
+window-decoration = false
+window-padding-x = 4
+window-padding-y = 4
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Opacity
+background-opacity = 1.0
+
+# ---------------------------------------------------------
+# Quake-style (Quick Terminal)
+# ---------------------------------------------------------
+# Toggle with Ctrl + ` (backtick/grave accent)
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+# Position at the top of the screen
+quick-terminal-position = top
+
+# Auto-hide when focus is lost
+quick-terminal-autohide = true
+
+# Size (percentage or pixels)
+quick-terminal-size = 40%
+
+
+# Animation duration (seconds)
+quick-terminal-animation-duration = 0.2
+
+# ---------------------------------------------------------
+# Custom Keybindings
+# ---------------------------------------------------------
+# Unbind interfering keys to pass them to the application (for Gemini/Vim)
+keybind = ctrl+j=unbind
+keybind = ctrl+shift+j=unbind
+keybind = ctrl+w=unbind
+keybind = ctrl+shift+w=unbind
+
+# Move Ghostty's "Write Screen to File" to a safe combination
+keybind = ctrl+alt+shift+s=write_screen_file:open

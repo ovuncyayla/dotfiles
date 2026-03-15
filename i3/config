@@ -19,12 +19,14 @@ set $alt Mod1
 set $lockScreenWallpaper "$HOME/walpaper/sea_waves_black_120771_2560x1600.png"
 
 ### Applications: ###
-set $preferredTerminalEmulator /usr/bin/kitty
+set $preferredTerminalEmulator /usr/bin/ghostty
 set $preferredScreenCaptureTool /usr/bin/flameshot gui
 
 ###########################################
 ### Commonly Used Application Keybinds: ###
 ###########################################
+# Ghostty starts in background to listen for global hotkey
+exec --no-startup-id ghostty --initial-window=false
 bindsym $super+F1 exec ~/dotfiles/scripts/scripts/sound;focus
 
 ### Screen Capturing & Print Screen: ###
@@ -339,7 +341,7 @@ for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo
 client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
 client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #E55C50 #E55C50 #FFFFFF #E55C50 #E55C50
 client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
