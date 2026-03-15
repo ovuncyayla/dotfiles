@@ -1,0 +1,58 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Source Code Pro", "Hack", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #888888;
+}
+
+#workspaces button.active {
+    background-color: #285577;
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #900000;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#keyboard-state {
+    padding: 0 10px;
+    color: #ffffff;
+}
+
+#pulseaudio.muted {
+    color: #a0a0a0;
+}
+
+#network.disconnected {
+    color: #f53c3c;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}

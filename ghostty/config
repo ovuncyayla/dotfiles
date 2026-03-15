@@ -21,28 +21,9 @@ mouse-hide-while-typing = true
 background-opacity = 1.0
 
 # ---------------------------------------------------------
-# Quake-style (Quick Terminal)
-# ---------------------------------------------------------
-# Toggle with Ctrl + ` (backtick/grave accent)
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
-
-# Position at the top of the screen
-quick-terminal-position = top
-
-# Auto-hide when focus is lost
-quick-terminal-autohide = true
-
-# Size (percentage or pixels)
-quick-terminal-size = 40%
-
-
-# Animation duration (seconds)
-quick-terminal-animation-duration = 0.2
-
-# ---------------------------------------------------------
 # Custom Keybindings
 # ---------------------------------------------------------
-# Unbind interfering keys to pass them to the application (for Gemini/Vim)
+# Unbind Ghostty's default keys to pass them directly to Vim/Gemini
 keybind = ctrl+j=unbind
 keybind = ctrl+shift+j=unbind
 keybind = ctrl+w=unbind
