@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+# File manager to use
+FM="thunar"
+
+# Define favorites: "Label|Path"
+favorites=(
+    "🏠 Home|$HOME"
+    "📂 Documents|$HOME/Documents"
+    "📥 Downloads|$HOME/Downloads"
+    "💻 Projects|$HOME/Projects"
+    "⚙️ Dotfiles|$HOME/dotfiles"
+    "🖼️ Pictures|$HOME/Pictures"
+    "🎥 Videos|$HOME/Videos"
+)
+
+# Function to check if path exists
+path_exists() { [[ -d "$1" ]]; }
+
+# Build the display list
+display_list=""
+
+# Add favorites first
+for fav in "${favorites[@]}"; do
+    label="${fav%%|*}"
+    path="${fav#*|}"
+    if path_exists "$path"; then
+        display_list+="$label\n"
+    fi
+done
+
+# Add Bookmarks (up to 4 levels deep, excluding hidden, follow symlinks)
+if path_exists "$HOME/bookmarks"; then
+    while read -r path; do
+        display_list+="🔖 $path\n"
+    done < <(find -L "$HOME/bookmarks" -mindepth 1 -maxdepth 4 -not -path '*/.*' -type d 2>/dev/null)
+fi
+
+# Add Mounts (up to 4 levels deep, excluding hidden, follow symlinks)
+if path_exists "/mnt"; then
+    while read -r path; do
+        display_list+="💾 $path\n"
+    done < <(find -L "/mnt" -mindepth 1 -maxdepth 4 -not -path '*/.*' -type d 2>/dev/null)
+fi
+
+# Add zoxide frequent dirs (top 15)
+if command -v zoxide >/dev/null; then
+    while read -r path; do
+        # Avoid duplicates
+        if ! echo -e "$display_list" | grep -q "$path"; then
+            display_list+="⚡ $path\n"
+        fi
+    done < <(zoxide query -l | head -n 15)
+fi
+
+# Show Rofi and get selection
+selection=$(echo -e "$display_list" | rofi -dmenu -i -p "Open Directory" -theme-str 'window {width: 45%;}')
+
+# Exit if selection is empty
+[[ -z "$selection" ]] && exit
+
+# Determine final path
+final_path=""
+
+# 1. Check if it's one of our labels
+for fav in "${favorites[@]}"; do
+    if [[ "$selection" == "${fav%%|*}" ]]; then
+        final_path="${fav#*|}"
+        break
+    fi
+done
+
+# 2. Check if it's a zoxide/bookmark/mount entry (starts with ⚡, 🔖, or 💾)
+if [[ -z "$final_path" && "$selection" =~ ^(⚡|🔖|💾)\  ]]; then
+    final_path="${selection#* }"
+fi
+
+# 3. Check if it's a raw path (user typed it)
+if [[ -z "$final_path" ]]; then
+    # Expand ~ to $HOME
+    eval selection_expanded="${selection/#\~/$HOME}"
+    if path_exists "$selection_expanded"; then
+        final_path="$selection_expanded"
+    else
+        # Try to treat it as a path relative to home if not absolute
+        if [[ "$selection" != /* ]]; then
+            eval path_relative_home="$HOME/$selection"
+            if path_exists "$path_relative_home"; then
+                final_path="$path_relative_home"
+            fi
+        fi
+    fi
+fi
+
+# Launch Thunar if selection is valid
+if [[ -n "$final_path" ]]; then
+    $FM "$final_path" &
+else
+    notify-send "Rofi-Thunar" "Directory not found: $selection"
+fi
