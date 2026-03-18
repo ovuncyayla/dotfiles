@@ -13,12 +13,13 @@ cursor-style = block
 window-decoration = false
 window-padding-x = 4
 window-padding-y = 4
+confirm-close-surface = false
 
 # Mouse
 mouse-hide-while-typing = true
 
 # Opacity
-background-opacity = 1.0
+background-opacity = 0.95
 
 # ---------------------------------------------------------
 # Custom Keybindings
