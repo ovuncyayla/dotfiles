@@ -327,6 +327,7 @@ for_window [class="Xfburn"] floating enable
 for_window [class="keepassxc"] floating enable
 for_window [class="garuda-welcome"] floating enable
 for_window [class="copyq"] floating enable border pixel 1
+for_window [class="com.github.hluk.copyq"] floating enable border pixel 1
 
 # TODO WM_NAME(UTF8_STRING) = "teams.microsoft.com is sharing your screen."
 
