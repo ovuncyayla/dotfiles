@@ -12,4 +12,5 @@ return {
   { import = "plugins.community" },
   -- import/override with your plugins
   { import = "plugins.user" },
-}
+  { import = "plugins.lsp" },
+  }
