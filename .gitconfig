@@ -9,4 +9,4 @@
 ; [credential]
 ; 	helper = keepassxc --git-groups
 [credential]
-	helper = cache
+	helper = /usr/libexec/git-core/git-credential-libsecret
