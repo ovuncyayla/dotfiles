@@ -48,6 +48,28 @@ return {
           prompt = "Jump Anywhere ",
           items = items,
           layout = { preset = "vscode" }, -- Clean layout
+          win = {
+            input = {
+              keys = {
+                ["<C-f>"] = { "search_files", mode = { "n", "i" } },
+                ["<C-s>"] = { "grep_files", mode = { "n", "i" } },
+              },
+            },
+          },
+          actions = {
+            search_files = function(picker, item)
+              picker:close()
+              local path = item.file
+              local target = vim.fn.isdirectory(path) == 1 and path or vim.fn.fnamemodify(path, ":h")
+              Snacks.picker.files({ cwd = target })
+            end,
+            grep_files = function(picker, item)
+              picker:close()
+              local path = item.file
+              local target = vim.fn.isdirectory(path) == 1 and path or vim.fn.fnamemodify(path, ":h")
+              Snacks.picker.grep({ cwd = target })
+            end,
+          },
           confirm = function(picker, item)
             picker:close()
             if item then
