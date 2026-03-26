@@ -63,27 +63,36 @@ return {
           end
         end
 
-        -- Open snacks picker files in current directory
-        local function oil_files()
+        -- Helper for snacks picker search in current directory
+        local function oil_search(type, opts)
           local cur_dir = oil.get_current_dir()
           if cur_dir then
-            Snacks.picker.files({ cwd = cur_dir })
-          end
-        end
-
-        -- Open snacks picker grep in current directory
-        local function oil_grep()
-          local cur_dir = oil.get_current_dir()
-          if cur_dir then
-            Snacks.picker.grep({ cwd = cur_dir })
+            opts = vim.tbl_extend("force", { cwd = cur_dir }, opts or {})
+            if type == "files" then
+              Snacks.picker.files(opts)
+            elseif type == "grep" then
+              Snacks.picker.grep(opts)
+            end
           end
         end
 
         -- Set buffer-local keymaps using <Space> explicitly
         vim.keymap.set("n", "<Space>y", oil_copy, { desc = "Oil copy path", buffer = ev.buf })
         vim.keymap.set("n", "<Space>w", "<cmd>w<CR>", { desc = "Save", buffer = ev.buf })
-        vim.keymap.set("n", "f.", oil_files, { desc = "Oil files", buffer = ev.buf })
-        vim.keymap.set("n", "g.", oil_grep, { desc = "Oil grep", buffer = ev.buf })
+
+        -- Robust Search mappings
+        vim.keymap.set("n", "<Space>f", function()
+          oil_search("files")
+        end, { desc = "Search Files (Oil)", buffer = ev.buf })
+        vim.keymap.set("n", "<Space>F", function()
+          oil_search("files", { hidden = true, ignored = true })
+        end, { desc = "Search Files (All, Oil)", buffer = ev.buf })
+        vim.keymap.set("n", "<Space>g", function()
+          oil_search("grep")
+        end, { desc = "Grep (Oil)", buffer = ev.buf })
+        vim.keymap.set("n", "<Space>G", function()
+          oil_search("grep", { hidden = true, ignored = true })
+        end, { desc = "Grep (All, Oil)", buffer = ev.buf })
 
         -- Prevent shift+j/k from doing half-page scrolls in oil buffers
         vim.keymap.set("n", "<S-j>", "j", { desc = "Down one line", buffer = ev.buf })
