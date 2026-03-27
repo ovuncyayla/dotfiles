@@ -1,4 +1,4 @@
-.PHONY: scripts ghostty hypr waybar
+.PHONY: scripts ghostty hypr waybar pipewire
 
 scripts:
 	if [ -e "$(HOME)/._profile" ]; then rm "$(HOME)/._profile"; fi
@@ -20,4 +20,9 @@ waybar:
 	mkdir -p $(HOME)/.config/waybar
 	ln -sf $(HOME)/dotfiles/waybar/config.jsonc $(HOME)/.config/waybar/config.jsonc
 	ln -sf $(HOME)/dotfiles/waybar/style.css $(HOME)/.config/waybar/style.css
+
+pipewire:
+	mkdir -p $(HOME)/.config/pipewire/pipewire.conf.d
+	ln -sf $(HOME)/dotfiles/pipewire/pipewire.conf.d/custom.conf $(HOME)/.config/pipewire/pipewire.conf.d/custom.conf
+
 
