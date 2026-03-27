@@ -9,10 +9,10 @@ fi
 fpath=($HOME/dotfiles/zsh/functies $HOME/opt/zsh-completions/src $fpath)
 
 # eval "$(starship init zsh)"
-# function set_win_title(){
-#     echo -ne "\033]0; $USER@$HOST:${PWD/$HOME/~} \007"
-# }
-# precmd_functions+=(set_win_title)
+function set_win_title(){
+    echo -ne "\033]0;${PWD/$HOME/~}\007"
+}
+precmd_functions+=(set_win_title)
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
