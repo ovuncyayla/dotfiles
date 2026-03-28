@@ -22,4 +22,5 @@ if ! tmux has-session -t $session_name 2> /dev/null; then
 fi
 
 tmux switch-client -t $session_name
+printf '\033]0;%s\007' "$session_name"
 

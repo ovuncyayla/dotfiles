@@ -9,16 +9,19 @@ ACTIVE_WS=$(hyprctl activeworkspace -j | jq -r '.id')
 # Set terminal title explicitly (prevent zsh from overwriting it)
 printf '\033]0;ghostty-fzf\007'
 
-
-CLIENTS_JSON=$(hyprctl clients -j | jq '[.[] | select(.initialTitle != "ghostty-fzf")]')
-CLIENTS_LIST=$(echo "$CLIENTS_JSON" | jq -r '
-  .[] | "\(.class): \(.title)  [ws:\(.workspace.id)]  [addr:\(.address)]"
+# Format: "addr\tclass: title  [ws:N]" — addr is field 1 (hidden), rest is displayed
+CLIENTS_LIST=$(hyprctl clients -j | jq -r '
+  .[] | select(.initialTitle != "ghostty-fzf") |
+  (.class | split(".") | last) as $cls |
+  "\(.address)\t\($cls): \(.title)  [ws:\(.workspace.id)]"
 ')
 
 [ -z "$CLIENTS_LIST" ] && exit 0
 
 SELECTION=$(echo "$CLIENTS_LIST" | fzf \
   --multi \
+  --with-nth=2.. \
+  --delimiter='\t' \
   --prompt="  window > " \
   --header="Tab: select  Enter: confirm" \
   --height=100% \
@@ -28,7 +31,7 @@ SELECTION=$(echo "$CLIENTS_LIST" | fzf \
 
 [ -z "$SELECTION" ] && exit 0
 
-mapfile -t SELECTED_ADDRS < <(echo "$SELECTION" | grep -oP '\[addr:\K[^\]]+')
+mapfile -t SELECTED_ADDRS < <(echo "$SELECTION" | cut -f1)
 [ ${#SELECTED_ADDRS[@]} -eq 0 ] && exit 0
 
 ADDR_LIST=$(printf '%s\n' "${SELECTED_ADDRS[@]}" | jq -Rn '[inputs]')
