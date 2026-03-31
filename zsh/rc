@@ -25,6 +25,7 @@ setopt nobeep                                                   # No beep
 setopt appendhistory                                            # Immediately append history instead of overwriting
 # setopt sharehistory
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
+setopt HIST_IGNORE_SPACE                                        # Don't add commands starting with a space to history
 setopt autocd                                                   # if only directory path is entered, cd there.
 setopt auto_pushd
 setopt pushd_ignore_dups
