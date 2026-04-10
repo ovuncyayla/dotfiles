@@ -25,7 +25,8 @@
     "disable-scroll": true,
     "all-outputs": true,
     "format": "{name}",
-    "on-click": "activate"
+    "on-click": "activate",
+    "sort-by": "id"
   },
   "hyprland/window": {
     "max-length": 35,
@@ -33,9 +34,9 @@
   },
   "hyprland/language": {
     "format": " {}",
-    "format-us": "US",
-    "format-it": "IT",
-    "format-tr": "TR"
+    "format-English (US)": "US",
+    "format-Italian": "IT",
+    "format-Turkish": "TR"
   },
   "battery": {
     "states": {
