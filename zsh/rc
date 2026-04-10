@@ -267,6 +267,9 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=white,bold'
 source $HOME/.profile
 source ${HOME}/dotfiles/zsh/profile
 
+# direnv: per-directory env via .envrc (auto-loaded after `direnv allow`)
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+
 n() {
     export NNN_TMPFILE=$(date -u +"/tmp/NNN_TEMP_%Y-%m-%d")
     touch    $NNN_TMPFILE

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Global direnv config — loaded for every .envrc before the .envrc itself.
+# Define helper functions here; per-project .envrc files can call them.
+
+# nix-direnv: caches flake/shell evaluation and pins a GC root so
+# `nix-collect-garbage` won't nuke active dev shells. Source via the
+# profile symlink so upgrades just work.
+if [ -f "$HOME/.nix-profile/share/nix-direnv/direnvrc" ]; then
+  source "$HOME/.nix-profile/share/nix-direnv/direnvrc"
+fi
+
+# Load ~/.config/direnv/lib/*.sh if present — drop helpers in there.
+for _lib in "${XDG_CONFIG_HOME:-$HOME/.config}"/direnv/lib/*.sh; do
+  [ -r "$_lib" ] && source "$_lib"
+done
+unset _lib

@@ -1,4 +1,4 @@
-.PHONY: scripts ghostty hypr waybar pipewire
+.PHONY: scripts ghostty hypr waybar pipewire direnv
 
 scripts:
 	if [ -e "$(HOME)/._profile" ]; then rm "$(HOME)/._profile"; fi
@@ -24,5 +24,10 @@ waybar:
 pipewire:
 	mkdir -p $(HOME)/.config/pipewire/pipewire.conf.d
 	ln -sf $(HOME)/dotfiles/pipewire/pipewire.conf.d/custom.conf $(HOME)/.config/pipewire/pipewire.conf.d/custom.conf
+
+direnv:
+	mkdir -p $(HOME)/.config/direnv/lib
+	ln -sf $(HOME)/dotfiles/direnv/direnvrc $(HOME)/.config/direnv/direnvrc
+	ln -sf $(HOME)/dotfiles/direnv/lib/secrets.sh $(HOME)/.config/direnv/lib/secrets.sh
 
 
