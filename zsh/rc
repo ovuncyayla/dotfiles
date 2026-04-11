@@ -257,8 +257,11 @@ source /usr/share/fzf/shell/key-bindings.zsh
 
 # fzf-tab: render tab-completion menus through fzf.
 # Must be sourced after `compinit` and before `zsh-syntax-highlighting`.
-[[ -e "$HOME/.nix-profile/share/fzf-tab/fzf-tab.plugin.zsh" ]] && \
-  source "$HOME/.nix-profile/share/fzf-tab/fzf-tab.plugin.zsh"
+# Sourced from a plain upstream clone (not nix) so no prebuilt C module is
+# present — the plugin falls back to pure-zsh mode cleanly. The nix package
+# ships an .so linked against nix's glibc that Fedora's system zsh can't load.
+[[ -e "$HOME/.local/share/fzf-tab/fzf-tab.plugin.zsh" ]] && \
+  source "$HOME/.local/share/fzf-tab/fzf-tab.plugin.zsh"
 
 # Preview the contents of a pass directory when completing pass-activate.
 # Shows decrypted filenames only (never values) — safe to display.
