@@ -86,9 +86,13 @@ setopt prompt_subst
 # PROMPT='%F{blue}%n@%m %F{green}%~ %F{yellow}$(git_prompt_info)%F{reset} \$ '
 # PROMPT='%B%F{#80a0ff}%n@%m %F{reset}%~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
 
-PROMPT='%B%F{12}%n@%m %F{reset}%1~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
+pass_active_prompt() {
+  [[ -n "$PASS_ACTIVE" ]] && print -n "%F{red}[${PASS_ACTIVE}]%f "
+}
+
+PROMPT='$(pass_active_prompt)%B%F{12}%n@%m %F{reset}%1~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
 if [[ -n "${SSH_CONNECTION}" ]]; then
-  PROMPT='%B%F{12}[${SSH_CONNECTION%% *}] %n@%m%F{reset}%1~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
+  PROMPT='$(pass_active_prompt)%B%F{12}[${SSH_CONNECTION%% *}] %n@%m%F{reset}%1~ %F{cyan}$(git_prompt_info)%F{reset} \$ %b'
 fi
 
 # RPROMPT='${vcs_info_msg_0_}'
@@ -250,6 +254,16 @@ source /usr/share/fzf/shell/key-bindings.zsh
 
 # Advanced command-not-found hook
 [[ -e /usr/share/doc/find-the-command/ftc.zsh ]] && source /usr/share/doc/find-the-command/ftc.zsh
+
+# fzf-tab: render tab-completion menus through fzf.
+# Must be sourced after `compinit` and before `zsh-syntax-highlighting`.
+[[ -e "$HOME/.nix-profile/share/fzf-tab/fzf-tab.plugin.zsh" ]] && \
+  source "$HOME/.nix-profile/share/fzf-tab/fzf-tab.plugin.zsh"
+
+# Preview the contents of a pass directory when completing pass-activate.
+# Shows decrypted filenames only (never values) — safe to display.
+zstyle ':fzf-tab:complete:pass-activate:*' fzf-preview \
+  'ls -1 "${PASSWORD_STORE_DIR:-$HOME/.password-store}/$word" 2>/dev/null | sed "s/\.gpg$//"'
 
 # Use syntax highlighting
 # !!!Must be sourced at the end

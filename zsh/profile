@@ -43,4 +43,6 @@ if [ -d "$(pwd)/.dirme" ] ; then
 fi
 
 
+source "$HOME/dotfiles/zsh/pass.zsh"
+
 [[ -f ~/._private_profile ]] && source ~/._private_profile
