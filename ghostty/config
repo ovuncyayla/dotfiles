@@ -17,6 +17,7 @@ confirm-close-surface = false
 
 # Mouse
 mouse-hide-while-typing = true
+mouse-scroll-multiplier = precision:0.3
 
 # Opacity
 background-opacity = 0.95
