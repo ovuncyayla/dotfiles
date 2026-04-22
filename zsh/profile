@@ -16,6 +16,9 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 # alias vim='NVIM_MINIMAL=1 command nvim'
 alias e='nvim'
 export EDITOR='nvim'
+export JAVA_HOME="$HOME/.jdks/openjdk-23.0.1"
+# export JAVA_HOME="$HOME/.jdks/temurin-25.0.2"
+export PATH="$JAVA_HOME/bin:$PATH"
 # export EDITOR="/usr/bin/nvim"
 
 # export BROWSER=firedragon
