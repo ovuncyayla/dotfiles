@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+store="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+
+entry=$(find "$store" -name '*.gpg' -printf '%P\n' | sed 's/\.gpg$//' | sort | fzf --prompt="pass > ")
+
+[ -n "$entry" ] && pass -c "$entry"

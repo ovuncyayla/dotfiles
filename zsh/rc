@@ -284,6 +284,8 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=white,bold'
 source $HOME/.profile
 source ${HOME}/dotfiles/zsh/profile
 
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+
 # direnv: per-directory env via .envrc (auto-loaded after `direnv allow`)
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
