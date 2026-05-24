@@ -15,6 +15,7 @@
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.util.rest"
   ],
   "install_version": 8,
