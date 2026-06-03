@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Adjust monitor brightness via DDC/CI, with brightnessctl as fallback.
+# Usage: brightness up | down | <N> | +N | -N   (N = percent)
+set -euo pipefail
+
+step=5
+arg=${1:-}
+
+case "$arg" in
+    up)   delta="+ $step" ;;
+    down) delta="- $step" ;;
+    +*)   delta="+ ${arg#+}" ;;
+    -*)   delta="- ${arg#-}" ;;
+    ''|*[!0-9]*)
+        echo "usage: brightness up|down|+N|-N|N" >&2
+        exit 1 ;;
+    *)    delta="= $arg" ;;
+esac
+
+# Find first DDC-capable display; if none, fall back to brightnessctl.
+display=$(ddcutil detect --terse 2>/dev/null | awk '/^Display [0-9]+$/ {print $2; exit}')
+
+if [[ -n "${display:-}" ]]; then
+    cur=$(ddcutil --display "$display" getvcp 10 --terse 2>/dev/null | awk '{print $4}')
+    op=${delta%% *}
+    val=${delta##* }
+    case "$op" in
+        '+') new=$((cur + val)) ;;
+        '-') new=$((cur - val)) ;;
+        '=') new=$val ;;
+    esac
+    (( new < 0 ))   && new=0
+    (( new > 100 )) && new=100
+    ddcutil --display "$display" setvcp 10 "$new" >/dev/null
+    echo "DDC brightness: $new%"
+else
+    op=${delta%% *}
+    val=${delta##* }
+    case "$op" in
+        '+') brightnessctl set "${val}%+" ;;
+        '-') brightnessctl set "${val}%-" ;;
+        '=') brightnessctl set "${val}%"  ;;
+    esac
+fi

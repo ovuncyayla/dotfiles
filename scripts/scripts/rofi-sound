@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+# Pick the default PulseAudio/PipeWire sink via rofi.
+# Selecting a sink sets it as default and moves all current streams to it.
+# Selecting "⚙ Profile: <card>" opens a submenu to change that card's profile.
+
+set -euo pipefail
+
+ROFI=(rofi -dmenu -i -theme-str 'window {width: 600px;}')
+
+notify() { command -v notify-send >/dev/null && notify-send "$@" || echo "$*"; }
+
+# Map sink -> "name<TAB>description".
+sinks_tsv() {
+    pactl list sinks | awk '
+        /^Sink #/         { if (n) print n "\t" d; n=d="" }
+        /^\tName: /       { sub(/^\tName: /,""); n=$0 }
+        /^\tDescription: /{ sub(/^\tDescription: /,""); d=$0 }
+        END { if (n) print n "\t" d }
+    '
+}
+
+# card_index -> card_name
+card_name_of() {
+    pactl list cards short | awk -v idx="$1" '$1==idx { print $2 }'
+}
+
+current_sink=$(pactl get-default-sink)
+
+mapfile -t rows < <(sinks_tsv)
+[[ ${#rows[@]} -eq 0 ]] && { notify "rofi-sound" "No sinks found"; exit 1; }
+
+# Build menu: "● Description  (name)" with current sink marked.
+declare -A label_to_name
+menu=""
+for row in "${rows[@]}"; do
+    IFS=$'\t' read -r name desc <<<"$row"
+    [[ -z "$desc" ]] && desc="$name"
+    marker="  "
+    [[ "$name" == "$current_sink" ]] && marker="● "
+    label="${marker}${desc}"
+    label_to_name["$label"]="$name"
+    menu+="${label}"$'\n'
+done
+menu+="⚙ Change profile…"
+
+choice=$(printf '%s' "$menu" | "${ROFI[@]}" -p "Sound output" || true)
+[[ -z "$choice" ]] && exit 0
+
+if [[ "$choice" == "⚙ Change profile…" ]]; then
+    # Pick a card first.
+    card_menu=""
+    declare -A cardlabel_to_idx
+    while read -r idx cname _; do
+        label="$cname"
+        cardlabel_to_idx["$label"]="$idx"
+        card_menu+="${label}"$'\n'
+    done < <(pactl list cards short)
+
+    card_choice=$(printf '%s' "$card_menu" | "${ROFI[@]}" -p "Card" || true)
+    [[ -z "$card_choice" ]] && exit 0
+    card_idx="${cardlabel_to_idx[$card_choice]:-}"
+    [[ -z "$card_idx" ]] && exit 0
+    card_name=$(card_name_of "$card_idx")
+
+    active=$(pactl list cards | awk -v c="Name: $card_name" '
+        $0 ~ c { found=1 }
+        found && /^\tActive Profile: / { sub(/^\tActive Profile: /,""); print; exit }
+    ')
+
+    profile_menu=""
+    declare -A plabel_to_id
+    while IFS=$'\t' read -r pid pdesc pavail; do
+        [[ "$pavail" == "no" ]] && continue
+        marker="  "
+        [[ "$pid" == "$active" ]] && marker="● "
+        label="${marker}${pdesc}   [${pid}]"
+        plabel_to_id["$label"]="$pid"
+        profile_menu+="${label}"$'\n'
+    done < <(
+        pactl list cards | awk -v c="Name: $card_name" '
+            $0 ~ c { found=1; next }
+            found && /^\tProfiles:/ { in_p=1; next }
+            found && in_p && /^\t[A-Z]/ { in_p=0 }
+            in_p {
+                line=$0
+                sub(/^\t\t/,"",line)
+                # id: desc (sinks: N, sources: N, priority: N, available: yes|no)
+                match(line, /^([^:]+): (.*) \(sinks: [0-9]+, sources: [0-9]+, priority: [0-9]+, available: (yes|no)\)/, m)
+                if (m[1] != "") print m[1] "\t" m[2] "\t" m[3]
+            }
+        '
+    )
+
+    [[ -z "$profile_menu" ]] && { notify "rofi-sound" "No available profiles for $card_name"; exit 1; }
+
+    prof_choice=$(printf '%s' "$profile_menu" | "${ROFI[@]}" -p "Profile ($card_name)" || true)
+    [[ -z "$prof_choice" ]] && exit 0
+    pid="${plabel_to_id[$prof_choice]:-}"
+    [[ -z "$pid" ]] && exit 0
+
+    if pactl set-card-profile "$card_name" "$pid"; then
+        notify "Audio profile" "$card_name → $pid"
+    else
+        notify "Audio profile" "Failed: $card_name → $pid"
+        exit 1
+    fi
+    exit 0
+fi
+
+sink="${label_to_name[$choice]:-}"
+[[ -z "$sink" ]] && exit 0
+
+if pactl set-default-sink "$sink"; then
+    # Move existing streams onto the new sink.
+    while read -r idx _; do
+        [[ -n "$idx" ]] && pactl move-sink-input "$idx" "$sink" 2>/dev/null || true
+    done < <(pactl list sink-inputs short)
+    desc=$(printf '%s' "$choice" | sed 's/^[●  ]*//')
+    notify "Audio output" "$desc"
+else
+    notify "Audio output" "Failed to switch to $sink"
+    exit 1
+fi

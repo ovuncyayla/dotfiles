@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Hyprland inherits its env at session start, so vars added later
+# (e.g. via ~/.config/environment.d/) aren't visible to keybind-spawned
+# processes. Source the file ourselves so we don't depend on it.
+env_file="${XDG_CONFIG_HOME:-$HOME/.config}/environment.d/pass.conf"
+[ -r "$env_file" ] && set -a && . "$env_file" && set +a
+
+store="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+
+entry=$(find "$store" -name '*.gpg' -printf '%P\n' | sed 's/\.gpg$//' | sort | rofi -dmenu -i -p "pass")
+
+[ -n "$entry" ] && pass -c "$entry"
