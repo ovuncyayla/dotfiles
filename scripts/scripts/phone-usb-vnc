@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# USB fallback for the phone-as-monitor setup: forwards the phone's 127.0.0.1:5900 to the laptop's
+# wayvnc via adb reverse. No wifi/firewall involved — AVNC connects to 127.0.0.1:5900.
+# Runs forever from adb-reverse.service: re-arms the forward on every plug-in.
+# Requires USB debugging enabled on the phone (already authorized for this laptop).
+set -uo pipefail
+ADB="${ADB_BIN:-$HOME/.nix-profile/bin/adb}"
+PORT="${WAYVNC_PORT:-5900}"
+
+while true; do
+    "$ADB" wait-for-usb-device
+    if "$ADB" reverse "tcp:$PORT" "tcp:$PORT"; then
+        echo "phone-usb-vnc: forward active -> AVNC: 127.0.0.1:$PORT"
+    else
+        echo "phone-usb-vnc: adb reverse failed (unauthorized / no permissions?)" >&2
+        sleep 5
+        continue
+    fi
+    "$ADB" wait-for-usb-disconnect
+    echo "phone-usb-vnc: phone disconnected, waiting"
+done

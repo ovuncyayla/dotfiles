@@ -1,0 +1,12 @@
+[Unit]
+Description=wayvnc desktop mirror (phone as monitor)
+# Started/restarted from hyprland.conf (exec-once) after WAYLAND_DISPLAY is imported.
+
+[Service]
+Type=simple
+ExecStart=%h/dotfiles/scripts/scripts/wayvnc-mirror
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

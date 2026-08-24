@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Mirror the active desktop to the phone over VNC (phone = broken-laptop-panel replacement).
+# Captures HDMI-A-1 when the external monitor is plugged in, else creates/uses a HEADLESS output
+# (the monitor=HEADLESS-1 rule in hyprland.conf only applies once one exists).
+# Listens on 0.0.0.0; exposure is controlled by firewalld: port 5900 is open only in the "phone" zone,
+# which is assigned to the phone-hotspot NetworkManager profile (nmcli con modify <con> connection.zone phone).
+# Runs from a systemd user unit: no shell PATH, so the wayvnc binary is resolved explicitly.
+set -euo pipefail
+
+PORT="${WAYVNC_PORT:-5900}"
+WAYVNC="${WAYVNC_BIN:-$HOME/.nix-profile/bin/wayvnc}"
+[ -x "$WAYVNC" ] || WAYVNC=$(command -v wayvnc) || { echo "wayvnc-mirror: wayvnc not installed" >&2; exit 1; }
+
+active_outputs() { hyprctl monitors -j | grep -oE '"name": "[^"]+"' | cut -d'"' -f4; }
+
+if active_outputs | grep -qx HDMI-A-1; then
+    OUTPUT=HDMI-A-1
+else
+    OUTPUT=$(active_outputs | grep -m1 '^HEADLESS-' || true)
+    if [ -z "$OUTPUT" ]; then
+        hyprctl output create headless >/dev/null
+        sleep 1
+        OUTPUT=$(active_outputs | grep -m1 '^HEADLESS-')
+    fi
+fi
+
+echo "wayvnc-mirror: $OUTPUT -> 0.0.0.0:$PORT ($WAYVNC)"
+exec "$WAYVNC" -o "$OUTPUT" 0.0.0.0 "$PORT"

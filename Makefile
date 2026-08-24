@@ -1,4 +1,4 @@
-.PHONY: scripts ghostty hypr waybar pipewire direnv
+.PHONY: scripts ghostty hypr waybar pipewire direnv systemd
 
 scripts:
 	if [ -e "$(HOME)/._profile" ]; then rm "$(HOME)/._profile"; fi
@@ -30,4 +30,8 @@ direnv:
 	ln -sf $(HOME)/dotfiles/direnv/direnvrc $(HOME)/.config/direnv/direnvrc
 	ln -sf $(HOME)/dotfiles/direnv/lib/secrets.sh $(HOME)/.config/direnv/lib/secrets.sh
 
-
+systemd:
+	mkdir -p $(HOME)/.config/systemd/user
+	ln -sf $(HOME)/dotfiles/systemd/wayvnc.service $(HOME)/.config/systemd/user/wayvnc.service
+	ln -sf $(HOME)/dotfiles/systemd/adb-reverse.service $(HOME)/.config/systemd/user/adb-reverse.service
+	systemctl --user daemon-reload
