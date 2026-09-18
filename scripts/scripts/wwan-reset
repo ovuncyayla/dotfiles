@@ -1,0 +1,131 @@
+#!/bin/bash
+# wwan-reset: power-cycle the Quectel RM520N-GL over MHI and bring `fastweb` back.
+#
+#   wwan-reset            full cycle: unbind, bind, wait, unlock, connect
+#   wwan-reset unbind     detach driver only (used before suspend)
+#   wwan-reset bind       attach driver, then wait/unlock/connect (wwan-resume.service)
+#   wwan-reset recover    wait/unlock/connect only (modem already present)
+#
+# Why: the modem drops to RESET during s2idle; the kernel's MHI resume path then
+# fails ("failed to resume device: -22") and its recovery sometimes never
+# completes. Unbinding before sleep and rebinding after gives the modem a clean
+# boot instead. NetworkManager also fires the stored PIN ~40 ms after the modem
+# shows up as locked and gets "sim-pin-incorrect", which blocks autoconnect, so
+# autoconnect is held off until we have unlocked the SIM ourselves.
+#
+# Must run as root. PIN comes from /etc/wwan/pin (mode 600) if present, else
+# from the NM profile (gsm.pin). Never logs the PIN.
+set -u
+PCI=0000:08:00.0
+DRV=/sys/bus/pci/drivers/mhi-pci-generic
+CON=fastweb
+PIN_FILE=/etc/wwan/pin
+MIN_RETRIES=2   # never send a PIN if that could leave fewer than 1 retry
+
+log() { logger -t wwan-reset -- "$*"; echo "wwan-reset: $*" >&2; }
+
+[ "$(id -u)" = 0 ] || { echo "run as root" >&2; exit 1; }
+
+do_unbind() {
+  if [ -e "$DRV/$PCI" ]; then
+    log "unbinding $PCI"
+    echo "$PCI" > "$DRV/unbind" 2>/dev/null || log "unbind returned error (usually harmless)"
+  fi
+}
+
+do_bind() {
+  local try
+  for try in 1 2 3; do
+    [ -e "$DRV/$PCI" ] && return 0
+    log "binding $PCI (attempt $try)"
+    echo "$PCI" > "$DRV/bind" 2>/dev/null || log "bind returned error (usually harmless)"
+    sleep 3
+    [ -e "$DRV/$PCI" ] && return 0
+    log "driver not attached after bind; retrying"
+    sleep 5
+  done
+  log "could not bind driver"; return 1
+}
+
+modem_path() { mmcli -L 2>/dev/null | grep -o '/org/freedesktop/ModemManager1/Modem/[0-9]*' | head -1; }
+
+modem_state() { mmcli -K -m "$1" 2>/dev/null | sed -n 's/^modem\.generic\.state *: *//p'; }
+
+pin_retries() { mmcli -K -m "$1" 2>/dev/null | sed -n 's/^modem\.generic\.unlock-retries\.value\[[0-9]*\] *: *sim-pin (\([0-9]*\)).*/\1/p' | head -1; }
+
+get_pin() {
+  if [ -r "$PIN_FILE" ]; then tr -d '[:space:]' < "$PIN_FILE"
+  else nmcli -s -g gsm.pin connection show "$CON" 2>/dev/null
+  fi
+}
+
+do_recover() {
+  # keep NM from racing us with its own (failing) PIN attempt
+  nmcli connection modify "$CON" connection.autoconnect no 2>/dev/null
+  trap 'nmcli connection modify "$CON" connection.autoconnect yes 2>/dev/null' EXIT
+
+  local m="" i
+  for i in $(seq 1 90); do
+    m=$(modem_path); [ -n "$m" ] && break; sleep 1
+  done
+  [ -n "$m" ] || { log "no modem after 90s; giving up"; exit 2; }
+  log "modem $m present"
+
+  local st; st=$(modem_state "$m")
+  # wait for MM to settle into locked or something usable
+  for i in $(seq 1 20); do
+    case "$st" in locked|disabled|enabled|registered|connected) break;; esac
+    sleep 1; st=$(modem_state "$m")
+  done
+  log "modem state: $st"
+
+  # The RM520N often reports 'locked' for a few seconds after boot and then
+  # clears it by itself; only send a PIN if it is still locked after that.
+  if [ "$st" = locked ]; then
+    for i in $(seq 1 15); do
+      sleep 1; st=$(modem_state "$m"); [ "$st" != locked ] && break
+    done
+    [ "$st" = locked ] || log "modem unlocked itself (state: $st)"
+  fi
+
+  if [ "$st" = locked ]; then
+    local r; r=$(pin_retries "$m")
+    if [ -z "$r" ] || [ "$r" -lt "$MIN_RETRIES" ]; then
+      log "sim-pin retries=$r < $MIN_RETRIES; refusing to send PIN (unlock manually)"
+      exit 3
+    fi
+    local pin; pin=$(get_pin)
+    [ -n "$pin" ] || { log "no PIN available"; exit 4; }
+    local sim; sim=$(mmcli -K -m "$m" 2>/dev/null | sed -n 's/^modem\.generic\.sim *: *//p')
+    [ -n "$sim" ] || { log "no SIM object on modem"; exit 4; }
+    # judge by the modem state afterwards, not only by the exit code
+    local err; err=$(mmcli -i "$sim" --pin="$pin" 2>&1 >/dev/null) || log "mmcli --pin returned: ${err:-<no message>}"
+    for i in $(seq 1 20); do
+      st=$(modem_state "$m"); [ "$st" != locked ] && break; sleep 1
+    done
+    if [ "$st" = locked ]; then
+      log "SIM still locked 20s after PIN (retries were $r) - check the stored PIN"
+      exit 5
+    fi
+    log "SIM unlocked (state: $st)"
+    # give MM time to re-init after unlock
+    for i in $(seq 1 30); do
+      st=$(modem_state "$m")
+      case "$st" in disabled|enabled|registered|connected) break;; esac
+      sleep 1
+    done
+  fi
+
+  nmcli connection modify "$CON" connection.autoconnect yes 2>/dev/null
+  trap - EXIT
+  if nmcli connection up "$CON" >/dev/null 2>&1; then log "$CON up"
+  else log "$CON activation failed; NM autoconnect re-enabled"; exit 6; fi
+}
+
+case "${1:-full}" in
+  unbind)  do_unbind ;;
+  bind)    do_bind && do_recover ;;
+  recover) do_recover ;;
+  full)    do_unbind; sleep 5; do_bind && do_recover ;;
+  *) echo "usage: $0 [unbind|bind|recover|full]" >&2; exit 1 ;;
+esac

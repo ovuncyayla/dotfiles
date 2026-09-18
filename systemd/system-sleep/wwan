@@ -1,0 +1,7 @@
+#!/bin/bash
+# systemd-sleep hook: detach the WWAN modem before suspend so the kernel's
+# broken MHI resume path is never used. The resume side lives in
+# wwan-resume.service (a hook's background children get killed when the
+# suspend service's cgroup is cleaned up). See scripts/scripts/wwan-reset.
+[ "$1" = pre ] && /usr/local/sbin/wwan-reset unbind
+exit 0

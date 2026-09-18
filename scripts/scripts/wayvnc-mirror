@@ -1,28 +1,55 @@
 #!/usr/bin/env bash
 # Mirror the active desktop to the phone over VNC (phone = broken-laptop-panel replacement).
-# Captures HDMI-A-1 when the external monitor is plugged in, else creates/uses a HEADLESS output
-# (the monitor=HEADLESS-1 rule in hyprland.conf only applies once one exists).
+# - Captures the primary (HDMI) output when it's plugged in.
+# - Without it, uses/creates a HEADLESS output and sets an explicit mode: the generic monitor
+#   fallback gives headless outputs a bogus 0.06 Hz refresh, which makes frame-callback-driven
+#   apps (terminals) feel frozen.
+# - Watches for hotplug: when HDMI (re)appears, removes the headless output (otherwise workspaces
+#   get split across two screens) and re-captures HDMI; when it disappears, switches to headless.
 # Listens on 0.0.0.0; exposure is controlled by firewalld: port 5900 is open only in the "phone" zone,
 # which is assigned to the phone-hotspot NetworkManager profile (nmcli con modify <con> connection.zone phone).
 # Runs from a systemd user unit: no shell PATH, so the wayvnc binary is resolved explicitly.
-set -euo pipefail
+set -uo pipefail
 
 PORT="${WAYVNC_PORT:-5900}"
+PRIMARY="${WAYVNC_PRIMARY:-HDMI-A-1}"
+HEADLESS_MODE="${WAYVNC_HEADLESS_MODE:-1920x1080@60}"
 WAYVNC="${WAYVNC_BIN:-$HOME/.nix-profile/bin/wayvnc}"
 [ -x "$WAYVNC" ] || WAYVNC=$(command -v wayvnc) || { echo "wayvnc-mirror: wayvnc not installed" >&2; exit 1; }
 
-active_outputs() { hyprctl monitors -j | grep -oE '"name": "[^"]+"' | cut -d'"' -f4; }
+outputs()     { hyprctl monitors -j | grep -oE '"name": "[^"]+"' | cut -d'"' -f4; }
+has_primary() { outputs | grep -qx "$PRIMARY"; }
+mode()        { has_primary && echo primary || echo headless; }
 
-if active_outputs | grep -qx HDMI-A-1; then
-    OUTPUT=HDMI-A-1
-else
-    OUTPUT=$(active_outputs | grep -m1 '^HEADLESS-' || true)
-    if [ -z "$OUTPUT" ]; then
-        hyprctl output create headless >/dev/null
-        sleep 1
-        OUTPUT=$(active_outputs | grep -m1 '^HEADLESS-')
+pick_output() {
+    if has_primary; then
+        for h in $(outputs | grep '^HEADLESS-'); do hyprctl output remove "$h" >/dev/null; done
+        echo "$PRIMARY"; return
     fi
-fi
+    local h; h=$(outputs | grep -m1 '^HEADLESS-')
+    if [ -z "$h" ]; then
+        hyprctl output create headless >/dev/null; sleep 1
+        h=$(outputs | grep -m1 '^HEADLESS-')
+    fi
+    hyprctl keyword monitor "$h,$HEADLESS_MODE,auto,1" >/dev/null
+    echo "$h"
+}
 
-echo "wayvnc-mirror: $OUTPUT -> 0.0.0.0:$PORT ($WAYVNC)"
-exec "$WAYVNC" -o "$OUTPUT" 0.0.0.0 "$PORT"
+PID=""
+cleanup() { [ -n "$PID" ] && kill "$PID" 2>/dev/null; exit 0; }
+trap cleanup TERM INT
+
+while true; do
+    STATE=$(mode); OUTPUT=$(pick_output)
+    echo "wayvnc-mirror: $OUTPUT ($STATE) -> 0.0.0.0:$PORT"
+    "$WAYVNC" -o "$OUTPUT" 0.0.0.0 "$PORT" & PID=$!
+    while kill -0 "$PID" 2>/dev/null; do
+        sleep 2
+        if [ "$(mode)" != "$STATE" ]; then
+            echo "wayvnc-mirror: monitor change ($STATE -> $(mode)), switching output"
+            kill "$PID" 2>/dev/null; break
+        fi
+    done
+    wait "$PID" 2>/dev/null; PID=""
+    sleep 1
+done

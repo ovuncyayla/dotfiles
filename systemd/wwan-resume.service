@@ -1,0 +1,14 @@
+[Unit]
+Description=Re-attach WWAN modem, unlock SIM and reconnect after resume
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+After=ModemManager.service NetworkManager.service
+
+[Service]
+Type=oneshot
+# let the PCI bus finish resuming before probing the modem
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/local/sbin/wwan-reset bind
+TimeoutStartSec=240
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

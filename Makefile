@@ -35,3 +35,11 @@ systemd:
 	ln -sf $(HOME)/dotfiles/systemd/wayvnc.service $(HOME)/.config/systemd/user/wayvnc.service
 	ln -sf $(HOME)/dotfiles/systemd/adb-reverse.service $(HOME)/.config/systemd/user/adb-reverse.service
 	systemctl --user daemon-reload
+
+# needs root: installs the WWAN suspend/resume hook system-wide
+.PHONY: wwan
+wwan:
+	sudo install -m 755 $(HOME)/dotfiles/scripts/scripts/wwan-reset /usr/local/sbin/wwan-reset
+	sudo install -m 755 $(HOME)/dotfiles/systemd/system-sleep/wwan /usr/lib/systemd/system-sleep/wwan
+	sudo install -m 644 $(HOME)/dotfiles/systemd/wwan-resume.service /etc/systemd/system/wwan-resume.service
+	sudo systemctl daemon-reload && sudo systemctl enable wwan-resume.service
